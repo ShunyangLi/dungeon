@@ -1,7 +1,6 @@
-package TestPlay;
+package ass2;
 
 public class Map {
-
     private int[][] map;
     private int height;
     private int width;
@@ -28,15 +27,14 @@ public class Map {
         return this.width;
     }
 
-    public void setMap()
+    public int getValue(Coordinate coordinate)
     {
-        for (int i = 0; i < height; i ++)
-        {
-            for (int j = 0; j < width; j++)
-            {
-                this.map[i][j] = 0;
-            }
-        }
+        return map[coordinate.getX()][coordinate.getY()];
+    }
+
+    public void setupMap(Coordinate coordinate)
+    {
+        this.map[coordinate.getX()][coordinate.getY()] = coordinate.getValue();
     }
 
     public void showMap(Coordinate coordinate)
@@ -45,12 +43,7 @@ public class Map {
         {
             for (int j = 0; j < width; j++)
             {
-                if (i == coordinate.getX() && j == coordinate.getY())
-                {
-                    System.out.print("*");
-                } else {
-                    System.out.print(this.map[i][j]);
-                }
+                System.out.print(this.map[i][j]);
             }
             System.out.print("\n");
         }

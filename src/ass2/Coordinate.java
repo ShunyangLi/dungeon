@@ -1,11 +1,10 @@
-package TestPlay;
+package ass2;
 
 public class Coordinate {
+    // x, y is the coordinate, and the value is the objects
     private int x;
     private int y;
     private int value;
-
-    public Coordinate () {}
 
     public Coordinate (int x, int y, int value) {
         this.setX(x);
