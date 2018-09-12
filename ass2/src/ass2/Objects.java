@@ -9,16 +9,16 @@ public class Objects {
     public static final int boulder = 3;
     public static final int floor_switch = 4;
     public static final int door = 5;
-    public static final int treasure = 6;
     public static final int key = 7;
+    public static final int pit = 9;
 
     // this is props player can pick up
-    public static final int bomb = 8;    // 待定，bloom是否可以自带属性
-    public static final int pit = 9;
-    public static final int Sword = 10;
-    public static final int Arrow = 11;
-    public static final int Invincibility = 12;
-    public static final int Hover = 13;
+    public static final int bomb = 8;    // 待定，bloom是否可以自带属
+    public static final int sword = 10;
+    public static final int arrow = 11;
+    public static final int treasure = 6;
+    public static final int invincibility = 12;
+    public static final int hover = 13;
 
     // This is the players
     public static final int player = 14;
