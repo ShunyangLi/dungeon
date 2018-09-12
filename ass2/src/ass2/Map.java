@@ -1,5 +1,7 @@
 package ass2;
 
+import java.awt.*;
+
 public class Map {
     private int[][] map;
     private int height;
@@ -27,9 +29,9 @@ public class Map {
         return this.width;
     }
 
-    public int getValue(Coordinate coordinate)
+    public int getValue(int x, int y)
     {
-        return map[coordinate.getX()][coordinate.getY()];
+        return map[x][y];
     }
 
     public void setupMap(Coordinate coordinate)
@@ -43,9 +45,39 @@ public class Map {
         {
             for (int j = 0; j < width; j++)
             {
-                System.out.print(this.map[i][j]);
+                if (this.getValue(i,j) == Objects.road)
+                {
+                    System.out.print(" ");
+                } else if (this.getValue(i,j) == Objects.player) {
+                    System.out.print("&");
+                } else if (this.getValue(i,j) == Objects.wall) {
+                    System.out.print("*");
+                } else {
+                    System.out.print("#");
+                }
             }
             System.out.print("\n");
+        }
+    }
+
+    public void setWall()
+    {
+        for (int i = 0; i < height/2; i ++)
+        {
+            Coordinate coordinate = new Coordinate(i,2,Objects.wall);
+            this.setupMap(coordinate);
+        }
+
+        for (int i = 4; i < height; i ++)
+        {
+            Coordinate coordinate = new Coordinate(4,i,Objects.wall);
+            this.setupMap(coordinate);
+        }
+
+        for (int i = 6; i < height - 2; i ++)
+        {
+            Coordinate coordinate = new Coordinate(i,6,Objects.wall);
+            this.setupMap(coordinate);
         }
     }
 }

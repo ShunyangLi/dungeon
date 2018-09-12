@@ -2,7 +2,7 @@ package ass2;
 
 import java.util.List;
 
-public class Player {
+public class Player implements NPC{
 
     private Coordinate position;
     private Map map;
@@ -19,10 +19,11 @@ public class Player {
         this.alive = true;
     }
 
+    @Override
     public boolean vildateMove(Coordinate coordinate)
     {
         boolean flag = false;
-        if (this.map.getValue(coordinate) == Objects.road)
+        if (this.map.getValue(coordinate.getX(),coordinate.getY()) == Objects.road)
         {
             flag = true;
         }
@@ -30,6 +31,7 @@ public class Player {
         return flag;
     }
 
+    @Override
     public void moveUp()
     {
         Coordinate coordinate = new Coordinate(this.position.getX() - 1 ,this.position.getY(), Objects.player);
@@ -38,13 +40,14 @@ public class Player {
         {
             this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
-            this.position.setX(this.position.getX() + 1);
+            this.position.setX(this.position.getX() - 1);
             this.position.setValue(Objects.player);
             this.map.setupMap(this.position);
         }
 
     }
 
+    @Override
     public void moveDown()
     {
         Coordinate coordinate = new Coordinate(this.position.getX() + 1, this.position.getY(),Objects.player);
@@ -58,9 +61,10 @@ public class Player {
         }
     }
 
+    @Override
     public void moveLeft()
     {
-        Coordinate coordinate = new Coordinate(this.position.getY() - 1, this.position.getY(),Objects.player);
+        Coordinate coordinate = new Coordinate(this.position.getX(), this.position.getY() - 1,Objects.player);
         if (vildateMove(coordinate))
         {
             this.position.setValue(Objects.road);
@@ -71,9 +75,10 @@ public class Player {
         }
     }
 
+    @Override
     public void moveRigt()
     {
-        Coordinate coordinate = new Coordinate(this.position.getY() + 1, this.position.getY(),this.position.getValue());
+        Coordinate coordinate = new Coordinate(this.position.getX(),this.position.getY() + 1,this.position.getValue());
         if (vildateMove(coordinate))
         {
             this.position.setValue(Objects.road);
@@ -84,7 +89,7 @@ public class Player {
         }
     }
 
-
+    @Override
     public Coordinate getPosition() {
         return this.position;
     }
