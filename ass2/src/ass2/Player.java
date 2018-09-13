@@ -27,7 +27,6 @@ public class Player {
     // 少一个检测炸弹的范围，如果这个人在炸弹的范围内，直接gg
     public boolean isDie(int x, int y)
     {
-        Coordinate coordinate = new Coordinate(x,y,-1);
         int value = this.map.getValue(x,y);
         // 如果是pit的话直接死亡, setAlibe = false
         if (value == Objects.pit && ! this.hover)
@@ -51,22 +50,21 @@ public class Player {
             // 如果有无敌药水的话， 敌人直接被杀死，下一个位置被改成road
             if (this.getInvincibility() != 0)
             {
-                coordinate.setValue(Objects.road);
-                this.map.setupMap(coordinate);
+                this.position.setValue(Objects.road);
                 this.map.setupMap(this.position);
                 return false;
 
             } else if (this.bag.getSword().getNum() != 0) {
                 // 如果没有无敌药水，检测是不是有sword，如果有sword，直接杀死敌人，把当前的位置设置成road
                 this.bag.getSword().use();
-                coordinate.setValue(Objects.road);
-                this.map.setupMap(coordinate);
+                this.position.setValue(Objects.road);
+                this.map.setupMap(this.position);
                 return false;
             } else if (this.bag.getArrow().getNum() != 0) {
                 // 如果没有sword，检测arrow，如果有arrow，直接杀死敌人，然后设置当前位置road
                 this.bag.getArrow().use();
-                coordinate.setValue(Objects.road);
-                this.map.setupMap(coordinate);
+                this.position.setValue(Objects.road);
+                this.map.setupMap(this.position);
                 return false;
 
             } else {
