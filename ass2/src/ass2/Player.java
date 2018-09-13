@@ -11,6 +11,8 @@ public class Player {
     private int invincibility;
     private Map map;
     private Bag bag;
+    private int preValue = -1;
+    private int flag = -1;
 
     public Player(Map map, Bag bag)
     {
@@ -81,14 +83,13 @@ public class Player {
 
     // 检测能不能移动，以及在移动中捡的东西
     // 写出来一个pre用来储存open door或者pit， 如果pre == 这两个值，然后把当前的值替换为pre
+    // TODO 没有检查嗑药的情况
     public boolean isMoveable(int x, int y)
     {
 //        boolean flag = false;
         int value = this.map.getValue(x,y);
-
         // 如果是墙的话不能移动
-        if (value == Objects.wall)
-        {
+        if (value == Objects.wall) {
             return false;
         } else if (value == Objects.sword) {
             // 如果是sword的话，先检测是不是已经有了，如果咩有，直接捡起来，否则捡不起来，也过不去
@@ -124,15 +125,25 @@ public class Player {
             return true;
         } else if (value == Objects.pit && this.hover) {
             // TODO 大bug
+            this.preValue = Objects.pit;
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
             return true;
         } else if (value == Objects.OpenDoor) {
             // 如果是open door需要fix
             // TODO 大bug
+            this.preValue = Objects.OpenDoor;
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
             return true;
         } else if (value == Objects.door && this.bag.getKey().getNum() != 0) {
             // TODO
             this.bag.getKey().use();
             this.position.setValue(Objects.OpenDoor);
+            this.map.setupMap(this.position);
+            return true;
+        } else if (value == Objects.road) {
+            this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
             return true;
         }
@@ -182,6 +193,16 @@ public class Player {
             {
                 if (isMoveable(x,y))
                 {
+                    if (this.preValue != -1 && this.flag != -1)
+                    {
+                        this.position.setValue(this.preValue);
+                        this.map.setupMap(this.position);
+                        this.preValue = -1;
+                        this.flag = -1;
+                    } else {
+                        this.flag ++;
+                    }
+
                     this.position.setX(this.position.getX() + 1);
                     this.position.setValue(Objects.player);
                     this.map.setupMap((this.position));
