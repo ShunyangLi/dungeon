@@ -7,12 +7,14 @@ public class Bag {
     private Arrow arrow;
     private Bomb bomb;
     private Treasure treasure;
+    private Key key;
 
-    public Bag (Sword sword, Arrow arrow, Bomb bomb, Treasure treasure) {
+    public Bag (Sword sword, Arrow arrow, Bomb bomb, Treasure treasure, Key key) {
         this.sword = sword;
         this.arrow = arrow;
         this.bomb = bomb;
         this.treasure = treasure;
+        this.key = key;
     }
 
     public Sword getSword() {
@@ -29,5 +31,9 @@ public class Bag {
 
     public Treasure getTreasure() {
         return treasure;
+    }
+
+    public Key getKey() {
+        return this.key;
     }
 }

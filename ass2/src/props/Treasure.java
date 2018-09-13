@@ -2,7 +2,7 @@ package props;
 
 import ass2.*;
 
-public class Treasure {
+public class Treasure implements Props {
     private int num;
     private Coordinate position;
     private Map map;
@@ -12,6 +12,7 @@ public class Treasure {
         this.setNum(0);
     }
 
+    @Override
     public boolean pickUp()
     {
         this.num ++;
@@ -20,21 +21,28 @@ public class Treasure {
         return true;
     }
 
+    @Override
     public int getNum()
     {
         return this.num;
     }
 
+    @Override
     public void setNum(int num) {
         this.num = num;
     }
 
+    @Override
+    public void use() {
+        this.num --;
+    }
 
+    @Override
     public Coordinate getPosition() {
         return this.position;
     }
 
-
+    @Override
     public boolean setPositionOnMap(int x, int y) {
         Coordinate co = new Coordinate(x, y, Objects.treasure);
         if(validateSet(co)) {
@@ -44,7 +52,7 @@ public class Treasure {
         } else {return false;}
     }
 
-
+    @Override
     public boolean validateSet(Coordinate coordinate) {
         if (this.map.getValue(coordinate.getX(), coordinate.getY()) == Objects.road) {
             return true;

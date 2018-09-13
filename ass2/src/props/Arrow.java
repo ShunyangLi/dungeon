@@ -30,16 +30,6 @@ public class Arrow implements Props{
     }
 
     @Override
-    public int getMaxNum() {
-        return this.numOfuse;
-    }
-
-    @Override
-    public void setMaxNum(int maxNum) {
-        this.numOfuse = maxNum;
-    }
-
-    @Override
     public void setNum(int num) {
         this.numOfuse = num;
     }

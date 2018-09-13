@@ -9,11 +9,12 @@ public class GameSystem {
         map.setWall();
         Sword sword = new Sword(map);
         sword.setPositionOnMap(1,0);
-        Bomb bomb = new Bomb();
-        Arrow arrow = new Arrow();
-        Treasure treasure = new Treasure();
+        Bomb bomb = new Bomb(map);
+        Arrow arrow = new Arrow(map);
+        Treasure treasure = new Treasure(map);
+        Key key = new Key(map);
 
-        Bag bag = new Bag(sword,arrow,bomb,treasure);
+        Bag bag = new Bag(sword,arrow,bomb,treasure, key);
 
         Player player = new Player(map, bag);
 

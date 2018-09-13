@@ -8,8 +8,6 @@ public interface Props {
 
     int getNum();
     void setNum(int num);
-    void setMaxNum(int maxNum);
-    int getMaxNum();
 
     boolean validateSet(Coordinate coordinate);
     boolean setPositionOnMap(int x, int y);

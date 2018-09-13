@@ -57,12 +57,12 @@ public class Sword implements Props {
         return this.num;
     }
 
-    @Override
+
     public void setMaxNum(int maxNum) {
         this.maxNum = maxNum;
     }
 
-    @Override
+
     public int getMaxNum() {
         return this.maxNum;
     }

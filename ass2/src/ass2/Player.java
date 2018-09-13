@@ -1,9 +1,5 @@
 package ass2;
-import javafx.scene.layout.CornerRadii;
 import props.*;
-
-import javax.crypto.interfaces.PBEKey;
-import javax.jws.Oneway;
 import java.util.List;
 
 
@@ -115,7 +111,8 @@ public class Player {
             return true;
         } else if (value == Objects.OpenDoor) {
             return true;
-        } else if (value == Objects.door && this.bag.getKey != 0) {
+        } else if (value == Objects.door && this.bag.getKey().getNum() != 0) {
+            // TODO
             return true;
         }
 
