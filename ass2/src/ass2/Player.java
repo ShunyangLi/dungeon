@@ -25,6 +25,7 @@ public class Player {
 
     // 如果放下炸弹的话，等三秒以后把周围四个格子改成fire， if fire then die
     // 少一个检测炸弹的范围，如果这个人在炸弹的范围内，直接gg
+    // isDie 和 isMoveable 只替换当前的格子里面的值，把当前的值替换成road
     public boolean isDie(int x, int y)
     {
         int value = this.map.getValue(x,y);
@@ -79,6 +80,7 @@ public class Player {
 
 
     // 检测能不能移动，以及在移动中捡的东西
+    // 写出来一个pre用来储存open door或者pit， 如果pre == 这两个值，然后把当前的值替换为pre
     public boolean isMoveable(int x, int y)
     {
 //        boolean flag = false;
