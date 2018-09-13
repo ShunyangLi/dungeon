@@ -1,25 +1,30 @@
 package ass2;
-
+import javafx.scene.layout.CornerRadii;
+import props.*;
 import java.util.List;
 
-public class Player implements NPC{
+
+public class Player {
 
     private Coordinate position;
-    private Map map;
-    private String name;
     private boolean alive;
-    private List bag;
+    private boolean hover;
+    private int invincibility;
+    private Map map;
+    private Bag bag;
 
-    public Player(Map map)
+    public Player(Map map, Bag bag)
     {
         this.position = new Coordinate(0,0,Objects.player);
         this.map = map;
         this.map.setupMap(this.position);
-        this.name = "Dun";
         this.alive = true;
+        this.bag = bag;
+        this.hover = false;
+        this.invincibility = 0;
     }
 
-    @Override
+
     public boolean vildateMove(Coordinate coordinate)
     {
         boolean flag = false;
@@ -28,16 +33,37 @@ public class Player implements NPC{
             flag = true;
         }
 
+        if(this.map.getValue(coordinate.getX(),coordinate.getY()) == Objects.pit)
+        {
+            this.setAlive(false);
+            System.out.println("The player is died, game over!!");
+        }
+
+        if (this.map.getValue(coordinate.getX(),coordinate.getY()) == Objects.sword)
+        {
+            if (this.bag.getSword().getMaxNum() > this.bag.getSword().getNum())
+            {
+                this.bag.getSword().pickUp();
+                System.out.println("大宝剑归位！！");
+            } else {
+                System.out.println("You already get one 大宝剑");
+
+            }
+            flag = true;
+        }
+
+
         return flag;
     }
 
-    @Override
+
     public void moveUp()
     {
         Coordinate coordinate = new Coordinate(this.position.getX() - 1 ,this.position.getY(), Objects.player);
 
         if (vildateMove(coordinate))
         {
+
             this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
             this.position.setX(this.position.getX() - 1);
@@ -47,12 +73,12 @@ public class Player implements NPC{
 
     }
 
-    @Override
     public void moveDown()
     {
-        Coordinate coordinate = new Coordinate(this.position.getX() + 1, this.position.getY(),Objects.player);
+        Coordinate coordinate = new Coordinate(this.position.getX() + 1, this.position.getY(), Objects.player);
         if (vildateMove(coordinate))
         {
+
             this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
             this.position.setX(this.position.getX() + 1);
@@ -61,7 +87,6 @@ public class Player implements NPC{
         }
     }
 
-    @Override
     public void moveLeft()
     {
         Coordinate coordinate = new Coordinate(this.position.getX(), this.position.getY() - 1,Objects.player);
@@ -75,8 +100,7 @@ public class Player implements NPC{
         }
     }
 
-    @Override
-    public void moveRigt()
+    public void moveRight()
     {
         Coordinate coordinate = new Coordinate(this.position.getX(),this.position.getY() + 1,this.position.getValue());
         if (vildateMove(coordinate))
@@ -89,8 +113,40 @@ public class Player implements NPC{
         }
     }
 
-    @Override
     public Coordinate getPosition() {
         return this.position;
     }
+
+    public Bag getBag() {
+        return this.bag;
+    }
+
+    public int getInvincibility() {
+        return this.invincibility;
+    }
+
+    public boolean getHover()
+    {
+        return this.hover;
+    }
+
+    public void setHover(boolean status)
+    {
+        this.hover = status;
+    }
+
+    public void setInvincibility(int invincibility) {
+        this.invincibility = invincibility;
+    }
+
+    public void setAlive(boolean status)
+    {
+        this.alive = status;
+    }
+
+    public boolean getAlive()
+    {
+        return this.alive;
+    }
+
 }

@@ -1,4 +1,5 @@
 package ass2;
+import props.*;
 
 public class GameSystem {
 
@@ -6,27 +7,24 @@ public class GameSystem {
     {
         Map map = new Map(20,20);
         map.setWall();
-        Player player = new Player(map);
+        Sword sword = new Sword(map);
+        sword.setPositionOnMap(1,0);
+        Bomb bomb = new Bomb();
+        Arrow arrow = new Arrow();
+        Treasure treasure = new Treasure();
+
+        Bag bag = new Bag(sword,arrow,bomb,treasure);
+
+        Player player = new Player(map, bag);
 
         map.showMap(player.getPosition());
+
         player.moveDown();
         System.out.println();
-        map.showMap(player.getPosition());
-        System.out.println();
+        Sword sword1 = new Sword(map);
+        sword.setPositionOnMap(2,0);
         player.moveDown();
         player.moveDown();
-        player.moveDown();
-        player.moveDown();
-        player.moveDown();
-        player.moveDown();
-        player.moveDown();
-        player.moveDown();
-        player.moveDown();
-        player.moveRigt();
-        player.moveRigt();
-        player.moveRigt();
-        player.moveUp();
-        player.moveLeft();
         map.showMap(player.getPosition());
     }
 

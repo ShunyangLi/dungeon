@@ -1,5 +1,7 @@
 package ass2;
 
+import javafx.scene.layout.CornerRadii;
+
 import java.awt.*;
 
 public class Map {
@@ -52,6 +54,8 @@ public class Map {
                     System.out.print("&");
                 } else if (this.getValue(i,j) == Objects.wall) {
                     System.out.print("*");
+                } else if (this.getValue(i,j) == Objects.pit){
+                    System.out.print("p");
                 } else {
                     System.out.print("#");
                 }
@@ -62,6 +66,7 @@ public class Map {
 
     public void setWall()
     {
+
         for (int i = 0; i < height/2; i ++)
         {
             Coordinate coordinate = new Coordinate(i,2,Objects.wall);

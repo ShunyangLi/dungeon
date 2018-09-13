@@ -5,3 +5,12 @@
 - Hunter 是要继承player的
 - potion和bloom一样包括这几种状态，(使用or没有使用)， 使用时间，作用
 - Sword and arrow可以继承props，包括次数，以及使用的范围，已经携带的限制
+
+
+
+### 要求：
+
+- 当player的bag里面已经有sword的时候不能穿过sword，也不能捡sword
+- 当player扔炸弹的时候会扔向下一个格子
+- 当player嗑药或者携带武器的话可以kill enemy
+- 
