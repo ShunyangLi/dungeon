@@ -27,3 +27,6 @@
 - invincibility（无敌药水，有时间限制）
 - hover （飞过pit，直到游戏结束或者player死亡）
 
+
+
+可以找一个pre，把当前坐标的值复制下来，然后如果pre == Object.opendoor, 或者什么东西，就把当前的position设置为pre

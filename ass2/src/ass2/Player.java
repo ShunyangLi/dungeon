@@ -24,98 +24,118 @@ public class Player {
     }
 
     // 如果放下炸弹的话，等三秒以后把周围四个格子改成fire， if fire then die
+    // 少一个检测炸弹的范围，如果这个人在炸弹的范围内，直接gg
     public boolean isDie(int x, int y)
     {
-
-        boolean flag = false;
+        Coordinate coordinate = new Coordinate(x,y,-1);
         int value = this.map.getValue(x,y);
-
-        if (value == Objects.pit)
+        // 如果是pit的话直接死亡, setAlibe = false
+        if (value == Objects.pit && ! this.hover)
         {
+            System.out.println("Sorry you fall into pit, you die!!");
+            this.setAlive(false);
             return true;
         }
-        // 在检测的时候后否直接把敌人杀死，并且改成road
+        // 检测，如果碰到敌人
         if (value == Objects.hunter || value == Objects.strategist
                 || value == Objects.hound || value == Objects.coward)
         {
+            // 如果没有武器也没有无敌药水的话直接死亡
             if (this.bag.getSword().getNum() == 0 && this.bag.getArrow().getNum() == 0 && this.getInvincibility() == 0)
             {
                 System.out.println("You have been killed!!");
+                this.setAlive(false);
                 return true;
             }
 
+            // 如果有无敌药水的话， 敌人直接被杀死，下一个位置被改成road
             if (this.getInvincibility() != 0)
             {
-                this.position.setValue(Objects.player);
+                coordinate.setValue(Objects.road);
+                this.map.setupMap(coordinate);
                 this.map.setupMap(this.position);
-                flag = false;
+                return false;
+
             } else if (this.bag.getSword().getNum() != 0) {
+                // 如果没有无敌药水，检测是不是有sword，如果有sword，直接杀死敌人，把当前的位置设置成road
                 this.bag.getSword().use();
-                this.position.setValue(Objects.player);
-                this.map.setupMap(this.position);
-                flag = false;
+                coordinate.setValue(Objects.road);
+                this.map.setupMap(coordinate);
+                return false;
             } else if (this.bag.getArrow().getNum() != 0) {
+                // 如果没有sword，检测arrow，如果有arrow，直接杀死敌人，然后设置当前位置road
                 this.bag.getArrow().use();
-                this.position.setValue(Objects.player);
-                this.map.setupMap(this.position);
-                flag = false;
+                coordinate.setValue(Objects.road);
+                this.map.setupMap(coordinate);
+                return false;
+
             } else {
+
+                // 如果什么都没有，直接gg
                 System.out.println("You have been killed!!");
-                flag = true;
+                return true;
             }
-//            // if sowrd && arrow && not invincibity == 0 then die
-//            if (this.bag.getSword().getNum() == 0)
-//            {
-//                System.out.println("You have been killed by enemey!!");
-//                return true;
-//            } else {
-//                // else if invincibity, then do not use weapon, else choose a weapon
-//                return false;
-//            }
         }
-        return flag;
+        return false;
     }
 
+
+    // 检测能不能移动，以及在移动中捡的东西
     public boolean isMoveable(int x, int y)
     {
 //        boolean flag = false;
         int value = this.map.getValue(x,y);
 
-        // if this is a door (not open) and wall, then return false
+        // 如果是墙的话不能移动
         if (value == Objects.wall)
         {
             return false;
         } else if (value == Objects.sword) {
-            // if this is a sword if not have, then pickup else not moveable
-
+            // 如果是sword的话，先检测是不是已经有了，如果咩有，直接捡起来，否则捡不起来，也过不去
             if (! this.bag.getSword().pickUp())
             {
                 System.out.println("You already get one sword");
                 return false;
             } else {
+                this.position.setValue(Objects.road);
+                this.map.setupMap(this.position);
                 return true;
             }
         } else if (value == Objects.arrow) {
-
+            // 如果为arrow的话直接捡起来
             this.bag.getArrow().pickUp();
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
             return true;
         } else if (value == Objects.treasure) {
             this.bag.getTreasure().pickUp();
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
             return true;
         } else if (value == Objects.bomb) {
             this.bag.getBomb().pickUp();
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
+            return true;
         } else if (value == Objects.key) {
-            // TODO need to be fiexd;
+            this.bag.getKey().pickUp();
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
             return true;
         } else if (value == Objects.pit && this.hover) {
+            // TODO 大bug
             return true;
         } else if (value == Objects.OpenDoor) {
+            // 如果是open door需要fix
+            // TODO 大bug
             return true;
         } else if (value == Objects.door && this.bag.getKey().getNum() != 0) {
             // TODO
+            this.bag.getKey().use();
+            this.position.setValue(Objects.OpenDoor);
+            this.map.setupMap(this.position);
             return true;
         }
-
         return false;
     }
 
@@ -131,6 +151,10 @@ public class Player {
     }
 
 
+    // 暂定在move里面设置下一个坐标的value
+    // moveable 只设置物品的坐标
+
+    // 需要设置face的朝向， maybe implement later
 
     public void moveUp()
     {
@@ -148,14 +172,27 @@ public class Player {
 
     public void moveDown()
     {
-        Coordinate coordinate = new Coordinate(this.position.getX() + 1, this.position.getY(), Objects.player);
-
-        // TODO
-        this.position.setValue(Objects.road);
-        this.map.setupMap(this.position);
-        this.position.setX(this.position.getX() + 1);
-        this.position.setValue(Objects.player);
-        this.map.setupMap((this.position));
+        // Coordinate coordinate = new Coordinate(this.position.getX() + 1, this.position.getY(), Objects.player);
+        int x = this.position.getX() + 1;
+        int y = this.position.getY();
+        // TODO 试着去写
+        if (! isExit(x,y))
+        {
+            if (! isDie(x,y))
+            {
+                if (isMoveable(x,y))
+                {
+                    this.position.setX(this.position.getX() + 1);
+                    this.position.setValue(Objects.player);
+                    this.map.setupMap((this.position));
+                }
+            }
+        }
+//        this.position.setValue(Objects.road);
+//        this.map.setupMap(this.position);
+//        this.position.setX(this.position.getX() + 1);
+//        this.position.setValue(Objects.player);
+//        this.map.setupMap((this.position));
 
     }
 
