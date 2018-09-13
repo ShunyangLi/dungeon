@@ -29,7 +29,10 @@ public class GameSystem {
 //        sword1.setPositionOnMap(2,0);
         map.showMap(player.getPosition());
         player.moveDown();
-        System.out.println();
+//        System.out.println();
+        map.showMap(player.getPosition());
+        System.out.println("Go right!");
+        player.moveRight();
         map.showMap(player.getPosition());
         player.moveDown();
         map.showMap(player.getPosition());

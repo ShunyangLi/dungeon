@@ -177,8 +177,20 @@ public class Player {
         this.position.setX(this.position.getX() - 1);
         this.position.setValue(Objects.player);
         this.map.setupMap(this.position);
+    }
 
-
+    // 把人物覆盖的object显示出来
+    public void setPre()
+    {
+        if (this.preValue != -1 && this.flag != -1)
+        {
+            this.position.setValue(this.preValue);
+            this.map.setupMap(this.position);
+            this.preValue = -1;
+            this.flag = -1;
+        } else {
+            this.flag ++;
+        }
     }
 
     public void moveDown()
@@ -193,16 +205,7 @@ public class Player {
             {
                 if (isMoveable(x,y))
                 {
-                    if (this.preValue != -1 && this.flag != -1)
-                    {
-                        this.position.setValue(this.preValue);
-                        this.map.setupMap(this.position);
-                        this.preValue = -1;
-                        this.flag = -1;
-                    } else {
-                        this.flag ++;
-                    }
-
+                    setPre();
                     this.position.setX(this.position.getX() + 1);
                     this.position.setValue(Objects.player);
                     this.map.setupMap((this.position));
@@ -232,14 +235,32 @@ public class Player {
 
     public void moveRight()
     {
-        Coordinate coordinate = new Coordinate(this.position.getX(),this.position.getY() + 1,this.position.getValue());
 
-        // TODO
-        this.position.setValue(Objects.road);
-        this.map.setupMap(this.position);
-        this.position.setY(this.position.getY() + 1);
-        this.position.setValue(Objects.player);
-        this.map.setupMap(this.position);
+        int x = this.position.getX();
+        int y = this.position.getY() + 1;
+        // TODO 试着去写
+        if (! isExit(x,y))
+        {
+            if (! isDie(x,y))
+            {
+                if (isMoveable(x,y))
+                {
+                    setPre();
+                    this.position.setY(this.position.getY() + 1);
+                    this.position.setValue(Objects.player);
+                    this.map.setupMap((this.position));
+                }
+            }
+        }
+
+//        Coordinate coordinate = new Coordinate(this.position.getX(),this.position.getY() + 1,this.position.getValue());
+//
+//        // TODO
+//        this.position.setValue(Objects.road);
+//        this.map.setupMap(this.position);
+//        this.position.setY(this.position.getY() + 1);
+//        this.position.setValue(Objects.player);
+//        this.map.setupMap(this.position);
 
     }
 
