@@ -1,16 +1,29 @@
-![image-20180911185809259](/var/folders/1z/7dj2n4k93g73jj5f_8nxggdw0000gn/T/abnerworks.Typora/image-20180911185809259.png)
+# 当player在移动过程中可能发生的：
 
-- Bloom and hunter and potion and sword and arrow这些都是游戏道具都有自己的属性，所以可以继承与props的类，所以待定
-- bloom包含了两种状态，(爆炸or没有爆炸)，已经爆炸范围，爆炸时间
-- Hunter 是要继承player的
-- potion和bloom一样包括这几种状态，(使用or没有使用)， 使用时间，作用
-- Sword and arrow可以继承props，包括次数，以及使用的范围，已经携带的限制
+## 不能移动的：
 
+- Wall  (当遇到wall时不能移动)
+- Sword （如果player已经拿到了一个sword， 当再遇到sword时不能移动，也不能拾取）
+- door （如果door是没有开的状态时，将不能穿过）
+- 如果碰到以上情况return false
 
+## Die：
 
-### 要求：
+- bloom 的爆炸范围以内
+- pit （当没有石头的时候或者没有飞行药水时）
+- enemy （没有武器，以及没有无敌药水的时候）
+- set alive = false
 
-- 当player的bag里面已经有sword的时候不能穿过sword，也不能捡sword
-- 当player扔炸弹的时候会扔向下一个格子
-- 当player嗑药或者携带武器的话可以kill enemy
-- 
+## Pick：
+
+- key （only 1）
+- bloom （无限制）
+- sword （only one）
+- arrow （无限制）
+- treasure（无限制）
+
+## Use directly：
+
+- invincibility（无敌药水，有时间限制）
+- hover （飞过pit，直到游戏结束或者player死亡）
+
