@@ -26,4 +26,8 @@ public class Objects {
     public static final int strategist = 16;
     public static final int hound = 17;
     public static final int coward = 18;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 24189501151e709b9e1462adf786f306447fceb3
