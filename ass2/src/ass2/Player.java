@@ -162,6 +162,20 @@ public class Player {
     }
 
 
+    // 把人物覆盖的object显示出来
+    public void setPre()
+    {
+        if (this.preValue != -1 && this.flag != -1)
+        {
+            this.position.setValue(this.preValue);
+            this.map.setupMap(this.position);
+            this.preValue = -1;
+            this.flag = -1;
+        } else {
+            this.flag ++;
+        }
+    }
+
     // 暂定在move里面设置下一个坐标的value
     // moveable 只设置物品的坐标
 
@@ -179,19 +193,6 @@ public class Player {
         this.map.setupMap(this.position);
     }
 
-    // 把人物覆盖的object显示出来
-    public void setPre()
-    {
-        if (this.preValue != -1 && this.flag != -1)
-        {
-            this.position.setValue(this.preValue);
-            this.map.setupMap(this.position);
-            this.preValue = -1;
-            this.flag = -1;
-        } else {
-            this.flag ++;
-        }
-    }
 
     public void moveDown()
     {
