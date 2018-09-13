@@ -11,6 +11,8 @@ public class Objects {
     public static final int door = 5;
     public static final int key = 7;
     public static final int pit = 9;
+    public static final int OpenDoor = 19;
+    public static final int fire = 20;
 
     // this is props player can pick up
     public static final int bomb = 8;    // 待定，bloom是否可以自带属
@@ -26,8 +28,5 @@ public class Objects {
     public static final int strategist = 16;
     public static final int hound = 17;
     public static final int coward = 18;
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> 24189501151e709b9e1462adf786f306447fceb3

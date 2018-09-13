@@ -1,11 +1,6 @@
 package props;
 
-import ass2.Coordinate;
-import ass2.Map;
-import ass2.Objects;
-
-import static ass2.Objects.road;
-import static ass2.Objects.sword;
+import ass2.*;
 
 
 public class Sword implements Props {
@@ -80,7 +75,7 @@ public class Sword implements Props {
 
     @Override
     public boolean setPositionOnMap(int x, int y) {
-        Coordinate co = new Coordinate(x, y, sword);
+        Coordinate co = new Coordinate(x, y, Objects.sword);
         if(validateSet(co)) {
             this.position = co;
             this.map.setupMap(co);
@@ -90,7 +85,7 @@ public class Sword implements Props {
 
     @Override
     public boolean validateSet(Coordinate coordinate) {
-        if (this.map.getValue(coordinate.getX(), coordinate.getY()) == road) {
+        if (this.map.getValue(coordinate.getX(), coordinate.getY()) == Objects.road) {
             return true;
         } else {return false;}
     }
