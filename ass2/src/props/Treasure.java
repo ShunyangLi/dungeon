@@ -16,8 +16,6 @@ public class Treasure implements Props {
     public boolean pickUp()
     {
         this.num ++;
-        this.position.setValue(Objects.road);
-        this.map.setupMap(this.position);
         return true;
     }
 

@@ -32,8 +32,8 @@ public class Bomb implements Props {
     {
 
         this.num ++;
-        this.position.setValue(Objects.road);
-        this.map.setupMap(this.position);
+        // this.position.setValue(Objects.road);
+        // this.map.setupMap(this.position);
 
         return true;
     }

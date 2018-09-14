@@ -37,8 +37,6 @@ public class Arrow implements Props{
     @Override
     public boolean pickUp() {
         this.numOfuse ++;
-        this.position.setValue(Objects.road);
-        this.map.setupMap(this.position);
         return true;
     }
 
