@@ -69,8 +69,10 @@ public class Map {
     public void setWall()
     {
 
-        Coordinate coordinate1 = new Coordinate(1,0,Objects.OpenDoor);
+        Coordinate coordinate1 = new Coordinate(1,0,Objects.boulder);
         this.setupMap(coordinate1);
+        Coordinate coordinate2 = new Coordinate(2,0,Objects.pit);
+        this.setupMap(coordinate2);
 
         for (int i = 0; i < height/2; i ++)
         {

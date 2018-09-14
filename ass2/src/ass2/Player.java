@@ -229,6 +229,7 @@ public class Player {
                 } else if (this.map.getValue(x,y) == Objects.boulder) {
                     // 如果不可以移动的话，判断是不是boulder，如果是就推箱子
                     // 利用boulderMove来判断是不是能推箱子
+                    System.out.println("here!!");
                     if(isBoulderMove(x + 1, y))
                     {
                         if (this.map.getValue(x + 1, y) == Objects.pit)
