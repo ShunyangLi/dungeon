@@ -8,6 +8,8 @@ public class Map {
     private int[][] map;
     private int height;
     private int width;
+    // TODO 可以用这个char [] 进行相对应的value的映射，更好的显示出来
+    // private char[] obj = {'r','w','e','b','f','d','k','p','O','f','B','s','a','t','I','h','P','H','S','D','C'};
 
     public Map (int height, int width) {
         this.height = height;

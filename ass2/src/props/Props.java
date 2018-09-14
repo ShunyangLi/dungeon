@@ -8,7 +8,6 @@ public interface Props {
 
     int getNum();
     void setNum(int num);
-
     boolean validateSet(Coordinate coordinate);
     boolean setPositionOnMap(int x, int y);
     Coordinate getPosition();
