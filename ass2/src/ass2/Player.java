@@ -14,9 +14,9 @@ public class Player {
     private int preValue = -1;
     private int flag = -1;
 
-    public Player(Map map, Bag bag)
+    public Player(Map map, Bag bag, Coordinate position)
     {
-        this.position = new Coordinate(0,0,Objects.player);
+        this.position = position;
         this.map = map;
         this.map.setupMap(this.position);
         this.alive = true;
@@ -55,6 +55,8 @@ public class Player {
             {
                 this.position.setValue(Objects.road);
                 this.map.setupMap(this.position);
+                Coordinate up = new Coordinate(x,y,Objects.road);
+                this.map.setupMap(up);
                 return false;
 
             } else if (this.bag.getSword().getNum() != 0) {
@@ -62,12 +64,16 @@ public class Player {
                 this.bag.getSword().use();
                 this.position.setValue(Objects.road);
                 this.map.setupMap(this.position);
+                Coordinate up = new Coordinate(x,y,Objects.road);
+                this.map.setupMap(up);
                 return false;
             } else if (this.bag.getArrow().getNum() != 0) {
                 // 如果没有sword，检测arrow，如果有arrow，直接杀死敌人，然后设置当前位置road
                 this.bag.getArrow().use();
                 this.position.setValue(Objects.road);
                 this.map.setupMap(this.position);
+                Coordinate up = new Coordinate(x,y,Objects.road);
+                this.map.setupMap(up);
                 return false;
 
             } else {
@@ -376,6 +382,17 @@ public class Player {
         }
 
 
+    }
+
+    public void showProps()
+    {
+        System.out.println("You have " + this.getBag().getSword().getNum() + " Sword!" + " and you can use " + this.bag.getSword().getUseable());
+        System.out.println("You have " + this.getBag().getArrow().getNum() + " Arrow!");
+        System.out.println("You have " + this.getBag().getBomb().getNum() + " Bomb!");
+        System.out.println("You have " + this.getBag().getTreasure().getNum() + " Treasure!");
+        System.out.println("You have " + this.getBag().getKey().getNum() + " Key");
+        System.out.println("Hover " + this.getHover());
+        System.out.println("Invincibilit " + this.getInvincibility());
     }
 
     public Coordinate getPosition() {

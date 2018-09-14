@@ -6,12 +6,11 @@ public class Hound implements Enemy {
     private Map map;
     private boolean alive;
 
-    public Hound(Map map)
+    public Hound(Map map, Coordinate position)
     {
-        this.getPosition().setX(5);
-        this.getPosition().setY(5);
-        this.getPosition().setValue(Objects.hound);
-        map.setupMap(this.getPosition());
+        this.position = position;
+        this.map = map;
+        this.map.setupMap(this.getPosition());
     }
 
 

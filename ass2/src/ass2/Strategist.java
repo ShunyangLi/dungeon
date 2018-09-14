@@ -6,11 +6,9 @@ public class Strategist implements Enemy {
     private Map map;
     private boolean alive;
 
-    public Strategist(Map map)
+    public Strategist(Map map, Coordinate position)
     {
-        this.getPosition().setX(7);
-        this.getPosition().setY(7);
-        this.getPosition().setValue(Objects.strategist);
+        this.position = position;
         map.setupMap(this.getPosition());
     }
 

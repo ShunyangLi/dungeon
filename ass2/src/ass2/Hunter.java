@@ -6,10 +6,11 @@ public class Hunter implements Enemy {
     private Map map;
     private boolean alive;
 
-    public Hunter(Map map)
+    public Hunter(Map map, Coordinate position)
     {
-        this.position = new Coordinate(5,5,Objects.hunter);
-        map.setupMap(this.getPosition());
+        this.position = position;
+        this.map = map;
+        this.map.setupMap(this.position);
     }
 
     @Override

@@ -5,11 +5,9 @@ public class Coward implements Enemy {
     private Map map;
     private boolean alive;
 
-    public Coward(Map map) {
+    public Coward(Map map, Coordinate position) {
 
-        this.getPosition().setX(9);
-        this.getPosition().setY(9);
-        this.getPosition().setValue(Objects.coward);
+        this.position = position;
         map.setupMap(this.getPosition());
     }
 

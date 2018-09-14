@@ -41,8 +41,6 @@ public class Sword implements Props {
         if(this.num < this.maxNum) {
             this.num++;
             this.setUseable(5);
-            this.position.setValue(0);
-            this.map.setupMap(this.position);
             return true;
         } else {return false;}
     }
