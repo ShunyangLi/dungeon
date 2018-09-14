@@ -5,11 +5,12 @@ import javafx.scene.layout.CornerRadii;
 import java.awt.*;
 
 public class Map {
+
     private int[][] map;
     private int height;
     private int width;
     // TODO 可以用这个char [] 进行相对应的value的映射，更好的显示出来
-    private char[] obj = {'r','w','e','b','f','d','k','p','O','p','B','s','a','t','I','h','P','H','S','D','C'};
+    private char[] obj = {'r','#','e','b','f','d','k','p','O','p','B','s','a','t','I','h','P','H','S','D','C'};
 
     public Map (int height, int width) {
         this.height = height;
