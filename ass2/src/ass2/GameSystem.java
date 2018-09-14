@@ -1,6 +1,8 @@
 package ass2;
 import props.*;
 
+import java.util.Scanner;
+
 public class GameSystem {
 
     public static void main(String[] args)
@@ -28,18 +30,41 @@ public class GameSystem {
 //        Sword sword1 = new Sword(map);
 //        sword1.setPositionOnMap(2,0);
         map.showMap(player.getPosition());
-        player.moveDown();
-//        System.out.println();
-        map.showMap(player.getPosition());
-        System.out.println("Go right!");
-        player.moveRight();
-        map.showMap(player.getPosition());
-        player.moveDown();
-        map.showMap(player.getPosition());
-        player.moveDown();
-        map.showMap(player.getPosition());
-        player.moveDown();
-        map.showMap(player.getPosition());
+
+        System.out.println("w: go up, s: go down, a: go left, d: go right. Enter your action: ");
+        Scanner scanner = new Scanner(System.in);
+        // 还要判断是不是赢了
+        while (player.getAlive())
+        {
+            String action = scanner.nextLine();
+            if (action.compareTo("w") == 0)
+            {
+                player.moveUp();
+            } else if (action.compareTo("s") == 0) {
+                player.moveDown();
+            } else if (action.compareTo("a") == 0) {
+                player.moveLeft();
+            } else if (action.compareTo("d") == 0) {
+                player.moveRight();
+            }
+            map.showMap(player.getPosition());
+        }
+
+
+
+
+//        player.moveDown();
+////        System.out.println();
+//        map.showMap(player.getPosition());
+//        System.out.println("Go right!");
+//        player.moveRight();
+//        map.showMap(player.getPosition());
+//        player.moveDown();
+//        map.showMap(player.getPosition());
+//        player.moveDown();
+//        map.showMap(player.getPosition());
+//        player.moveDown();
+//        map.showMap(player.getPosition());
     }
 
 }

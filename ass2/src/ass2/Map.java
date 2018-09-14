@@ -9,7 +9,7 @@ public class Map {
     private int height;
     private int width;
     // TODO 可以用这个char [] 进行相对应的value的映射，更好的显示出来
-    // private char[] obj = {'r','w','e','b','f','d','k','p','O','f','B','s','a','t','I','h','P','H','S','D','C'};
+    private char[] obj = {'r','w','e','b','f','d','k','p','O','p','B','s','a','t','I','h','P','H','S','D','C'};
 
     public Map (int height, int width) {
         this.height = height;
@@ -52,14 +52,8 @@ public class Map {
                 if (this.getValue(i,j) == Objects.road)
                 {
                     System.out.print(" ");
-                } else if (this.getValue(i,j) == Objects.player) {
-                    System.out.print("&");
-                } else if (this.getValue(i,j) == Objects.wall) {
-                    System.out.print("*");
-                } else if (this.getValue(i,j) == Objects.pit){
-                    System.out.print("p");
                 } else {
-                    System.out.print("#");
+                    System.out.print(obj[this.getValue(i,j)]);
                 }
             }
             System.out.print("\n");
@@ -91,5 +85,6 @@ public class Map {
             Coordinate coordinate = new Coordinate(i,6,Objects.wall);
             this.setupMap(coordinate);
         }
+
     }
 }

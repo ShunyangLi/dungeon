@@ -71,7 +71,6 @@ public class Player {
                 return false;
 
             } else {
-
                 // 如果什么都没有，直接gg
                 System.out.println("You have been killed!!");
                 return true;
@@ -83,7 +82,7 @@ public class Player {
 
     // 检测能不能移动，以及在移动中捡的东西
     // 写出来一个pre用来储存open door或者pit， 如果pre == 这两个值，然后把当前的值替换为pre
-    // TODO 没有检查嗑药的情况
+    // TODO 还没检查嗑无敌药水的模式，因为不知道咋弄
     public boolean isMoveable(int x, int y)
     {
 //        boolean flag = false;
@@ -124,19 +123,28 @@ public class Player {
             this.map.setupMap(this.position);
             return true;
         } else if (value == Objects.pit && this.hover) {
+            // pre是为了player走过之后把这个地方改掉
             this.preValue = Objects.pit;
             this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
             return true;
         } else if (value == Objects.OpenDoor) {
-            // 如果是open door需要fix
+            // pre是为了player走过之后把这个地方改掉
             this.preValue = Objects.OpenDoor;
             this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
             return true;
         } else if (value == Objects.door && this.bag.getKey().getNum() != 0) {
+            // 当这个门打开以后这个就是OpenDoor， 然后设置pre的value
+            this.preValue = Objects.OpenDoor;
             this.bag.getKey().use();
-            this.position.setValue(Objects.OpenDoor);
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
+            return true;
+        } else if (value == Objects.hover) {
+            // 当是飞行药水时，直接设置
+            this.setHover(true);
+            this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
             return true;
         } else if (value == Objects.road) {
@@ -147,6 +155,7 @@ public class Player {
         return false;
     }
 
+    // 看一下是不是exit
     public boolean isExit(int x, int y)
     {
         int value = this.map.getValue(x, y);
@@ -197,14 +206,42 @@ public class Player {
     // 需要设置face的朝向， maybe implement later
     public void moveUp()
     {
-        Coordinate coordinate = new Coordinate(this.position.getX() - 1 ,this.position.getY(), Objects.player);
+        int x = this.position.getX() - 1;
+        int y = this.position.getY();
 
-        // TODO
-        this.position.setValue(Objects.road);
-        this.map.setupMap(this.position);
-        this.position.setX(this.position.getX() - 1);
-        this.position.setValue(Objects.player);
-        this.map.setupMap(this.position);
+        if (!isExit(x,y))
+        {
+            if (!isDie(x,y))
+            {
+                if (isMoveable(x,y))
+                {
+                    setPre();
+                    this.position.setX(x);
+                    this.position.setValue(Objects.player);
+                    this.map.setupMap((this.position));
+                } else if (this.map.getValue(x,y) == Objects.boulder) {
+                    // 如果不可以移动的话，判断是不是boulder，如果是就推箱子
+                    // 利用boulderMove来判断是不是能推箱子
+                    if(isBoulderMove(x - 1, y))
+                    {
+                        if (this.map.getValue(x - 1, y) == Objects.pit)
+                        {
+                            Coordinate coordinate = new Coordinate(x - 1, y, Objects.road);
+                            this.map.setupMap(coordinate);
+                            this.position.setX(x);
+                            this.position.setValue(Objects.player);
+                            this.map.setupMap(this.position);
+                        } else if (this.map.getValue(x - 1, y) == Objects.road){
+                            Coordinate coordinate = new Coordinate(x - 1, y, Objects.boulder);
+                            this.map.setupMap(coordinate);
+                            this.position.setX(x);
+                            this.position.setValue(Objects.player);
+                            this.map.setupMap(this.position);
+                        }
+                    }
+                }
+            }
+        }
     }
 
 
@@ -213,7 +250,7 @@ public class Player {
         // Coordinate coordinate = new Coordinate(this.position.getX() + 1, this.position.getY(), Objects.player);
         int x = this.position.getX() + 1;
         int y = this.position.getY();
-        // TODO 试着去写
+        // TODO 基本上写完了，哈哈哈哈
         if (! isExit(x,y))
         {
             if (! isDie(x,y))
@@ -229,7 +266,6 @@ public class Player {
                 } else if (this.map.getValue(x,y) == Objects.boulder) {
                     // 如果不可以移动的话，判断是不是boulder，如果是就推箱子
                     // 利用boulderMove来判断是不是能推箱子
-                    System.out.println("here!!");
                     if(isBoulderMove(x + 1, y))
                     {
                         if (this.map.getValue(x + 1, y) == Objects.pit)
@@ -247,7 +283,6 @@ public class Player {
                             this.map.setupMap(this.position);
                         }
                     }
-
                 }
             }
         }
@@ -255,15 +290,44 @@ public class Player {
 
     public void moveLeft()
     {
-        Coordinate coordinate = new Coordinate(this.position.getX(), this.position.getY() - 1,Objects.player);
+        int x = this.position.getX();
+        int y = this.position.getY() - 1;
 
-        // TODO
-        this.position.setValue(Objects.road);
-        this.map.setupMap(this.position);
-        this.position.setY(this.position.getY() - 1);
-        this.position.setValue(Objects.player);
-        this.map.setupMap(this.position);
+        if (! isExit(x,y))
+        {
+            if (! isDie(x,y))
+            {
+                // 如果可以移动的话直接移动
+                if (isMoveable(x,y))
+                {
+                    setPre();
+                    this.position.setY(y);
+                    this.position.setValue(Objects.player);
+                    this.map.setupMap((this.position));
 
+                } else if (this.map.getValue(x,y) == Objects.boulder) {
+                    // 如果不可以移动的话，判断是不是boulder，如果是就推箱子
+                    // 利用boulderMove来判断是不是能推箱子
+                    if(isBoulderMove(x, y - 1))
+                    {
+                        if (this.map.getValue(x, y - 1) == Objects.pit)
+                        {
+                            Coordinate coordinate = new Coordinate(x, y - 1, Objects.road);
+                            this.map.setupMap(coordinate);
+                            this.position.setX(x);
+                            this.position.setValue(Objects.player);
+                            this.map.setupMap(this.position);
+                        } else if (this.map.getValue(x, y - 1) == Objects.road){
+                            Coordinate coordinate = new Coordinate(x, y - 1, Objects.boulder);
+                            this.map.setupMap(coordinate);
+                            this.position.setX(x);
+                            this.position.setValue(Objects.player);
+                            this.map.setupMap(this.position);
+                        }
+                    }
+                }
+            }
+        }
     }
 
     public void moveRight()
@@ -276,24 +340,41 @@ public class Player {
         {
             if (! isDie(x,y))
             {
+                // 如果可以移动的话直接移动
                 if (isMoveable(x,y))
                 {
                     setPre();
-                    this.position.setY(this.position.getY() + 1);
+                    this.position.setY(y);
                     this.position.setValue(Objects.player);
                     this.map.setupMap((this.position));
+
+                    System.out.println("here!!");
+
+                } else if (this.map.getValue(x,y) == Objects.boulder) {
+                    // 如果不可以移动的话，判断是不是boulder，如果是就推箱子
+                    // 利用boulderMove来判断是不是能推箱子
+                    if(isBoulderMove(x, y + 1))
+                    {
+                        if (this.map.getValue(x, y + 1) == Objects.pit)
+                        {
+                            // 判断是不是road，如果是的话直接push
+                            Coordinate coordinate1 = new Coordinate(x, y + 1, Objects.road);
+                            this.map.setupMap(coordinate1);
+                            this.position.setX(x);
+                            this.position.setValue(Objects.player);
+                            this.map.setupMap(this.position);
+                        } else if (this.map.getValue(x, y - 1) == Objects.road){
+                            Coordinate coordinate1 = new Coordinate(x, y + 1, Objects.boulder);
+                            this.map.setupMap(coordinate1);
+                            this.position.setX(x);
+                            this.position.setValue(Objects.player);
+                            this.map.setupMap(this.position);
+                        }
+                    }
                 }
             }
         }
 
-//        Coordinate coordinate = new Coordinate(this.position.getX(),this.position.getY() + 1,this.position.getValue());
-//
-//        // TODO
-//        this.position.setValue(Objects.road);
-//        this.map.setupMap(this.position);
-//        this.position.setY(this.position.getY() + 1);
-//        this.position.setValue(Objects.player);
-//        this.map.setupMap(this.position);
 
     }
 
