@@ -26,11 +26,13 @@ public class GameSystem {
 
 
         map.showMap(player.getPosition());
-        System.out.println("w: go up, s: go down, a: go left, d: go right. Enter your action: ");
+        // player.showProps();
+        // System.out.println("This is how to control the game!!");
         Scanner scanner = new Scanner(System.in);
         // 还要判断是不是赢了
         while (player.getAlive())
         {
+            System.out.println("w: go up, s: go down, a: go left, d: go right. Enter your action: ");
             String action = scanner.nextLine();
             if (action.compareTo("w") == 0)
             {
@@ -42,6 +44,7 @@ public class GameSystem {
             } else if (action.compareTo("d") == 0) {
                 player.moveRight();
             }
+            // System.out.println();
             player.showProps();
             map.showMap(player.getPosition());
         }

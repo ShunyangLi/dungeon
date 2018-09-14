@@ -183,7 +183,7 @@ public class Player {
             this.map.setupMap(this.position);
             this.preValue = -1;
             this.flag = -1;
-        } else {
+        } else if (this.flag == -1){
             this.flag ++;
         }
     }
@@ -207,9 +207,7 @@ public class Player {
     }
 
 
-    // 暂定在move里面设置下一个坐标的value
-    // moveable 只设置物品的坐标
-    // 需要设置face的朝向， maybe implement later
+    // TODO 需要重构一下
     public void moveUp()
     {
         int x = this.position.getX() - 1;
@@ -221,7 +219,10 @@ public class Player {
             {
                 if (isMoveable(x,y))
                 {
-                    setPre();
+                    if (this.preValue != -1)
+                    {
+                        setPre();
+                    }
                     this.position.setX(x);
                     this.position.setValue(Objects.player);
                     this.map.setupMap((this.position));
@@ -264,7 +265,10 @@ public class Player {
                 // 如果可以移动的话直接移动
                 if (isMoveable(x,y))
                 {
-                    setPre();
+                    if (this.preValue != -1)
+                    {
+                        setPre();
+                    }
                     this.position.setX(x);
                     this.position.setValue(Objects.player);
                     this.map.setupMap((this.position));
@@ -306,7 +310,10 @@ public class Player {
                 // 如果可以移动的话直接移动
                 if (isMoveable(x,y))
                 {
-                    setPre();
+                    if (this.preValue != -1)
+                    {
+                        setPre();
+                    }
                     this.position.setY(y);
                     this.position.setValue(Objects.player);
                     this.map.setupMap((this.position));
@@ -349,7 +356,10 @@ public class Player {
                 // 如果可以移动的话直接移动
                 if (isMoveable(x,y))
                 {
-                    setPre();
+                    if (this.preValue != -1)
+                    {
+                        setPre();
+                    }
                     this.position.setY(y);
                     this.position.setValue(Objects.player);
                     this.map.setupMap((this.position));
