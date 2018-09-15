@@ -14,6 +14,15 @@ public class MoveRight implements Move {
         this.position = this.player.getPosition();
     }
 
+    public boolean inMap(int x, int y)
+    {
+        if (x > this.map.getHeight() || y > this.map.getWidth() || x < 0 || y < 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
 
     @Override
     public void setPosition(int val) {
@@ -26,6 +35,12 @@ public class MoveRight implements Move {
     public void move() {
         int x = this.position.getX();
         int y = this.position.getY() + 1;
+
+        if (inMap(x, y))
+        {
+            return;
+        }
+
         // TODO 试着去写
         if (! this.player.isExit(x,y))
         {

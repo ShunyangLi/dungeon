@@ -15,6 +15,16 @@ public class MoveUp implements Move{
         this.position = this.player.getPosition();
     }
 
+    public boolean inMap(int x, int y)
+    {
+        if (x > this.map.getHeight() || y > this.map.getWidth() || x < 0 || y < 0)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
     @Override
     public void setPosition(int x) {
         this.position.setX(x);
@@ -27,6 +37,11 @@ public class MoveUp implements Move{
     public void move() {
         int x = this.position.getX() - 1;
         int y = this.position.getY();
+
+        if (inMap(x, y))
+        {
+            return;
+        }
 
         if (!this.player.isExit(x,y))
         {

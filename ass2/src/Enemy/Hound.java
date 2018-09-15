@@ -45,11 +45,6 @@ public class Hound extends Enemy {
     }
 
     @Override
-    public boolean setDie(Enemy enemy) {
-        return super.setDie(this);
-    }
-
-    @Override
     public int getVal(Enemy enemy) {
         return Objects.hound;
     }

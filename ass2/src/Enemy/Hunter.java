@@ -44,10 +44,6 @@ public class Hunter extends Enemy {
         return this.map;
     }
 
-    @Override
-    public boolean setDie(Enemy enemy) {
-        return super.setDie(this);
-    }
 
     @Override
     public int getVal(Enemy enemy) {
