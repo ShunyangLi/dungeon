@@ -48,7 +48,7 @@ public class Hunter extends Enemy {
             this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
 
-            System.out.println("x " + road.get(i).getX());
+            // System.out.println("x " + road.get(i).getX());
 
             int x = road.get(i).getX();
             int y = road.get(i).getY();
@@ -100,5 +100,10 @@ public class Hunter extends Enemy {
     @Override
     public int getVal(Enemy enemy) {
         return Objects.hunter;
+    }
+
+    @Override
+    public void hide() {
+
     }
 }

@@ -66,7 +66,7 @@ public class Coward extends Enemy {
             this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
 
-            System.out.println("x " + road.get(i).getX());
+            // System.out.println("x " + road.get(i).getX());
 
             int x = road.get(i).getX();
             int y = road.get(i).getY();
@@ -83,6 +83,45 @@ public class Coward extends Enemy {
         }
 
         return true;
+    }
+
+    // TODO 这个地方需要改，要不然会gg
+    // 需要考虑一下移动的方向，要不然会gg的， 会报错的
+    @Override
+    public void hide() {
+        Path path = new Path();
+        Coordinate temp = new Coordinate(1 , 2, -1);
+
+        ArrayList<Location> road = path.path(this.map, this.map.getPosition(Objects.coward), temp);
+
+        System.out.println(road.size());
+        if (road == null || road.size() == 0)
+        {
+            return;
+        }
+
+        // road.add(0,new Location(this.map.getPosition(Objects.player).getX(),this.map.getPosition(Objects.player).getX()));
+
+        for (int i  = road.size() - 1; i >= 0; i -- )
+        {
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
+
+            // System.out.println("x " + road.get(i).getX());
+
+            int x = road.get(i).getX();
+            int y = road.get(i).getY();
+
+            if (this.map.getValue(x,y) == Objects.player)
+            {
+                return;
+            }
+            this.map.setupMap(new Coordinate(x, y, Objects.coward));
+            this.position.setX(x);
+            this.position.setY(y);
+            this.position.setValue(Objects.coward);
+            break;
+        }
     }
 
     @Override

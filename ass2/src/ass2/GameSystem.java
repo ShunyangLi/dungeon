@@ -47,6 +47,8 @@ public class GameSystem {
             }else if (PlayerDie(player, hound)) {
                 System.out.println("Die!!");
                 break;
+            } else if (PlayerDie(player, coward)) {
+                System.out.println("Die!!");
             }
 
             if (hound.alive())
@@ -57,6 +59,17 @@ public class GameSystem {
             {
                 // System.out.println(hunter.alive());
                 hunter.autoMove();
+            }
+            if (coward.alive())
+            {
+                if (hide(player, coward))
+                {
+                    // System.out.println("Hiding !!");
+                    // TODO 虽然可以移动，但是bug依然很多
+                    coward.hide();
+                } else {
+                    coward.autoMove();
+                }
             }
 
 
@@ -78,6 +91,22 @@ public class GameSystem {
             map.showMap(player.getPosition());
         }
 
+    }
+
+    public static boolean hide(Player player, Enemy crowd)
+    {
+        int p_x = player.getPosition().getX();
+        int p_y = player.getPosition().getY();
+
+        int h_x = crowd.getPosition(crowd).getX();
+        int h_y = crowd.getPosition(crowd).getY();
+
+        int val = Math.abs(p_x - h_x) + Math.abs(p_y - h_y);
+        if (val < 5)
+        {
+            return true;
+        }
+        return false;
     }
 
     public static boolean PlayerDie(Player player, Enemy hunter)

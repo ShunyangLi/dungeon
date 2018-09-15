@@ -6,6 +6,7 @@ import ass2.*;
 
 public abstract class Enemy {
 
+    public abstract void hide();
     public abstract void setAlive(boolean s);
     public abstract boolean alive();
     public abstract boolean autoMove();

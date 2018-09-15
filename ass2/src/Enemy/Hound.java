@@ -28,7 +28,7 @@ public class Hound extends Enemy {
             this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
 
-            System.out.println("x " + road.get(i).getX());
+            // System.out.println("x " + road.get(i).getX());
 
             int x = road.get(i).getX();
             int y = road.get(i).getY();
@@ -96,6 +96,11 @@ public class Hound extends Enemy {
     @Override
     public boolean alive() {
         return this.alive;
+    }
+
+    @Override
+    public void hide() {
+
     }
 }
 

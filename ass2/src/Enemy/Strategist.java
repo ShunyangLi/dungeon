@@ -62,4 +62,9 @@ public class Strategist extends Enemy {
     public boolean alive() {
         return this.alive;
     }
+
+    @Override
+    public void hide() {
+
+    }
 }
