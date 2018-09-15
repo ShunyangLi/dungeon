@@ -27,6 +27,8 @@ public class GameSystem {
         Enemy strategist = enemyFactory.getEnemy(Strategist.class.getName(),map,map.getPosition(Objects.strategist));
         Enemy coward = enemyFactory.getEnemy(Coward.class.getName(), map,map.getPosition(Objects.coward));
 
+        hunter.moveDown(hunter);
+        strategist.moveDown(strategist);
 
         map.showMap(player.getPosition());
         // player.showProps();

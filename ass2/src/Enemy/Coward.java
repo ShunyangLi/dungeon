@@ -2,83 +2,55 @@ package Enemy;
 
 import ass2.*;
 
-public class Coward implements Enemy {
+public class Coward extends Enemy {
     private Coordinate position;
     private Map map;
     private boolean alive;
 
-    public Coward(Map map, Coordinate position) {
-
+    public Coward(Map map, Coordinate position)
+    {
         this.position = position;
-        map.setupMap(this.getPosition());
+        this.map = map;
+        this.map.setupMap(this.position);
     }
 
     @Override
-    public void moveUp() {
-
-        Coordinate coordinate = new Coordinate(this.position.getX() - 1 ,this.position.getY(), Objects.player);
-
-        if (vildateMove(coordinate))
-        {
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            this.position.setX(this.position.getX() - 1);
-            this.position.setValue(Objects.player);
-            this.map.setupMap(this.position);
-        }
+    public void moveDown(Enemy enemy) {
+        super.moveDown(this);
     }
 
     @Override
-    public void moveDown() {
-        Coordinate coordinate = new Coordinate(this.position.getX() + 1, this.position.getY(),Objects.player);
-        if (vildateMove(coordinate))
-        {
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            this.position.setX(this.position.getX() + 1);
-            this.position.setValue(Objects.player);
-            this.map.setupMap((this.position));
-        }
+    public void moveUp(Enemy enemy) {
+        super.moveUp(this);
     }
 
     @Override
-    public void moveRight() {
-        Coordinate coordinate = new Coordinate(this.position.getX(),this.position.getY() + 1,this.position.getValue());
-        if (vildateMove(coordinate))
-        {
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            this.position.setY(this.position.getY() + 1);
-            this.position.setValue(Objects.player);
-            this.map.setupMap(this.position);
-        }
+    public void moveRight(Enemy enemy) {
+        super.moveRight(this);
     }
 
     @Override
-    public void moveLeft() {
-        Coordinate coordinate = new Coordinate(this.position.getX(), this.position.getY() - 1,Objects.player);
-        if (vildateMove(coordinate))
-        {
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            this.position.setY(this.position.getY() - 1);
-            this.position.setValue(Objects.player);
-            this.map.setupMap(this.position);
-        }
+    public void moveLeft(Enemy enemy) {
+        super.moveLeft(this);
     }
 
     @Override
-    public Coordinate getPosition() {
+    public Coordinate getPosition(Enemy enemy) {
         return this.position;
     }
 
     @Override
-    public boolean vildateMove(Coordinate coordinate) {
-        boolean flag = false;
-        if (this.map.getValue(coordinate.getX(),coordinate.getY()) == Objects.road)
-        {
-            flag = true;
-        }
-        return flag;
+    public Map getMap(Enemy enemy) {
+        return this.map;
+    }
+
+    @Override
+    public boolean setDie(Enemy enemy) {
+        return super.setDie(this);
+    }
+
+    @Override
+    public int getVal(Enemy enemy) {
+        return Objects.coward;
     }
 }
