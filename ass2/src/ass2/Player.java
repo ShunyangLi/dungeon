@@ -1,6 +1,10 @@
 package ass2;
 
 
+import PlayerMove.MoveDown;
+import PlayerMove.MoveLeft;
+import PlayerMove.MoveRight;
+import PlayerMove.MoveUp;
 import javafx.scene.layout.CornerRadii;
 
 public class Player {
@@ -207,191 +211,26 @@ public class Player {
     }
 
 
-    // TODO 需要重构一下
+    // move up
     public void moveUp()
     {
-        int x = this.position.getX() - 1;
-        int y = this.position.getY();
-
-        if (!isExit(x,y))
-        {
-            if (!isDie(x,y))
-            {
-                if (isMoveable(x,y))
-                {
-                    if (this.preValue != -1)
-                    {
-                        setPre();
-                    }
-                    this.position.setX(x);
-                    this.position.setValue(Objects.player);
-                    this.map.setupMap((this.position));
-                } else if (this.map.getValue(x,y) == Objects.boulder) {
-                    // 如果不可以移动的话，判断是不是boulder，如果是就推箱子
-                    // 利用boulderMove来判断是不是能推箱子
-                    if(isBoulderMove(x - 1, y))
-                    {
-                        if (this.map.getValue(x - 1, y) == Objects.pit)
-                        {
-                            Coordinate coordinate = new Coordinate(x - 1, y, Objects.road);
-                            this.map.setupMap(coordinate);
-                            this.position.setX(x);
-                            this.position.setValue(Objects.player);
-                            this.map.setupMap(this.position);
-                        } else if (this.map.getValue(x - 1, y) == Objects.road){
-                            Coordinate coordinate = new Coordinate(x - 1, y, Objects.boulder);
-                            this.map.setupMap(coordinate);
-                            this.position.setX(x);
-                            this.position.setValue(Objects.player);
-                            this.map.setupMap(this.position);
-                        }
-                    }
-                }
-            }
-        }
+        new MoveUp(this).move();
     }
 
-
+    // move down
     public void moveDown()
     {
-        // Coordinate coordinate = new Coordinate(this.position.getX() + 1, this.position.getY(), Objects.player);
-        int x = this.position.getX() + 1;
-        int y = this.position.getY();
-        // TODO 基本上写完了，哈哈哈哈
-        if (! isExit(x,y))
-        {
-            if (! isDie(x,y))
-            {
-                // 如果可以移动的话直接移动
-                if (isMoveable(x,y))
-                {
-                    if (this.preValue != -1)
-                    {
-                        setPre();
-                    }
-                    this.position.setX(x);
-                    this.position.setValue(Objects.player);
-                    this.map.setupMap((this.position));
-
-                } else if (this.map.getValue(x,y) == Objects.boulder) {
-                    // 如果不可以移动的话，判断是不是boulder，如果是就推箱子
-                    // 利用boulderMove来判断是不是能推箱子
-                    if(isBoulderMove(x + 1, y))
-                    {
-                        if (this.map.getValue(x + 1, y) == Objects.pit)
-                        {
-                            Coordinate coordinate = new Coordinate(x + 1, y, Objects.road);
-                            this.map.setupMap(coordinate);
-                            this.position.setX(x);
-                            this.position.setValue(Objects.player);
-                            this.map.setupMap(this.position);
-                        } else if (this.map.getValue(x + 1, y) == Objects.road){
-                            Coordinate coordinate = new Coordinate(x + 1, y, Objects.boulder);
-                            this.map.setupMap(coordinate);
-                            this.position.setX(x);
-                            this.position.setValue(Objects.player);
-                            this.map.setupMap(this.position);
-                        }
-                    }
-                }
-            }
-        }
+        new MoveDown(this).move();
     }
 
     public void moveLeft()
     {
-        int x = this.position.getX();
-        int y = this.position.getY() - 1;
-
-        if (! isExit(x,y))
-        {
-            if (! isDie(x,y))
-            {
-                // 如果可以移动的话直接移动
-                if (isMoveable(x,y))
-                {
-                    if (this.preValue != -1)
-                    {
-                        setPre();
-                    }
-                    this.position.setY(y);
-                    this.position.setValue(Objects.player);
-                    this.map.setupMap((this.position));
-
-                } else if (this.map.getValue(x,y) == Objects.boulder) {
-                    // 如果不可以移动的话，判断是不是boulder，如果是就推箱子
-                    // 利用boulderMove来判断是不是能推箱子
-                    if(isBoulderMove(x, y - 1))
-                    {
-                        if (this.map.getValue(x, y - 1) == Objects.pit)
-                        {
-                            Coordinate coordinate = new Coordinate(x, y - 1, Objects.road);
-                            this.map.setupMap(coordinate);
-                            this.position.setX(x);
-                            this.position.setValue(Objects.player);
-                            this.map.setupMap(this.position);
-                        } else if (this.map.getValue(x, y - 1) == Objects.road){
-                            Coordinate coordinate = new Coordinate(x, y - 1, Objects.boulder);
-                            this.map.setupMap(coordinate);
-                            this.position.setX(x);
-                            this.position.setValue(Objects.player);
-                            this.map.setupMap(this.position);
-                        }
-                    }
-                }
-            }
-        }
+        new MoveLeft(this).move();
     }
 
     public void moveRight()
     {
-
-        int x = this.position.getX();
-        int y = this.position.getY() + 1;
-        // TODO 试着去写
-        if (! isExit(x,y))
-        {
-            if (! isDie(x,y))
-            {
-                // 如果可以移动的话直接移动
-                if (isMoveable(x,y))
-                {
-                    if (this.preValue != -1)
-                    {
-                        setPre();
-                    }
-                    this.position.setY(y);
-                    this.position.setValue(Objects.player);
-                    this.map.setupMap((this.position));
-
-                    System.out.println("here!!");
-
-                } else if (this.map.getValue(x,y) == Objects.boulder) {
-                    // 如果不可以移动的话，判断是不是boulder，如果是就推箱子
-                    // 利用boulderMove来判断是不是能推箱子
-                    if(isBoulderMove(x, y + 1))
-                    {
-                        if (this.map.getValue(x, y + 1) == Objects.pit)
-                        {
-                            // 判断是不是road，如果是的话直接push
-                            Coordinate coordinate1 = new Coordinate(x, y + 1, Objects.road);
-                            this.map.setupMap(coordinate1);
-                            this.position.setX(x);
-                            this.position.setValue(Objects.player);
-                            this.map.setupMap(this.position);
-                        } else if (this.map.getValue(x, y - 1) == Objects.road){
-                            Coordinate coordinate1 = new Coordinate(x, y + 1, Objects.boulder);
-                            this.map.setupMap(coordinate1);
-                            this.position.setX(x);
-                            this.position.setValue(Objects.player);
-                            this.map.setupMap(this.position);
-                        }
-                    }
-                }
-            }
-        }
-
-
+        new MoveRight(this).move();
     }
 
     public void showProps()
@@ -403,6 +242,18 @@ public class Player {
         System.out.println("You have " + this.getBag().getKey().getNum() + " Key");
         System.out.println("Hover " + this.getHover());
         System.out.println("Invincibilit " + this.getInvincibility());
+    }
+
+    public Map getMap() {
+        return this.map;
+    }
+
+    public int getPreValue() {
+        return this.preValue;
+    }
+
+    public int getFlag() {
+        return this.flag;
     }
 
     public Coordinate getPosition() {

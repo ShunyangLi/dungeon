@@ -9,7 +9,7 @@ public class Map {
     private int[][] map = {
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
             {1,14,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,1},
-            {1,13,0,1,0,0,1,1,1,1,0,0,1,1,1,1,0,1},
+            {1,3,0,1,0,0,1,1,1,1,0,0,1,1,1,1,0,1},
             {1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,1},
             {1,0,0,0,0,0,0,0,1,0,0,16,0,8,0,0,0,1},
             {1,0,0,15,0,0,0,0,1,0,0,0,0,0,0,0,0,1},
@@ -96,32 +96,4 @@ public class Map {
         return null;
     }
 
-// 可以退休了
-//    public void setWall()
-//    {
-//
-//        Coordinate coordinate1 = new Coordinate(1,0,Objects.boulder);
-//        this.setupMap(coordinate1);
-//        Coordinate coordinate2 = new Coordinate(2,0,Objects.pit);
-//        this.setupMap(coordinate2);
-//
-//        for (int i = 0; i < height/2; i ++)
-//        {
-//            Coordinate coordinate = new Coordinate(i,2,Objects.wall);
-//            this.setupMap(coordinate);
-//        }
-//
-//        for (int i = 4; i < height; i ++)
-//        {
-//            Coordinate coordinate = new Coordinate(4,i,Objects.wall);
-//            this.setupMap(coordinate);
-//        }
-//
-//        for (int i = 6; i < height - 2; i ++)
-//        {
-//            Coordinate coordinate = new Coordinate(i,6,Objects.wall);
-//            this.setupMap(coordinate);
-//        }
-//
-//    }
 }
