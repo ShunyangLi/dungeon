@@ -2,6 +2,8 @@ package Enemy;
 
 import ass2.*;
 
+// TODO enemy不会自然死亡，只有player杀死他才能死，要不然不会死
+
 public abstract class Enemy {
 
     public boolean vildateMove(Enemy enemy, int x, int y)
@@ -32,13 +34,6 @@ public abstract class Enemy {
         enemy.getMap(enemy).setupMap(enemy.getPosition(enemy));
     }
 
-    public boolean setDie(Enemy enemy)
-    {
-        enemy.getPosition(enemy).setValue(Objects.road);
-        enemy.getMap(enemy).setupMap(enemy.getPosition(enemy));
-        return true;
-    }
-
 
     public void moveUp(Enemy enemy)
     {
@@ -48,8 +43,6 @@ public abstract class Enemy {
         if (vildateMove(enemy, x, y))
         {
             setEnemyX(enemy, x);
-        } else if (enemy.getMap(enemy).getValue(x, y) == Objects.pit) {
-            setDie(enemy);
         }
     }
 
@@ -61,8 +54,6 @@ public abstract class Enemy {
         if (vildateMove(enemy, x, y))
         {
             setEnemyX(enemy, x);
-        } else if (enemy.getMap(enemy).getValue(x, y) == Objects.pit) {
-            setDie(enemy);
         }
     }
 
@@ -74,9 +65,6 @@ public abstract class Enemy {
         if (vildateMove(enemy, x, y))
         {
             setEnemyY(enemy, y);
-        } else if (enemy.getMap(enemy).getValue(x, y) == Objects.pit) {
-            setDie(enemy);
-
         }
     }
 
@@ -88,8 +76,6 @@ public abstract class Enemy {
         if (vildateMove(enemy, x, y))
         {
             setEnemyY(enemy, y);
-        } else if (enemy.getMap(enemy).getValue(x, y) == Objects.pit) {
-            setDie(enemy);
         }
     }
 
