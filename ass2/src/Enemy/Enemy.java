@@ -76,6 +76,7 @@ public abstract class Enemy {
             setEnemyY(enemy, y);
         } else if (enemy.getMap(enemy).getValue(x, y) == Objects.pit) {
             setDie(enemy);
+
         }
     }
 

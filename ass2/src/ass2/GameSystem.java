@@ -4,6 +4,8 @@ import props.*;
 
 import java.util.Scanner;
 
+// TODO 检测enemy是否死亡的方法，就是检测this.position的value是不是Enemy，如果不是，结束循环
+
 public class GameSystem {
 
     public static void main(String[] args)
@@ -27,7 +29,7 @@ public class GameSystem {
         Enemy strategist = enemyFactory.getEnemy(Strategist.class.getName(),map,map.getPosition(Objects.strategist));
         Enemy coward = enemyFactory.getEnemy(Coward.class.getName(), map,map.getPosition(Objects.coward));
 
-        hunter.moveDown(hunter);
+        hunter.moveUp(hunter);
         strategist.moveDown(strategist);
 
         map.showMap(player.getPosition());
