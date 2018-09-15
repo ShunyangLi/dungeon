@@ -1,4 +1,5 @@
 package ass2;
+import Enemy.*;
 import props.*;
 
 import java.util.Scanner;
@@ -19,16 +20,19 @@ public class GameSystem {
 
         Player player = new Player(map,bag,map.getPosition(Objects.player));
 
-        Hunter hunter = new Hunter(map,map.getPosition(Objects.hunter));
-        Hound hound = new Hound(map, map.getPosition(Objects.hound));
-        Strategist strategist = new Strategist(map,map.getPosition(Objects.strategist));
-        Coward coward = new Coward(map,map.getPosition(Objects.coward));
+        // 利用factory格式输出相对应的enemy
+        EnemyFactory enemyFactory = new EnemyFactory();
+        Enemy hunter = enemyFactory.getEnemy(Hunter.class.getName(),map,map.getPosition(Objects.hunter));
+        Enemy hound = enemyFactory.getEnemy(Hound.class.getName(), map, map.getPosition(Objects.hound));
+        Enemy strategist = enemyFactory.getEnemy(Strategist.class.getName(),map,map.getPosition(Objects.strategist));
+        Enemy coward = enemyFactory.getEnemy(Coward.class.getName(), map,map.getPosition(Objects.coward));
 
 
         map.showMap(player.getPosition());
         // player.showProps();
         // System.out.println("This is how to control the game!!");
         Scanner scanner = new Scanner(System.in);
+
         // 还要判断是不是赢了
         while (player.getAlive())
         {

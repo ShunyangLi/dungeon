@@ -1,4 +1,6 @@
-package ass2;
+package Enemy;
+
+import ass2.*;
 
 public class Coward implements Enemy {
     private Coordinate position;

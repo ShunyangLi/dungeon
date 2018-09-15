@@ -1,34 +1,29 @@
-package ass2;
+package Enemy;
 
-public class Strategist implements Enemy {
+import ass2.*;
+
+public class Hunter implements Enemy {
 
     private Coordinate position;
     private Map map;
     private boolean alive;
 
-    public Strategist(Map map, Coordinate position)
+    public Hunter(Map map, Coordinate position)
     {
         this.position = position;
-        map.setupMap(this.getPosition());
+        this.map = map;
+        this.map.setupMap(this.position);
     }
 
     @Override
-    public Coordinate getPosition() {
-        return this.position;
-    }
-
-    @Override
-    public void moveUp() {
-        Coordinate coordinate = new Coordinate(this.position.getX() - 1 ,this.position.getY(), Objects.player);
-
-        if (vildateMove(coordinate))
+    public boolean vildateMove(Coordinate coordinate) {
+        boolean flag = false;
+        if (this.map.getValue(coordinate.getX(),coordinate.getY()) == Objects.road)
         {
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            this.position.setX(this.position.getX() - 1);
-            this.position.setValue(Objects.player);
-            this.map.setupMap(this.position);
+            flag = true;
         }
+
+        return flag;
     }
 
     @Override
@@ -40,22 +35,8 @@ public class Strategist implements Enemy {
             this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
             this.position.setX(this.position.getX() + 1);
-            this.position.setValue(Objects.player);
+            this.position.setValue(Objects.hunter);
             this.map.setupMap((this.position));
-        }
-    }
-
-    @Override
-    public void moveRight() {
-
-        Coordinate coordinate = new Coordinate(this.position.getX(),this.position.getY() + 1,this.position.getValue());
-        if (vildateMove(coordinate))
-        {
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            this.position.setY(this.position.getY() + 1);
-            this.position.setValue(Objects.player);
-            this.map.setupMap(this.position);
         }
     }
 
@@ -74,14 +55,35 @@ public class Strategist implements Enemy {
     }
 
     @Override
-    public boolean vildateMove(Coordinate coordinate) {
+    public void moveRight() {
 
-        boolean flag = false;
-        if (this.map.getValue(coordinate.getX(),coordinate.getY()) == Objects.road)
+        Coordinate coordinate = new Coordinate(this.position.getX(),this.position.getY() + 1,this.position.getValue());
+        if (vildateMove(coordinate))
         {
-            flag = true;
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
+            this.position.setY(this.position.getY() + 1);
+            this.position.setValue(Objects.player);
+            this.map.setupMap(this.position);
         }
+    }
 
-        return flag;
+    @Override
+    public void moveUp() {
+        Coordinate coordinate = new Coordinate(this.position.getX() - 1 ,this.position.getY(), Objects.player);
+
+        if (vildateMove(coordinate))
+        {
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
+            this.position.setX(this.position.getX() - 1);
+            this.position.setValue(Objects.player);
+            this.map.setupMap(this.position);
+        }
+    }
+
+    @Override
+    public Coordinate getPosition() {
+        return this.position;
     }
 }

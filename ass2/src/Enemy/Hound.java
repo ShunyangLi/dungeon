@@ -1,47 +1,30 @@
-package ass2;
+package Enemy;
 
-public class Hunter implements Enemy {
+import ass2.*;
+
+public class Hound implements Enemy {
 
     private Coordinate position;
     private Map map;
     private boolean alive;
 
-    public Hunter(Map map, Coordinate position)
+    public Hound(Map map, Coordinate position)
     {
         this.position = position;
         this.map = map;
-        this.map.setupMap(this.position);
+        this.map.setupMap(this.getPosition());
     }
 
-    @Override
-    public boolean vildateMove(Coordinate coordinate) {
-        boolean flag = false;
-        if (this.map.getValue(coordinate.getX(),coordinate.getY()) == Objects.road)
-        {
-            flag = true;
-        }
-
-        return flag;
-    }
 
     @Override
-    public void moveDown() {
-
-        Coordinate coordinate = new Coordinate(this.position.getX() + 1, this.position.getY(),Objects.player);
-        if (vildateMove(coordinate))
-        {
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            this.position.setX(this.position.getX() + 1);
-            this.position.setValue(Objects.player);
-            this.map.setupMap((this.position));
-        }
+    public Coordinate getPosition() {
+        return this.position;
     }
 
     @Override
     public void moveLeft() {
 
-        Coordinate coordinate = new Coordinate(this.position.getX(), this.position.getY() - 1,Objects.player);
+        Coordinate coordinate = new Coordinate(this.position.getX(), this.position.getY() - 1, Objects.player);
         if (vildateMove(coordinate))
         {
             this.position.setValue(Objects.road);
@@ -67,6 +50,20 @@ public class Hunter implements Enemy {
     }
 
     @Override
+    public void moveDown() {
+
+        Coordinate coordinate = new Coordinate(this.position.getX() + 1, this.position.getY(),Objects.player);
+        if (vildateMove(coordinate))
+        {
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
+            this.position.setX(this.position.getX() + 1);
+            this.position.setValue(Objects.player);
+            this.map.setupMap((this.position));
+        }
+    }
+
+    @Override
     public void moveUp() {
         Coordinate coordinate = new Coordinate(this.position.getX() - 1 ,this.position.getY(), Objects.player);
 
@@ -81,7 +78,13 @@ public class Hunter implements Enemy {
     }
 
     @Override
-    public Coordinate getPosition() {
-        return this.position;
+    public boolean vildateMove(Coordinate coordinate) {
+        boolean flag = false;
+        if (this.map.getValue(coordinate.getX(),coordinate.getY()) == Objects.road)
+        {
+            flag = true;
+        }
+
+        return flag;
     }
 }
