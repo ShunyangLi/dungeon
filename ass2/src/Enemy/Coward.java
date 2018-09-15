@@ -44,10 +44,23 @@ public class Coward extends Enemy {
         return this.map;
     }
 
-
+    @Override
+    public boolean autoMove() {
+        return false;
+    }
 
     @Override
     public int getVal(Enemy enemy) {
         return Objects.coward;
+    }
+
+    @Override
+    public void setAlive(boolean s) {
+        this.alive = s;
+    }
+
+    @Override
+    public boolean alive() {
+        return this.alive;
     }
 }

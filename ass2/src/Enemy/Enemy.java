@@ -6,6 +6,10 @@ import ass2.*;
 
 public abstract class Enemy {
 
+    public abstract void setAlive(boolean s);
+    public abstract boolean alive();
+    public abstract boolean autoMove();
+
     public boolean vildateMove(Enemy enemy, int x, int y)
     {
         if (enemy.getMap(enemy).getValue(x, y) == Objects.road)

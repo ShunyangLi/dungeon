@@ -7,6 +7,11 @@ public class Strategist extends Enemy {
     private Map map;
     private boolean alive;
 
+    @Override
+    public boolean autoMove() {
+        return false;
+    }
+
     public Strategist(Map map, Coordinate position)
     {
         this.position = position;
@@ -44,9 +49,17 @@ public class Strategist extends Enemy {
         return this.map;
     }
 
-
     @Override
     public int getVal(Enemy enemy) {
         return Objects.strategist;
+    }
+    @Override
+    public void setAlive(boolean s) {
+        this.alive = s;
+    }
+
+    @Override
+    public boolean alive() {
+        return this.alive;
     }
 }

@@ -7,6 +7,11 @@ public class Hound extends Enemy {
     private Map map;
     private boolean alive;
 
+    @Override
+    public boolean autoMove() {
+        return false;
+    }
+
     public Hound(Map map, Coordinate position)
     {
         this.position = position;
@@ -47,6 +52,15 @@ public class Hound extends Enemy {
     @Override
     public int getVal(Enemy enemy) {
         return Objects.hound;
+    }
+    @Override
+    public void setAlive(boolean s) {
+        this.alive = s;
+    }
+
+    @Override
+    public boolean alive() {
+        return this.alive;
     }
 }
 

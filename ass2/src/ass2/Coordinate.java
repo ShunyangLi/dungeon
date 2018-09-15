@@ -1,5 +1,7 @@
 package ass2;
 
+import java.util.ArrayList;
+
 public class Coordinate {
     // x, y is the coordinate, and the value is the objects
     private int x;
@@ -35,4 +37,5 @@ public class Coordinate {
     public int getValue() {
         return this.value;
     }
+
 }

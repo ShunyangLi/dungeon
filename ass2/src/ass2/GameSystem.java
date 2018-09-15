@@ -40,6 +40,18 @@ public class GameSystem {
         // 还要判断是不是赢了
         while (player.getAlive())
         {
+            if (PlayerDie(player,hunter))
+            {
+                System.out.println("Die!!");
+                break;
+            }
+
+            if (hunter.alive())
+            {
+                System.out.println(hunter.alive());
+                hunter.autoMove();
+            }
+
             System.out.println("w: go up, s: go down, a: go left, d: go right. Enter your action: ");
             String action = scanner.nextLine();
             if (action.compareTo("w") == 0)
@@ -52,11 +64,35 @@ public class GameSystem {
             } else if (action.compareTo("d") == 0) {
                 player.moveRight();
             }
+
             // System.out.println();
             player.showProps();
             map.showMap(player.getPosition());
         }
 
     }
+
+    public static boolean PlayerDie(Player player, Enemy hunter)
+    {
+        int p_x = player.getPosition().getX();
+        int p_y = player.getPosition().getY();
+
+        int h_x = hunter.getPosition(hunter).getX();
+        int h_y = hunter.getPosition(hunter).getY();
+
+        if (p_x - h_x == 0 && p_y - h_y == 0)
+        {
+            if (player.getBag().getSword().getNum() == 0 && player.getInvincibility() == 0 && player.getBag().getArrow().getNum() == 0)
+            {
+                player.setAlive(false);
+                return true;
+            } else {
+                hunter.setAlive(false);
+            }
+
+        }
+        return false;
+    }
+
 
 }
