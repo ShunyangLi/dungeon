@@ -44,13 +44,21 @@ public class GameSystem {
             {
                 System.out.println("Die!!");
                 break;
+            }else if (PlayerDie(player, hound)) {
+                System.out.println("Die!!");
+                break;
             }
 
+            if (hound.alive())
+            {
+                hound.autoMove();
+            }
             if (hunter.alive())
             {
-                System.out.println(hunter.alive());
+                // System.out.println(hunter.alive());
                 hunter.autoMove();
             }
+
 
             System.out.println("w: go up, s: go down, a: go left, d: go right. Enter your action: ");
             String action = scanner.nextLine();
