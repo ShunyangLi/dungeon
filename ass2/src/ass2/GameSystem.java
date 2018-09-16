@@ -5,6 +5,7 @@ import props.*;
 import java.util.Scanner;
 
 // TODO 检测enemy是否死亡的方法，就是检测this.position的value是不是Enemy，如果不是，结束循环
+// TODO 大宝剑的数量变化不对
 
 public class GameSystem {
 
@@ -72,7 +73,6 @@ public class GameSystem {
                 }
             }
 
-
             System.out.println("w: go up, s: go down, a: go left, d: go right. Enter your action: ");
             String action = scanner.nextLine();
             if (action.compareTo("w") == 0)
@@ -124,15 +124,16 @@ public class GameSystem {
                 player.setAlive(false);
                 return true;
             } else {
-
-                if (player.getInvincibility() != 0)
-                {
-                    player.setInvincibility(player.getInvincibility() - 1);
-                } if (player.getBag().getArrow().getNum() != 0) {
-                    player.getBag().getArrow().use();
-                } else if (player.getBag().getSword().getNum() != 0) {
-                    player.getBag().getSword().use();
-                }
+                // TODO 可能错了
+//                if (player.getInvincibility() != 0)
+////                {
+////                    player.setInvincibility(player.getInvincibility() - 1);
+////                } if (player.getBag().getArrow().getNum() != 0) {
+////                    player.getBag().getArrow().use();
+////                } else if (player.getBag().getSword().getNum() != 0) {
+////                    player.getBag().getSword().use();
+////                }
+//
                 hunter.setAlive(false);
             }
 
