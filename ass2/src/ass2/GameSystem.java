@@ -38,7 +38,7 @@ public class GameSystem {
         Scanner scanner = new Scanner(System.in);
 
         // 还要判断是不是赢了
-        while (player.getAlive())
+        while (player.getAlive() && !player.isSuccess())
         {
             if (PlayerDie(player,hunter))
             {
@@ -64,7 +64,7 @@ public class GameSystem {
             {
                 if (hide(player, coward))
                 {
-                    // System.out.println("Hiding !!");
+                    System.out.println("Hiding !!");
                     // TODO 虽然可以移动，但是bug依然很多
                     coward.hide();
                 } else {
@@ -124,6 +124,15 @@ public class GameSystem {
                 player.setAlive(false);
                 return true;
             } else {
+
+                if (player.getInvincibility() != 0)
+                {
+                    player.setInvincibility(player.getInvincibility() - 1);
+                } if (player.getBag().getArrow().getNum() != 0) {
+                    player.getBag().getArrow().use();
+                } else if (player.getBag().getSword().getNum() != 0) {
+                    player.getBag().getSword().use();
+                }
                 hunter.setAlive(false);
             }
 

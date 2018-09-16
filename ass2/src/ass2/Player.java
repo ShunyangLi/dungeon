@@ -17,6 +17,7 @@ public class Player {
     private Bag bag;
     private int preValue = -1;
     private int flag = -1;
+    private boolean success;
 
     public Player(Map map, Bag bag, Coordinate position)
     {
@@ -27,6 +28,7 @@ public class Player {
         this.bag = bag;
         this.hover = false;
         this.invincibility = 0;
+        this.success = false;
     }
 
     // 如果放下炸弹的话，等三秒以后把周围四个格子改成fire， if fire then die
@@ -57,6 +59,7 @@ public class Player {
             // 如果有无敌药水的话， 敌人直接被杀死，下一个位置被改成road
             if (this.getInvincibility() != 0)
             {
+                this.setInvincibility(this.getInvincibility() - 1);
                 this.position.setValue(Objects.road);
                 this.map.setupMap(this.position);
                 Coordinate up = new Coordinate(x,y,Objects.road);
@@ -161,6 +164,11 @@ public class Player {
             this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
             return true;
+        } else if (value == Objects.invincibility) {
+            this.setInvincibility(3);
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
+            return true;
         }
         return false;
     }
@@ -172,6 +180,7 @@ public class Player {
         if (value == Objects.exit)
         {
             System.out.println("SUCCESS!!");
+            this.success = true;
             return true;
         }
         return false;
@@ -292,4 +301,7 @@ public class Player {
         return this.alive;
     }
 
+    public boolean isSuccess() {
+        return this.success;
+    }
 }

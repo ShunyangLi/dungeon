@@ -74,7 +74,7 @@ public class Path {
 
     public boolean invildateMove(int val)
     {
-        if (val == Objects.player || val == Objects.road)
+        if (val == Objects.player || val == Objects.road || val == Objects.exit)
         {
             return true;
         }

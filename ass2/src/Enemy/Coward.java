@@ -92,9 +92,9 @@ public class Coward extends Enemy {
         Path path = new Path();
         Coordinate temp = new Coordinate(1 , 2, -1);
 
-        ArrayList<Location> road = path.path(this.map, this.map.getPosition(Objects.coward), temp);
+        ArrayList<Location> road = path.path(this.map, this.map.getPosition(Objects.coward), this.map.getPosition(Objects.exit));
 
-        System.out.println(road.size());
+        // System.out.println(road.size());
         if (road == null || road.size() == 0)
         {
             return;
