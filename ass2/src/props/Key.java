@@ -5,6 +5,7 @@ import ass2.*;
 public class Key implements Props {
 
     private int num;
+    private int maxNum;
     private Coordinate position;
     private Map map;
 
@@ -12,6 +13,7 @@ public class Key implements Props {
     {
         this.map = map;
         this.setNum(0);
+        this.setMaxNum(1);
     }
 
     @Override
@@ -26,22 +28,26 @@ public class Key implements Props {
 
     @Override
     public boolean pickUp() {
-
-        if (this.getNum() != 0)
-        {
-            this.num ++;
+        if(this.num < this.maxNum) {
+            this.num++;
             return true;
-        }
-
-        return false;
+        } else {return false;}
     }
 
     @Override
     public void use() {
-        if (this.getNum() != 0)
-        {
+        if (this.num > 0) {
             this.num --;
         }
+    }
+
+    public void setMaxNum(int maxNum) {
+        this.maxNum = maxNum;
+    }
+
+
+    public int getMaxNum() {
+        return this.maxNum;
     }
 
     @Override

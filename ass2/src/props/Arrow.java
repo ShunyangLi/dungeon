@@ -18,7 +18,7 @@ public class Arrow implements Props{
 
     @Override
     public void use() {
-        if (this.numOfuse != 0)
+        if (this.numOfuse > 0)
         {
             this.numOfuse -- ;
         }

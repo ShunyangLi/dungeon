@@ -14,6 +14,7 @@ public class MoveRight implements Move {
         this.position = this.player.getPosition();
     }
 
+    @Override
     public boolean inMap(int x, int y)
     {
         if (x > this.map.getHeight() || y > this.map.getWidth() || x < 0 || y < 0)

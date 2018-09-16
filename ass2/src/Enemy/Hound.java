@@ -11,6 +11,15 @@ public class Hound extends Enemy {
     private Map map;
     private boolean alive;
 
+
+    public Hound(Map map, Coordinate position)
+    {
+        this.position = position;
+        this.map = map;
+        this.map.setupMap(this.position);
+        this.alive = true;
+    }
+
     @Override
     public boolean autoMove() {
         Path path = new Path();
@@ -44,14 +53,6 @@ public class Hound extends Enemy {
             break;
         }
         return true;
-    }
-
-    public Hound(Map map, Coordinate position)
-    {
-        this.position = position;
-        this.map = map;
-        this.map.setupMap(this.position);
-        this.alive = true;
     }
 
     @Override
