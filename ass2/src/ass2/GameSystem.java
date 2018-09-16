@@ -117,7 +117,7 @@ public class GameSystem {
         }
 
         System.out.println("game over!!");
-        return;
+        timer.cancel();
 
     }
 
@@ -159,7 +159,6 @@ public class GameSystem {
             }
         };
         timer.schedule(task, 3000);
-
     }
 
 
