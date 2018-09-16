@@ -13,12 +13,13 @@ public abstract class Enemy {
 
     public boolean vildateMove(Enemy enemy, int x, int y)
     {
-        if (enemy.getMap(enemy).getValue(x, y) == Objects.road)
-        {
-            return true;
+        try {
+            if (enemy.getMap(enemy).getValue(x, y) == Objects.road) {
+                return true;
+            } else {return false;}
+        } catch (ArrayIndexOutOfBoundsException e) {
+            return false;
         }
-
-        return false;
     }
 
     public void setEnemyX(Enemy enemy, int x)

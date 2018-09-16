@@ -32,7 +32,10 @@ public class Treasure implements Props {
 
     @Override
     public void use() {
-        this.num --;
+        if (this.num > 0)
+        {
+            this.num --;
+        }
     }
 
     @Override

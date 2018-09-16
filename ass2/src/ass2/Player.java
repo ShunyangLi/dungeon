@@ -147,7 +147,7 @@ public class Player {
             this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
             return true;
-        } else if (value == Objects.door && this.bag.getKey().getNum() != 0) {
+        } else if (value == Objects.door && this.bag.getKey().getNum() > 0) {
             // 当这个门打开以后这个就是OpenDoor， 然后设置pre的value
             this.preValue = Objects.OpenDoor;
             this.bag.getKey().use();
@@ -317,5 +317,18 @@ public class Player {
 
     public boolean isSuccess() {
         return this.success;
+    }
+
+    public void setPosition(Coordinate position) {
+        this.position = position;
+        this.map.setupMap(this.position);
+    }
+
+    // only use for game design and test
+    public void reSetPosition(Coordinate position) {
+        this.position.setValue(Objects.road);
+        this.map.setupMap(this.position);
+        this.position = position;
+        this.map.setupMap(this.position);
     }
 }
