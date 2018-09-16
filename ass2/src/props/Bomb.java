@@ -8,18 +8,29 @@ public class Bomb implements Props {
     private int num;
     private Coordinate position;
     private Map map;
+    private boolean light;
 
     // -1 代表着没有限制
     public Bomb(Map map) {
         this.map = map;
         this.setNum(0);
+        this.light = false;
     }
 
     @Override
     public void use() {
-        if (this.getNum() != 0) {
+        if (this.getNum() > 0) {
             this.num--;
         }
+    }
+
+    public void setLight(boolean light) {
+        this.light = light;
+    }
+
+    public boolean isLight()
+    {
+        return this.light;
     }
 
     @Override
@@ -45,6 +56,7 @@ public class Bomb implements Props {
 
     @Override
     public Coordinate getPosition() {
+
         return this.position;
     }
 

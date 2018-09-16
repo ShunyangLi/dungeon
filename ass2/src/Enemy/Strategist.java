@@ -17,6 +17,7 @@ public class Strategist extends Enemy {
         this.position = position;
         this.map = map;
         this.map.setupMap(this.position);
+        this.alive = true;
     }
 
     @Override

@@ -1,13 +1,18 @@
 package ass2;
 import Enemy.*;
+import ShortestPath.Location;
 import props.*;
-
 import java.util.Scanner;
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 // TODO 检测enemy是否死亡的方法，就是检测this.position的value是不是Enemy，如果不是，结束循环
 // TODO 大宝剑的数量变化不对
 
 public class GameSystem {
+    static Timer timer = new Timer();
+    static int seconds = 0;
 
     public static void main(String[] args)
     {
@@ -39,7 +44,7 @@ public class GameSystem {
         Scanner scanner = new Scanner(System.in);
 
         // 还要判断是不是赢了
-        while (player.getAlive() && !player.isSuccess())
+        while (player.getAlive() && ! player.isSuccess())
         {
             if (PlayerDie(player,hunter))
             {
@@ -73,7 +78,12 @@ public class GameSystem {
                 }
             }
 
-            System.out.println("w: go up, s: go down, a: go left, d: go right. Enter your action: ");
+            if (strategist.alive())
+            {
+                // do something
+            }
+
+            System.out.println("w: go up, s: go down, a: go left, d: go right, l: light bomb. Enter your action: ");
             String action = scanner.nextLine();
             if (action.compareTo("w") == 0)
             {
@@ -84,6 +94,21 @@ public class GameSystem {
                 player.moveLeft();
             } else if (action.compareTo("d") == 0) {
                 player.moveRight();
+            } else if (action.compareTo("l") == 0) {
+                player.lightBomb();
+            }
+
+            if (player.getBag().getBomb().isLight())
+            {
+                // 这个地方就是延迟三秒，然后检查爆炸范围的人物，方圆十里不见人烟
+                System.out.println("Bomb is lighting " + player.getPosition().getX() + " " + player.getPosition().getY());
+                Coordinate b = map.getPosition(Objects.bomb);
+
+                if (b != null)
+                {
+                    MyTimer(b,map, player, hunter, coward, hound, strategist);
+                    player.getBag().getBomb().setLight(false);
+                }
             }
 
             // System.out.println();
@@ -91,7 +116,75 @@ public class GameSystem {
             map.showMap(player.getPosition());
         }
 
+        System.out.println("game over!!");
+        return;
+
     }
+
+    public static void MyTimer(Coordinate position, Map map, Player player, Enemy hunter, Enemy coward, Enemy hound, Enemy strategist) {
+
+        TimerTask task;
+
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                // Bomb bomb = player.getBag().getBomb();
+                Coordinate b =  position;
+
+                System.out.println(position.getX() + " " + position.getY());
+
+                int left_x = b.getX();
+                int left_y = b.getY() - 1;
+
+                int right_x = b.getX();
+                int right_y = b.getY() + 1;
+
+                int up_x = b.getX() - 1;
+                int up_y = b.getY();
+
+                int down_x = b.getX() + 1;
+                int down_y = b.getY();
+
+                int Left = map.getValue(left_x, left_y);
+                int right = map.getValue(right_x, right_y);
+                int up = map.getValue(up_x, up_y);
+                int down = map.getValue(down_x, down_y);
+
+                removeBlock(map, Left, new Location(left_x, left_y), player, hunter, coward, hound, strategist);
+                removeBlock(map, right, new Location(right_x, right_y), player, hunter, coward, hound, strategist);
+                removeBlock(map, up, new Location(up_x, up_y), player, hunter, coward, hound, strategist);
+                removeBlock(map, down, new Location(down_x, down_y), player, hunter, coward, hound, strategist);
+
+                map.setupMap(new Coordinate(b.getX(), b.getY(), Objects.road));
+            }
+        };
+        timer.schedule(task, 3000);
+
+    }
+
+
+    public static void removeBlock(Map map, int val, Location location, Player player, Enemy hunter, Enemy coward, Enemy hound, Enemy strategist)
+    {
+        if (val == Objects.player)
+        {
+            player.setAlive(false);
+        } else if (val == Objects.hunter) {
+            hunter.setAlive(false);
+            map.setupMap(new Coordinate(location.getX(), location.getY(), Objects.road));
+        } else if (val == Objects.hound) {
+            hound.setAlive(false);
+            map.setupMap(new Coordinate(location.getX(), location.getY(), Objects.road));
+        } else if (val == Objects.coward) {
+            coward.setAlive(false);
+            map.setupMap(new Coordinate(location.getX(), location.getY(), Objects.road));
+        } else if (val == Objects.strategist) {
+            strategist.setAlive(false);
+            map.setupMap(new Coordinate(location.getX(), location.getY(), Objects.road));
+        }
+
+        return;
+    }
+
 
     public static boolean hide(Player player, Enemy crowd)
     {
@@ -124,16 +217,6 @@ public class GameSystem {
                 player.setAlive(false);
                 return true;
             } else {
-                // TODO 可能错了
-//                if (player.getInvincibility() != 0)
-////                {
-////                    player.setInvincibility(player.getInvincibility() - 1);
-////                } if (player.getBag().getArrow().getNum() != 0) {
-////                    player.getBag().getArrow().use();
-////                } else if (player.getBag().getSword().getNum() != 0) {
-////                    player.getBag().getSword().use();
-////                }
-//
                 hunter.setAlive(false);
             }
 

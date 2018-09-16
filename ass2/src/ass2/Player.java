@@ -253,6 +253,20 @@ public class Player {
         System.out.println("Invincibilit " + this.getInvincibility());
     }
 
+    public void lightBomb()
+    {
+        if (this.bag.getBomb().getNum() > 0)
+        {
+            this.bag.getBomb().use();
+            this.bag.getBomb().setLight(true);
+        }
+        this.preValue = Objects.bomb;
+        this.flag = 0;
+
+        // this.bag.getBomb().setPositionOnMap(this.position.getX(), this.position.getY());
+        // this.map.setupMap(new Coordinate(this.position.getX(), this.position.getY(), Objects.bomb));
+    }
+
     public Map getMap() {
         return this.map;
     }
