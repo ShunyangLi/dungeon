@@ -7,15 +7,14 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-// TODO 检测enemy是否死亡的方法，就是检测this.position的value是不是Enemy，如果不是，结束循环
-// TODO 大宝剑的数量变化不对
+/*
 
+ */
 public class GameSystem {
     static Timer timer = new Timer();
     static int seconds = 0;
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         Map map = new Map(16,18);
         // map.setWall();
         Sword sword = new Sword(map);
@@ -184,7 +183,10 @@ public class GameSystem {
         return;
     }
 
-
+    /**
+     * @param player
+     *
+     */
     public static boolean hide(Player player, Enemy crowd)
     {
         int p_x = player.getPosition().getX();
