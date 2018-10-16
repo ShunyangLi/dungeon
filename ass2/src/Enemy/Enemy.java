@@ -91,4 +91,5 @@ public abstract class Enemy {
     public final EnemyMove getMove() {
         return this.move;
     }
+
 }

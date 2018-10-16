@@ -5,6 +5,6 @@
 
 <BorderPane onKeyPressed="#handleKeyPressed" prefHeight="487.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameController">
    <center>
-      <Pane fx:id="mazePane" focusTraversable="true" prefHeight="481.0" prefWidth="614.0" BorderPane.alignment="CENTER" />
+      <Pane fx:id="mazePane" focusTraversable="true" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

@@ -19,8 +19,7 @@ public class Player {
     private int flag = -1;
     private boolean success;
 
-    public Player(Map map, Bag bag, Coordinate position)
-    {
+    public Player(Map map, Bag bag, Coordinate position) {
         this.position = position;
         this.map = map;
         this.map.setupMap(this.position);
@@ -34,8 +33,8 @@ public class Player {
     // 如果放下炸弹的话，等三秒以后把周围四个格子改成fire， if fire then die
     // 少一个检测炸弹的范围，如果这个人在炸弹的范围内，直接gg
     // isDie 和 isMoveable 只替换当前的格子里面的值，把当前的值替换成road
-    public boolean isDie(int x, int y)
-    {
+
+    public boolean isDie(int x, int y) {
         int value = this.map.getValue(x,y);
         // 如果是pit的话直接死亡, setAlibe = false
         if (value == Objects.pit && ! this.hover)

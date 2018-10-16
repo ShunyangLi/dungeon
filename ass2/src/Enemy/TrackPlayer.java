@@ -29,13 +29,12 @@ public class TrackPlayer implements EnemyMove {
         // firstly, use the dfs to get the colest path to the player
         Path path = new Path();
         ArrayList<Location> road = path.path(this.map, this.map.getPosition(object), this.map.getPosition(Objects.player));
+        // because if the player is not move, then the enemy can kill the player, so need to add the player's position into the path
 
         if (road == null || road.size() == 0) {
             return;
         }
-        // because if the player is not move, then the enemy can kill the player, so need to add the player's position into the path
         road.add(0,new Location(this.map.getPosition(Objects.player).getX(),this.map.getPosition(Objects.player).getX()));
-
         // this is control to auto move
         for (int i  = road.size() - 1; i >= 0; i -- ) {
             this.position.setValue(Objects.road);
@@ -48,7 +47,7 @@ public class TrackPlayer implements EnemyMove {
             this.position.setX(x);
             this.position.setY(y);
             this.position.setValue(object);
-            System.out.println("X: " + x + " Y: " + y + " O: " + object);
+            // System.out.println("X: " + x + " Y: " + y + " O: " + object);
             break;
         }
     }

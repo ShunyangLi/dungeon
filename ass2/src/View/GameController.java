@@ -1,5 +1,6 @@
 package View;
 
+import Enemy.*;
 import ass2.*;
 
 import javafx.event.EventHandler;
@@ -14,6 +15,13 @@ import props.*;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.Timer;
+import java.util.TimerTask;
+
+/**
+ * 判断下一个格子的内容进行自我调用来pick up，因为props是interface，所以可以直接调用不同的pick up
+ * 用hashmap来存储相对应的class， 然后直接调用class来，捡物品
+ */
 
 public class GameController extends AbstractController {
 
@@ -27,8 +35,13 @@ public class GameController extends AbstractController {
     private Key key;
     private Bag bag;
     private Treasure treasure;
+    private Hunter hunter;
+    private Coward coward;
+    private Hound hound;
+    static Timer timer = new Timer();
     @FXML private Pane mazePane;
     @FXML private GridPane gridPane;
+
 
     public GameController() {
         this.image = new GameImage();
@@ -40,6 +53,14 @@ public class GameController extends AbstractController {
         this.treasure = new Treasure(map);
         this.bag = new Bag(sword,arrow,bomb,treasure,key);
         this.player = new Player(map,bag,map.getPosition(Objects.player));
+        this.hunter = new Hunter(map.getPosition(Objects.hunter),map,true);
+        this.hunter.setMove(new TrackPlayer(this.hunter));
+        this.coward = new Coward(map.getPosition(Objects.coward),map,true);
+        this.coward.setMove(new TrackPlayer(this.coward));
+
+        this.hound = new Hound(map.getPosition(Objects.hound),map,true);
+        this.hound.setMove(new TrackPlayer(this.hound));
+
     }
 
     @FXML
@@ -104,27 +125,41 @@ public class GameController extends AbstractController {
     @FXML
     public void handleKeyPressed(KeyEvent event) {
         // System.out.println(event.getCharacter());
-
         switch (event.getCode()) {
             case UP:
                 player.moveUp();
-                initialize();
+                // initialize();
                 break;
             case DOWN:
                 player.moveDown();
-                initialize();
+                // initialize();
                 break;
             case LEFT:
                 player.moveLeft();
-                initialize();
+                // initialize();
                 break;
             case RIGHT:
                 player.moveRight();
-                initialize();
+                // initialize();
                 break;
             default:
                 break;
         }
         event.consume();
+        MyTimer(hunter);
+        this.coward.autoMove();
+        this.hound.autoMove();
+        initialize();
+    }
+
+    public void MyTimer(Hunter hunter) {
+        TimerTask task;
+        task = new TimerTask() {
+            @Override
+            public void run() {
+                hunter.autoMove();
+            }
+        };
+        timer.schedule(task, 0);
     }
 }
