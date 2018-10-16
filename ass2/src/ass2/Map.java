@@ -54,7 +54,7 @@ public class Map {
 
     public int getValue(int x, int y)
     {
-        return map[x][y];
+        return this.map[x][y];
     }
 
     public void setupMap(Coordinate coordinate)

@@ -1,104 +1,94 @@
 package Enemy;
 
-import ass2.*;
-
-// TODO enemy不会自然死亡，只有player杀死他才能死，要不然不会死
+import ass2.Coordinate;
+import ass2.Map;
 
 public abstract class Enemy {
 
-    public abstract void hide();
-    public abstract void setAlive(boolean s);
-    public abstract boolean alive();
-    public abstract boolean autoMove();
+    private EnemyMove move;
+    private Coordinate position;
+    private Map map;
+    private boolean alive;
 
-    public boolean vildateMove(Enemy enemy, int x, int y)
-    {
-        try {
-            if (enemy.getMap(enemy).getValue(x, y) == Objects.road) {
-                return true;
-            } else {return false;}
-        } catch (ArrayIndexOutOfBoundsException e) {
-            return false;
-        }
+    /**
+     *
+     * @param position to get the correct position of enemy
+     * @param map pass the map into the the enemy, which is help the enemy find shortest path
+     * @param alive when init, set alive
+     */
+
+    public Enemy (Coordinate position, Map map, boolean alive) {
+        this.move = null;
+        this.position = position;
+        this.map = map;
+        this.alive = alive;
     }
 
-    public void setEnemyX(Enemy enemy, int x)
-    {
-        enemy.getPosition(enemy).setValue(Objects.road);
-        enemy.getMap(enemy).setupMap(enemy.getPosition(enemy));
-        enemy.getPosition(enemy).setX(x);
-        enemy.getPosition(enemy).setValue(enemy.getVal(enemy));
-        enemy.getMap(enemy).setupMap(enemy.getPosition(enemy));
+    /**
+     * @brief auto move, when use dfs find the shortest path, then the enemy auto move to close the player
+     */
+    public void autoMove() {
+        // System.out.println(this.move);
+        System.out.println("Move");
     }
 
-    public void setEnemyY(Enemy enemy, int y)
-    {
-        enemy.getPosition(enemy).setValue(Objects.road);
-        enemy.getMap(enemy).setupMap(enemy.getPosition(enemy));
-        enemy.getPosition(enemy).setY(y);
-        enemy.getPosition(enemy).setValue(enemy.getVal(enemy));
-        enemy.getMap(enemy).setupMap(enemy.getPosition(enemy));
+    /**
+     *
+     * @return return the enemy's position
+     */
+    public final Coordinate getPosition() {
+        return this.position;
     }
 
+    /**
+     *
+     * @return return the map
+     */
 
-    public void moveUp(Enemy enemy)
-    {
-        int x = enemy.getPosition(enemy).getX() - 1;
-        int y = enemy.getPosition(enemy).getY();
-
-        if (vildateMove(enemy, x, y))
-        {
-            setEnemyX(enemy, x);
-        }
+    public final Map getMap() {
+        return this.map;
     }
 
-    public void moveDown(Enemy enemy)
-    {
-        int x = enemy.getPosition(enemy).getX() + 1;
-        int y = enemy.getPosition(enemy).getY();
-
-        if (vildateMove(enemy, x, y))
-        {
-            setEnemyX(enemy, x);
-        }
+    /**
+     *
+     * @param alive which is the player status
+     */
+    public final void setAlive(boolean alive) {
+        this.alive = alive;
     }
 
-    public void moveLeft(Enemy enemy)
-    {
-        int x = enemy.getPosition(enemy).getX();
-        int y = enemy.getPosition(enemy).getY() - 1;
+    /**
+     *
+     * @param map set the map
+     */
 
-        if (vildateMove(enemy, x, y))
-        {
-            setEnemyY(enemy, y);
-        }
+    public final void setMap(Map map) {
+        this.map = map;
     }
 
-    public void moveRight(Enemy enemy)
-    {
-        int x = enemy.getPosition(enemy).getX();
-        int y = enemy.getPosition(enemy).getY() + 1;
-
-        if (vildateMove(enemy, x, y))
-        {
-            setEnemyY(enemy, y);
-        }
+    /**
+     *
+     * @param move which is enemyMove, this include track and move around, so it's a little different
+     *             when init that, then we init a EnemyMove class
+     */
+    public final void setMove(EnemyMove move) {
+        this.move = move;
     }
 
+    /**
+     *
+     * @param position which is the enemy's current position
+     */
 
-    public Coordinate getPosition(Enemy enemy)
-    {
-        return enemy.getPosition(enemy);
+    public final void setPosition(Coordinate position) {
+        this.position = position;
     }
 
-    public Map getMap(Enemy enemy)
-    {
-        return enemy.getMap(enemy);
+    public final boolean isAlive() {
+        return this.alive;
     }
 
-    public int getVal(Enemy enemy)
-    {
-        return enemy.getVal(enemy);
+    public final EnemyMove getMove() {
+        return this.move;
     }
-
 }

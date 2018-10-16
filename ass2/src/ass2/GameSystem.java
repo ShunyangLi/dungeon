@@ -7,9 +7,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-/*
-
- */
 public class GameSystem {
     static Timer timer = new Timer();
     static int seconds = 0;
@@ -27,15 +24,19 @@ public class GameSystem {
 
         Player player = new Player(map,bag,map.getPosition(Objects.player));
 
-        // 利用factory格式输出相对应的enemy
-        EnemyFactory enemyFactory = new EnemyFactory();
-        Enemy hunter = enemyFactory.getEnemy(Hunter.class.getName(),map,map.getPosition(Objects.hunter));
-        Enemy hound = enemyFactory.getEnemy(Hound.class.getName(), map, map.getPosition(Objects.hound));
-        Enemy strategist = enemyFactory.getEnemy(Strategist.class.getName(),map,map.getPosition(Objects.strategist));
-        Enemy coward = enemyFactory.getEnemy(Coward.class.getName(), map,map.getPosition(Objects.coward));
 
-        hunter.moveUp(hunter);
-        strategist.moveDown(strategist);
+        Enemy hunter = new Hunter(map.getPosition(Objects.hunter),map,true);
+        hunter.setMove(new TrackPlayer(hunter));
+
+        Enemy hound = new Hound(map.getPosition(Objects.hound),map,true);
+        hound.setMove(new TrackPlayer(hound));
+
+        Enemy strategist = new Strategist(map.getPosition(Objects.hound),map,true);
+        strategist.setMove(new MoveAround());
+
+        Enemy coward = new Coward(map.getPosition(Objects.hound),map,true);
+        coward.setMove(new TrackPlayer(coward));
+
 
         map.showMap(player.getPosition());
         // player.showProps();
@@ -56,28 +57,30 @@ public class GameSystem {
                 System.out.println("Die!!");
             }
 
-            if (hound.alive())
+            if (hound.isAlive())
             {
                 hound.autoMove();
             }
-            if (hunter.alive())
+            if (hunter.isAlive())
             {
                 // System.out.println(hunter.alive());
                 hunter.autoMove();
             }
-            if (coward.alive())
+            if (coward.isAlive())
             {
                 if (hide(player, coward))
                 {
                     System.out.println("Hiding !!");
-                    // TODO 虽然可以移动，但是bug依然很多
-                    coward.hide();
+                    // TODO coward can move, but still need to hide when the close to the player
+                    // maybe try to put it into coward
+                    // coward.hide();
+                    coward.autoMove();
                 } else {
                     coward.autoMove();
                 }
             }
 
-            if (strategist.alive())
+            if (strategist.isAlive())
             {
                 // do something
             }
@@ -192,8 +195,8 @@ public class GameSystem {
         int p_x = player.getPosition().getX();
         int p_y = player.getPosition().getY();
 
-        int h_x = crowd.getPosition(crowd).getX();
-        int h_y = crowd.getPosition(crowd).getY();
+        int h_x = crowd.getPosition().getX();
+        int h_y = crowd.getPosition().getY();
 
         int val = Math.abs(p_x - h_x) + Math.abs(p_y - h_y);
         if (val < 5)
@@ -208,8 +211,8 @@ public class GameSystem {
         int p_x = player.getPosition().getX();
         int p_y = player.getPosition().getY();
 
-        int h_x = hunter.getPosition(hunter).getX();
-        int h_y = hunter.getPosition(hunter).getY();
+        int h_x = hunter.getPosition().getX();
+        int h_y = hunter.getPosition().getY();
 
         if (p_x - h_x == 0 && p_y - h_y == 0)
         {

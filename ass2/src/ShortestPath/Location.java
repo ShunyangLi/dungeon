@@ -8,8 +8,7 @@ public class Location {
     private int x;
     private int y;
 
-    public Location(int x, int y)
-    {
+    public Location(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -27,8 +26,7 @@ public class Location {
         return x;
     }
 
-    public ArrayList<Location> getAroundPosition()
-    {
+    public ArrayList<Location> getAroundPosition() {
         ArrayList<Location> around = new ArrayList<Location>();
 
         around.add(new Location(x - 1, y));
