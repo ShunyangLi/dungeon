@@ -6,34 +6,58 @@ import PlayerMove.MoveLeft;
 import PlayerMove.MoveRight;
 import PlayerMove.MoveUp;
 import javafx.scene.layout.CornerRadii;
+import props.*;
+
+import java.util.HashMap;
 
 public class Player {
 
     private Coordinate position;
     private boolean alive;
-    private boolean hover;
-    private int invincibility;
+//    private boolean hover;
+//    private int invincibility;
     private Map map;
-    private Bag bag;
+    // private Bag bag;
     private int preValue = -1;
     private int flag = -1;
     private boolean success;
 
+    // this part is gonna to refactor, firstly, i am gonna use hashmap to as bag
+    private HashMap<Integer, Props> bag;
+
+    /**
+     *
+     * @param map which is the game map
+     * @param bag is gonna disappear, i am gonna use hashmap to fix that, could be more easier
+     * @param position  which is the player's current position
+     */
     public Player(Map map, Bag bag, Coordinate position) {
         this.position = position;
         this.map = map;
         this.map.setupMap(this.position);
         this.alive = true;
-        this.bag = bag;
-        this.hover = false;
-        this.invincibility = 0;
+        // this.bag = bag;
+//        this.hover = false;
+//        this.invincibility = 0;
+        this.bag.put(Objects.arrow, new Arrow(map));
+        this.bag.put(Objects.bomb, new Bomb(map));
+        this.bag.put(Objects.sword, new Sword(map));
+        this.bag.put(Objects.treasure, new Treasure(map));
+        this.bag.put(Objects.hover, new Hover(map));
+        this.bag.put(Objects.invincibility, new Invincibility(map));
+
+
         this.success = false;
     }
 
-    // 如果放下炸弹的话，等三秒以后把周围四个格子改成fire， if fire then die
-    // 少一个检测炸弹的范围，如果这个人在炸弹的范围内，直接gg
-    // isDie 和 isMoveable 只替换当前的格子里面的值，把当前的值替换成road
-
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     *
+     * gonna cancel this part
+     */
     public boolean isDie(int x, int y) {
         int value = this.map.getValue(x,y);
         // 如果是pit的话直接死亡, setAlibe = false
