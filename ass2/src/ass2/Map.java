@@ -36,6 +36,12 @@ public class Map {
         // this.map = new int [width][height];
     }
 
+    public Map (int height, int width, int[][] map) {
+        this.height = height;
+        this.width = width;
+        this.map = map;
+    }
+
     public void setHeight(int height) {
         this.height = height;
     }
