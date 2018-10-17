@@ -20,6 +20,8 @@ public class Hound extends Enemy {
      */
     @Override
     public void autoMove() {
-        this.getMove().autoMove(Objects.hound);
+        if (this.isAlive()) {
+            this.getMove().autoMove(Objects.hound);
+        }
     }
 }

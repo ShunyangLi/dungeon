@@ -5,9 +5,10 @@ import PlayerMove.MoveDown;
 import PlayerMove.MoveLeft;
 import PlayerMove.MoveRight;
 import PlayerMove.MoveUp;
+import PlayerMove.IsDie;
+import PlayerMove.MoveAble;
 import props.*;
 
-import javax.crypto.interfaces.PBEKey;
 import java.util.HashMap;
 
 public class Player {
@@ -39,8 +40,6 @@ public class Player {
         this.bag.put(Objects.treasure, new Treasure(map));
         this.bag.put(Objects.hover, new Hover(map));
         this.bag.put(Objects.invincibility, new Invincibility(map));
-
-
         this.success = false;
     }
 
@@ -53,28 +52,7 @@ public class Player {
      * gonna cancel this part
      */
     public boolean isDie(int x, int y) {
-        int objects = this.map.getValue(x,y);
-        int[] priority = {Objects.arrow,Objects.bomb,Objects.sword,Objects.invincibility};
-
-        if (new Objects().isEnemy(objects)) {
-            for (int i = 0; i < 3; i ++) {
-                if (this.bag.get(priority[i]).use()) {
-                    setPlayer(new Coordinate(x,y,Objects.road));
-                    return false;
-                }
-            }
-            this.setAlive(false);
-            return true;
-        } else if (objects == Objects.pit && this.bag.get(Objects.hover).isBuff()) {
-            setPlayer(new Coordinate(x,y,Objects.road));
-            this.preValue = Objects.pit;
-            return false;
-        } else if (objects == Objects.pit && ! this.bag.get(Objects.hover).isBuff()) {
-            this.setAlive(false);
-            return true;
-        }
-        setPlayer(new Coordinate(x,y,Objects.road));
-        return false;
+        return new IsDie(this).state(x,y);
     }
 
     /**
@@ -84,27 +62,7 @@ public class Player {
      * @return
      */
     public boolean isMoveable(int x, int y) {
-        int objects = this.map.getValue(x,y);
-        boolean state = true;
-        if (new Objects().isProps(objects)) {
-            if (this.bag.get(objects).pickUp()) {
-                setPlayer(new Coordinate(x,y,Objects.road));
-            } else {
-                return false;
-            }
-        } else if (objects == Objects.door
-                && this.bag.get(Objects.key).getNum() > 0) {
-            this.bag.get(Objects.key).use();
-            this.preValue = Objects.OpenDoor;
-            setPlayer(new Coordinate(x,y,Objects.road));
-            state = true;
-        } else if ((objects == Objects.door
-                && this.bag.get(Objects.key).getNum() <= 0) ||
-                objects == Objects.wall) {
-            return false;
-        }
-        setPlayer(new Coordinate(x,y,Objects.road));
-        return state;
+        return new MoveAble(this).state(x,y);
     }
 
     /**
@@ -116,7 +74,6 @@ public class Player {
     public boolean isExit(int x, int y) {
         int value = this.map.getValue(x, y);
         if (value == Objects.exit) {
-            System.out.println("SUCCESS!!");
             this.success = true;
             return true;
         }
@@ -220,13 +177,11 @@ public class Player {
         return bag;
     }
 
-    public void setAlive(boolean status)
-    {
+    public void setAlive(boolean status) {
         this.alive = status;
     }
 
-    public boolean getAlive()
-    {
+    public boolean getAlive() {
         return this.alive;
     }
 
@@ -237,6 +192,10 @@ public class Player {
     public void setPosition(Coordinate position) {
         this.position = position;
         this.map.setupMap(this.position);
+    }
+
+    public void setPreValue(int preValue) {
+        this.preValue = preValue;
     }
 
     // only use for game design and test

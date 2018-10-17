@@ -125,28 +125,25 @@ public class GameController extends AbstractController {
     @FXML
     public void handleKeyPressed(KeyEvent event) {
         // System.out.println(event.getCharacter());
+        checkDie();
         switch (event.getCode()) {
             case UP:
                 player.moveUp();
-                // initialize();
                 break;
             case DOWN:
                 player.moveDown();
-                // initialize();
                 break;
             case LEFT:
                 player.moveLeft();
-                // initialize();
                 break;
             case RIGHT:
                 player.moveRight();
-                // initialize();
                 break;
             default:
                 break;
         }
         event.consume();
-        MyTimer(hunter);
+        this.hunter.autoMove();
         this.coward.autoMove();
         this.hound.autoMove();
         initialize();
@@ -161,5 +158,23 @@ public class GameController extends AbstractController {
             }
         };
         timer.schedule(task, 0);
+    }
+
+    public void checkDie() {
+        if (this.map.getPosition(Objects.hunter) == null) {
+            hunter.setAlive(false);
+        }
+
+        if (this.map.getPosition(Objects.coward) == null) {
+            coward.setAlive(false);
+        }
+
+//        if (this.map.getPosition(Objects.strategist) == null) {
+//            hunter.setAlive(false);
+//        }
+
+        if (this.map.getPosition(Objects.hound) == null) {
+            hound.setAlive(false);
+        }
     }
 }

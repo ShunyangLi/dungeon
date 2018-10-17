@@ -11,58 +11,63 @@ import java.util.Queue;
 public class Path {
 
     public ArrayList<Location> path(Map map, Coordinate cooStart, Coordinate cooEnd) {
-        Queue<Location> coordinateQueue = new LinkedList<Location>();
-        HashMap<Integer, Location> curr = new HashMap<Integer, Location>();
-        ArrayList<Location> path = new ArrayList<Location>();
 
-        Location start = new Location(cooStart.getX(), cooStart.getY());
-        Location end = new Location(cooEnd.getX(), cooEnd.getY());
+        try {
+            Queue<Location> coordinateQueue = new LinkedList<Location>();
+            HashMap<Integer, Location> curr = new HashMap<Integer, Location>();
+            ArrayList<Location> path = new ArrayList<Location>();
 
-        // This is to check whether it have been found
-        boolean flag = false;
-        coordinateQueue.add(start);
-        curr.put(start.hashCode(), null);
-        // System.out.println("X: " + end.getX() + " Y: " + end.getY());
+            Location start = new Location(cooStart.getX(), cooStart.getY());
+            Location end = new Location(cooEnd.getX(), cooEnd.getY());
 
-        while (! coordinateQueue.isEmpty() && !flag) {
-            // 把第一个值取出来
-            Location coordinate = coordinateQueue.poll();
+            // This is to check whether it have been found
+            boolean flag = false;
+            coordinateQueue.add(start);
+            curr.put(start.hashCode(), null);
+            // System.out.println("X: " + end.getX() + " Y: " + end.getY());
 
-            for (Location c: coordinate.getAroundPosition()) {
-                // System.out.println("X: " + c.getX() + " Y: " + c.getY());
+            while (! coordinateQueue.isEmpty() && !flag) {
+                // 把第一个值取出来
+                Location coordinate = coordinateQueue.poll();
 
-                if (curr.containsKey(c.hashCode()) || moveable(c.getX(), c.getY(), map)) continue;
+                for (Location c: coordinate.getAroundPosition()) {
+                    // System.out.println("X: " + c.getX() + " Y: " + c.getY());
 
-                // System.out.println("X: " + c.getX() + " Y: " + c.getY());
-                curr.put(c.hashCode(), coordinate);
+                    if (curr.containsKey(c.hashCode()) || moveable(c.getX(), c.getY(), map)) continue;
 
-                if (invildateMove(map.getValue(c.getX(), c.getY()))) {
-                    coordinateQueue.add(c);
+                    // System.out.println("X: " + c.getX() + " Y: " + c.getY());
+                    curr.put(c.hashCode(), coordinate);
 
-                    if (c.hashCode() == end.hashCode()) {
-                        flag = true;
-                        break;
+                    if (invildateMove(map.getValue(c.getX(), c.getY()))) {
+                        coordinateQueue.add(c);
+
+                        if (c.hashCode() == end.hashCode()) {
+                            flag = true;
+                            break;
+                        }
                     }
+
                 }
-
             }
-        }
 
-        if (!flag) {
+            if (!flag) {
+                return null;
+            }
+
+
+
+            Location tempEnd = curr.get(end.hashCode());
+
+            // System.out.println("here " + curr.get(end.hashCode()));
+
+            while (tempEnd.hashCode() != start.hashCode()) {
+                path.add(tempEnd);
+                tempEnd = curr.get(tempEnd.hashCode());
+            }
+            return path;
+        } catch (Exception e) {
             return null;
         }
-
-
-
-        Location tempEnd = curr.get(end.hashCode());
-
-        // System.out.println("here " + curr.get(end.hashCode()));
-
-        while (tempEnd.hashCode() != start.hashCode()) {
-            path.add(tempEnd);
-            tempEnd = curr.get(tempEnd.hashCode());
-        }
-        return path;
     }
 
     public boolean invildateMove(int val) {
