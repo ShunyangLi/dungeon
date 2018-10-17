@@ -1,9 +1,8 @@
 package View;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Random;
+import ass2.Objects;
+
+import java.util.*;
 
 public class MyMaze {
     private int dimensionX, dimensionY; // dimension of maze
@@ -186,7 +185,8 @@ public class MyMaze {
                 }
             }
         }
-        grid[1][1] = 14;
+        grid[1][1] = Objects.player;
+        grid[16][15] = Objects.exit;
     }
 
     // simply prints the map
