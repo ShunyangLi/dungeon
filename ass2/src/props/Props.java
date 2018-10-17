@@ -3,7 +3,7 @@ import ass2.Coordinate;
 
 public interface Props {
 
-    void use();
+    boolean use();
     boolean pickUp();
 
     int getNum();

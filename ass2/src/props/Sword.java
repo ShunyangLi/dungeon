@@ -27,13 +27,15 @@ public class Sword implements Props {
     }
 
     @Override
-    public void use() {
+    public boolean use() {
         if(this.useable > 0) {
             this.useable--;
+            if(this.useable == 0) {
+                this.setNum(0);
+            }
+            return true;
         }
-        if(this.useable == 0) {
-            this.setNum(0);
-        }
+        return false;
     }
 
     @Override

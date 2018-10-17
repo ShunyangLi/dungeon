@@ -6,16 +6,29 @@ import ass2.Map;
 public class Hover implements Props {
 
     private Map map;
+    private boolean buff;
+
+
     public Hover(Map map) {
         this.map = map;
+        this.buff = false;
     }
-    @Override
-    public void use() {
 
+    @Override
+    public boolean use() {
+        if (buff) {
+            return false;
+        } else {
+            this.buff = true;
+            return true;
+        }
     }
 
     @Override
     public boolean pickUp() {
+        if (this.use()) {
+            return true;
+        }
         return false;
     }
 
@@ -26,7 +39,7 @@ public class Hover implements Props {
 
     @Override
     public void setNum(int num) {
-
+        return;
     }
 
     @Override
