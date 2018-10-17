@@ -3,7 +3,7 @@ import ass2.Coordinate;
 
 public interface Props {
 
-    void use();
+    boolean use();
     boolean pickUp();
 
     int getNum();
@@ -11,4 +11,5 @@ public interface Props {
     boolean validateSet(Coordinate coordinate);
     boolean setPositionOnMap(int x, int y);
     Coordinate getPosition();
+
 }

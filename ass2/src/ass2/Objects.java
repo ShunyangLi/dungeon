@@ -29,5 +29,23 @@ public class Objects {
     public static final int hound = 17;
     public static final int coward = 18;
 
+    public boolean isProps(int val) {
+
+        if (val == Objects.arrow || val == Objects.bomb || val == Objects.key ||
+            val == Objects.sword || val == Objects.treasure ||
+            val == Objects.hover || val == Objects.invincibility) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isEnemy(int val) {
+
+        if (val == Objects.hunter || val == Objects.strategist ||
+            val == Objects.hound || val == Objects.coward) {
+            return true;
+        }
+        return false;
+    }
 
 }

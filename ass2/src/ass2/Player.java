@@ -14,10 +14,7 @@ public class Player {
 
     private Coordinate position;
     private boolean alive;
-//    private boolean hover;
-//    private int invincibility;
     private Map map;
-    // private Bag bag;
     private int preValue = -1;
     private int flag = -1;
     private boolean success;
@@ -36,9 +33,6 @@ public class Player {
         this.map = map;
         this.map.setupMap(this.position);
         this.alive = true;
-        // this.bag = bag;
-//        this.hover = false;
-//        this.invincibility = 0;
         this.bag.put(Objects.arrow, new Arrow(map));
         this.bag.put(Objects.bomb, new Bomb(map));
         this.bag.put(Objects.sword, new Sword(map));
@@ -59,149 +53,59 @@ public class Player {
      * gonna cancel this part
      */
     public boolean isDie(int x, int y) {
-        int value = this.map.getValue(x,y);
-        // 如果是pit的话直接死亡, setAlibe = false
-        if (value == Objects.pit && ! this.hover)
-        {
-            System.out.println("Sorry you fall into pit, you die!!");
-            this.setAlive(false);
-            return true;
-        }
-        // 检测，如果碰到敌人
-        if (value == Objects.hunter || value == Objects.strategist
-                || value == Objects.hound || value == Objects.coward)
-        {
-            // 如果没有武器也没有无敌药水的话直接死亡
-            if (this.bag.getSword().getNum() == 0 && this.bag.getArrow().getNum() == 0 && this.getInvincibility() == 0)
-            {
-                System.out.println("You have been killed!!");
-                this.setAlive(false);
-                return true;
+        int objects = this.map.getValue(x,y);
+        int[] priority = {Objects.arrow,Objects.bomb,Objects.sword,Objects.invincibility};
+        if (new Objects().isEnemy(objects)) {
+            for (int i = 0; i < 3; i ++) {
+                if (this.bag.get(priority[i]).use()) {
+                    this.position.setValue(Objects.road);
+                    this.map.setupMap(this.position);
+                    return true;
+                }
             }
-
-            // 如果有无敌药水的话， 敌人直接被杀死，下一个位置被改成road
-            if (this.getInvincibility() != 0)
-            {
-                this.setInvincibility(this.getInvincibility() - 1);
-                this.position.setValue(Objects.road);
-                this.map.setupMap(this.position);
-                Coordinate up = new Coordinate(x,y,Objects.road);
-                this.map.setupMap(up);
-                return false;
-
-            } else if (this.bag.getSword().getNum() != 0) {
-                // 如果没有无敌药水，检测是不是有sword，如果有sword，直接杀死敌人，把当前的位置设置成road
-                this.bag.getSword().use();
-                this.position.setValue(Objects.road);
-                this.map.setupMap(this.position);
-                Coordinate up = new Coordinate(x,y,Objects.road);
-                this.map.setupMap(up);
-                return false;
-            } else if (this.bag.getArrow().getNum() != 0) {
-                // 如果没有sword，检测arrow，如果有arrow，直接杀死敌人，然后设置当前位置road
-                this.bag.getArrow().use();
-                this.position.setValue(Objects.road);
-                this.map.setupMap(this.position);
-                Coordinate up = new Coordinate(x,y,Objects.road);
-                this.map.setupMap(up);
-                return false;
-
-            } else {
-                // 如果什么都没有，直接gg
-                System.out.println("You have been killed!!");
-                return true;
-            }
-        }
-        return false;
-    }
-
-
-    // 检测能不能移动，以及在移动中捡的东西
-    // 写出来一个pre用来储存open door或者pit， 如果pre == 这两个值，然后把当前的值替换为pre
-    // TODO 还没检查嗑无敌药水的模式，因为不知道咋弄
-    public boolean isMoveable(int x, int y)
-    {
-//        boolean flag = false;
-        int value = this.map.getValue(x,y);
-        // 如果是墙的话不能移动
-        if (value == Objects.wall) {
-            return false;
-        } else if (value == Objects.sword) {
-            // 如果是sword的话，先检测是不是已经有了，如果咩有，直接捡起来，否则捡不起来，也过不去
-            if (! this.bag.getSword().pickUp())
-            {
-                System.out.println("You already get one sword");
-                return false;
-            } else {
-                this.position.setValue(Objects.road);
-                this.map.setupMap(this.position);
-                return true;
-            }
-        } else if (value == Objects.arrow) {
-            // 如果为arrow的话直接捡起来
-            this.bag.getArrow().pickUp();
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            return true;
-        } else if (value == Objects.treasure) {
-            this.bag.getTreasure().pickUp();
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            return true;
-        } else if (value == Objects.bomb) {
-            this.bag.getBomb().pickUp();
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            return true;
-        } else if (value == Objects.key) {
-            this.bag.getKey().pickUp();
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            return true;
-        } else if (value == Objects.pit && this.hover) {
-            // pre是为了player走过之后把这个地方改掉
+        } else if (objects == Objects.pit && this.bag.get(Objects.hover).buff) {
             this.preValue = Objects.pit;
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            return true;
-        } else if (value == Objects.OpenDoor) {
-            // pre是为了player走过之后把这个地方改掉
-            this.preValue = Objects.OpenDoor;
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            return true;
-        } else if (value == Objects.door && this.bag.getKey().getNum() > 0) {
-            // 当这个门打开以后这个就是OpenDoor， 然后设置pre的value
-            this.preValue = Objects.OpenDoor;
-            this.bag.getKey().use();
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            return true;
-        } else if (value == Objects.hover) {
-            // 当是飞行药水时，直接设置
-            this.setHover(true);
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            return true;
-        } else if (value == Objects.road) {
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
-            return true;
-        } else if (value == Objects.invincibility) {
-            this.setInvincibility(3);
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
             return true;
         }
+
+        this.setAlive(false);
         return false;
     }
 
-    // 看一下是不是exit
-    public boolean isExit(int x, int y)
-    {
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
+    public boolean isMoveable(int x, int y) {
+        int objects = this.map.getValue(x,y);
+        boolean state = false;
+        if (new Objects().isProps(objects)) {
+            if (this.bag.get(objects).pickUp()) {
+                state = true;
+                this.position.setValue(Objects.road);
+                this.map.setupMap(this.position);
+            }
+        } else if (objects == Objects.door
+                && this.bag.get(Objects.key).getNum() > 0) {
+            this.bag.get(Objects.key).use();
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
+            this.preValue = Objects.OpenDoor;
+        }
+        return state;
+    }
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
+    public boolean isExit(int x, int y) {
         int value = this.map.getValue(x, y);
-        if (value == Objects.exit)
-        {
+        if (value == Objects.exit) {
             System.out.println("SUCCESS!!");
             this.success = true;
             return true;
@@ -210,11 +114,11 @@ public class Player {
     }
 
 
-    // 把人物覆盖的object显示出来
-    public void setPre()
-    {
-        if (this.preValue != -1 && this.flag != -1)
-        {
+    /**
+     *
+     */
+    public void setPre() {
+        if (this.preValue != -1 && this.flag != -1) {
             this.position.setValue(this.preValue);
             this.map.setupMap(this.position);
             this.preValue = -1;
@@ -224,12 +128,14 @@ public class Player {
         }
     }
 
-    // 判断是不是road 或者 pit
-    // 如果可以移动的话把当前的位置替换为road
-    public boolean isBoulderMove(int x, int y)
-    {
-        if (this.map.getValue(x,y) == Objects.road)
-        {
+    /**
+     *
+     * @param x
+     * @param y
+     * @return
+     */
+    public boolean isBoulderMove(int x, int y) {
+        if (this.map.getValue(x,y) == Objects.road) {
             this.position.setValue(Objects.road);
             this.map.setupMap(this.position);
             return true;
@@ -244,48 +150,38 @@ public class Player {
 
 
     // move up
-    public void moveUp()
-    {
+    public void moveUp() {
         new MoveUp(this).move();
     }
 
     // move down
-    public void moveDown()
-    {
+    public void moveDown() {
         new MoveDown(this).move();
     }
 
-    public void moveLeft()
-    {
+    public void moveLeft() {
         new MoveLeft(this).move();
     }
 
-    public void moveRight()
-    {
+    public void moveRight() {
         new MoveRight(this).move();
     }
 
-    public void showProps()
-    {
-        System.out.println("You have " + this.getBag().getSword().getNum() + " Sword!" + " and you can use " + this.bag.getSword().getUseable());
-        System.out.println("You have " + this.getBag().getArrow().getNum() + " Arrow!");
-        System.out.println("You have " + this.getBag().getBomb().getNum() + " Bomb!");
-        System.out.println("You have " + this.getBag().getTreasure().getNum() + " Treasure!");
-        System.out.println("You have " + this.getBag().getKey().getNum() + " Key");
-        System.out.println("Hover " + this.getHover());
-        System.out.println("Invincibilit " + this.getInvincibility());
-    }
+//    public void showProps() {
+//        System.out.println("You have " + this.getBag().getSword().getNum() + " Sword!" + " and you can use " + this.bag.getSword().getUseable());
+//        System.out.println("You have " + this.getBag().getArrow().getNum() + " Arrow!");
+//        System.out.println("You have " + this.getBag().getBomb().getNum() + " Bomb!");
+//        System.out.println("You have " + this.getBag().getTreasure().getNum() + " Treasure!");
+//        System.out.println("You have " + this.getBag().getKey().getNum() + " Key");
+//        System.out.println("Hover " + this.getHover());
+//        System.out.println("Invincibilit " + this.getInvincibility());
+//    }
 
-    public void lightBomb()
-    {
-        if (this.bag.getBomb().getNum() > 0)
-        {
-            this.bag.getBomb().use();
-            this.bag.getBomb().setLight(true);
+    public void lightBomb() {
+        if (this.bag.get(Objects.bomb).use()) {
+            this.preValue = Objects.bomb;
+            this.flag = 0;
         }
-        this.preValue = Objects.bomb;
-        this.flag = 0;
-
         // this.bag.getBomb().setPositionOnMap(this.position.getX(), this.position.getY());
         // this.map.setupMap(new Coordinate(this.position.getX(), this.position.getY(), Objects.bomb));
     }
@@ -306,26 +202,8 @@ public class Player {
         return this.position;
     }
 
-    public Bag getBag() {
-        return this.bag;
-    }
-
-    public int getInvincibility() {
-        return this.invincibility;
-    }
-
-    public boolean getHover()
-    {
-        return this.hover;
-    }
-
-    public void setHover(boolean status)
-    {
-        this.hover = status;
-    }
-
-    public void setInvincibility(int invincibility) {
-        this.invincibility = invincibility;
+    public HashMap<Integer, Props> getBag() {
+        return bag;
     }
 
     public void setAlive(boolean status)

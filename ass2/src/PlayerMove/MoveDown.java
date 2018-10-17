@@ -51,8 +51,7 @@ public class MoveDown implements Move {
                 // 如果可以移动的话直接移动
                 if (this.player.isMoveable(x,y))
                 {
-                    if (this.player.getPreValue() != -1)
-                    {
+                    if (this.player.getPreValue() != -1) {
                         this.player.setPre();
                     }
 

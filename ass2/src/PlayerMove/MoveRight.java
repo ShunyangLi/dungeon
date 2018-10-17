@@ -15,10 +15,8 @@ public class MoveRight implements Move {
     }
 
     @Override
-    public boolean inMap(int x, int y)
-    {
-        if (x > this.map.getHeight() || y > this.map.getWidth() || x < 0 || y < 0)
-        {
+    public boolean inMap(int x, int y) {
+        if (x > this.map.getHeight() || y > this.map.getWidth() || x < 0 || y < 0) {
             return true;
         }
 
@@ -37,30 +35,22 @@ public class MoveRight implements Move {
         int x = this.position.getX();
         int y = this.position.getY() + 1;
 
-        if (inMap(x, y))
-        {
+        if (inMap(x, y)) {
             return;
         }
 
         // TODO 试着去写
-        if (! this.player.isExit(x,y))
-        {
-            if (! this.player.isDie(x,y))
-            {
+        if (! this.player.isExit(x,y)) {
+            if (! this.player.isDie(x,y)) {
                 // 如果可以移动的话直接移动
-                if ( this.player.isMoveable(x,y))
-                {
-                    if (this.player.getPreValue() != -1)
-                    {
+                if ( this.player.isMoveable(x,y)) {
+                    if (this.player.getPreValue() != -1) {
                         this.player.setPre();
                     }
                     this.setPosition(y);
                 } else if (this.map.getValue(x,y) == Objects.boulder) {
-
-                    if(this.player.isBoulderMove(x, y + 1))
-                    {
-                        if (this.map.getValue(x, y + 1) == Objects.pit)
-                        {
+                    if(this.player.isBoulderMove(x, y + 1)) {
+                        if (this.map.getValue(x, y + 1) == Objects.pit) {
                             // 判断是不是road，如果是的话直接push
                             Coordinate coordinate1 = new Coordinate(x, y + 1, Objects.road);
                             this.map.setupMap(coordinate1);
