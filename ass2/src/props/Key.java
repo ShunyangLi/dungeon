@@ -9,8 +9,7 @@ public class Key implements Props {
     private Coordinate position;
     private Map map;
 
-    public Key(Map map)
-    {
+    public Key(Map map) {
         this.map = map;
         this.setNum(0);
         this.setMaxNum(1);
@@ -35,10 +34,12 @@ public class Key implements Props {
     }
 
     @Override
-    public void use() {
+    public boolean use() {
         if (this.num > 0) {
             this.num --;
+            return true;
         }
+        return false;
     }
 
     public void setMaxNum(int maxNum) {
@@ -75,5 +76,10 @@ public class Key implements Props {
     @Override
     public Coordinate getPosition() {
         return this.position;
+    }
+
+    @Override
+    public boolean isBuff() {
+        return false;
     }
 }

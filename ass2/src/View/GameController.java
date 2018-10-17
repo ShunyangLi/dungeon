@@ -52,7 +52,7 @@ public class GameController extends AbstractController {
         this.arrow = new Arrow(map);
         this.treasure = new Treasure(map);
         this.bag = new Bag(sword,arrow,bomb,treasure,key);
-        this.player = new Player(map,bag,map.getPosition(Objects.player));
+        this.player = new Player(map,map.getPosition(Objects.player));
         this.hunter = new Hunter(map.getPosition(Objects.hunter),map,true);
         this.hunter.setMove(new TrackPlayer(this.hunter));
         this.coward = new Coward(map.getPosition(Objects.coward),map,true);

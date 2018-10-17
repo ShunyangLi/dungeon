@@ -13,8 +13,7 @@ public class Treasure implements Props {
     }
 
     @Override
-    public boolean pickUp()
-    {
+    public boolean pickUp() {
         this.num ++;
         return true;
     }
@@ -31,16 +30,18 @@ public class Treasure implements Props {
     }
 
     @Override
-    public void use() {
-        if (this.num > 0)
-        {
-            this.num --;
-        }
+    public boolean use() {
+        return true;
     }
 
     @Override
     public Coordinate getPosition() {
         return this.position;
+    }
+
+    @Override
+    public boolean isBuff() {
+        return false;
     }
 
     @Override

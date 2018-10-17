@@ -5,9 +5,9 @@ import PlayerMove.MoveDown;
 import PlayerMove.MoveLeft;
 import PlayerMove.MoveRight;
 import PlayerMove.MoveUp;
-import javafx.scene.layout.CornerRadii;
 import props.*;
 
+import javax.crypto.interfaces.PBEKey;
 import java.util.HashMap;
 
 public class Player {
@@ -25,14 +25,14 @@ public class Player {
     /**
      *
      * @param map which is the game map
-     * @param bag is gonna disappear, i am gonna use hashmap to fix that, could be more easier
      * @param position  which is the player's current position
      */
-    public Player(Map map, Bag bag, Coordinate position) {
+    public Player(Map map, Coordinate position) {
         this.position = position;
         this.map = map;
         this.map.setupMap(this.position);
         this.alive = true;
+        this.bag = new HashMap<Integer, Props>();
         this.bag.put(Objects.arrow, new Arrow(map));
         this.bag.put(Objects.bomb, new Bomb(map));
         this.bag.put(Objects.sword, new Sword(map));
@@ -55,20 +55,25 @@ public class Player {
     public boolean isDie(int x, int y) {
         int objects = this.map.getValue(x,y);
         int[] priority = {Objects.arrow,Objects.bomb,Objects.sword,Objects.invincibility};
+
         if (new Objects().isEnemy(objects)) {
             for (int i = 0; i < 3; i ++) {
                 if (this.bag.get(priority[i]).use()) {
-                    this.position.setValue(Objects.road);
-                    this.map.setupMap(this.position);
-                    return true;
+                    setPlayer(new Coordinate(x,y,Objects.road));
+                    return false;
                 }
             }
-        } else if (objects == Objects.pit && this.bag.get(Objects.hover).buff) {
+            this.setAlive(false);
+            return true;
+        } else if (objects == Objects.pit && this.bag.get(Objects.hover).isBuff()) {
+            setPlayer(new Coordinate(x,y,Objects.road));
             this.preValue = Objects.pit;
+            return false;
+        } else if (objects == Objects.pit && ! this.bag.get(Objects.hover).isBuff()) {
+            this.setAlive(false);
             return true;
         }
-
-        this.setAlive(false);
+        setPlayer(new Coordinate(x,y,Objects.road));
         return false;
     }
 
@@ -80,20 +85,25 @@ public class Player {
      */
     public boolean isMoveable(int x, int y) {
         int objects = this.map.getValue(x,y);
-        boolean state = false;
+        boolean state = true;
         if (new Objects().isProps(objects)) {
             if (this.bag.get(objects).pickUp()) {
-                state = true;
-                this.position.setValue(Objects.road);
-                this.map.setupMap(this.position);
+                setPlayer(new Coordinate(x,y,Objects.road));
+            } else {
+                return false;
             }
         } else if (objects == Objects.door
                 && this.bag.get(Objects.key).getNum() > 0) {
             this.bag.get(Objects.key).use();
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
             this.preValue = Objects.OpenDoor;
+            setPlayer(new Coordinate(x,y,Objects.road));
+            state = true;
+        } else if ((objects == Objects.door
+                && this.bag.get(Objects.key).getNum() <= 0) ||
+                objects == Objects.wall) {
+            return false;
         }
+        setPlayer(new Coordinate(x,y,Objects.road));
         return state;
     }
 
@@ -182,8 +192,12 @@ public class Player {
             this.preValue = Objects.bomb;
             this.flag = 0;
         }
-        // this.bag.getBomb().setPositionOnMap(this.position.getX(), this.position.getY());
-        // this.map.setupMap(new Coordinate(this.position.getX(), this.position.getY(), Objects.bomb));
+    }
+
+    public void setPlayer(Coordinate coordinate) {
+        this.position.setValue(Objects.road);
+        this.map.setupMap(this.position);
+        this.map.setupMap(coordinate);
     }
 
     public Map getMap() {

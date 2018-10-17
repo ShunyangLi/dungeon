@@ -17,11 +17,12 @@ public class Arrow implements Props{
     }
 
     @Override
-    public void use() {
-        if (this.numOfuse > 0)
-        {
+    public boolean use() {
+        if (this.numOfuse > 0) {
             this.numOfuse -- ;
+            return true;
         }
+        return false;
     }
 
     @Override
@@ -65,5 +66,10 @@ public class Arrow implements Props{
     @Override
     public Coordinate getPosition() {
         return this.position;
+    }
+
+    @Override
+    public boolean isBuff() {
+        return false;
     }
 }

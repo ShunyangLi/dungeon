@@ -10,7 +10,6 @@ public class Bomb implements Props {
     private Map map;
     private boolean light;
 
-    // -1 代表着没有限制
     public Bomb(Map map) {
         this.map = map;
         this.setNum(0);
@@ -18,10 +17,12 @@ public class Bomb implements Props {
     }
 
     @Override
-    public void use() {
+    public boolean use() {
         if (this.getNum() > 0) {
             this.num--;
+            return true;
         }
+        return false;
     }
 
     public void setLight(boolean light) {
@@ -39,13 +40,8 @@ public class Bomb implements Props {
     }
 
     @Override
-    public boolean pickUp()
-    {
-
+    public boolean pickUp() {
         this.num ++;
-        // this.position.setValue(Objects.road);
-        // this.map.setupMap(this.position);
-
         return true;
     }
 
@@ -56,8 +52,12 @@ public class Bomb implements Props {
 
     @Override
     public Coordinate getPosition() {
-
         return this.position;
+    }
+
+    @Override
+    public boolean isBuff() {
+        return false;
     }
 
     @Override

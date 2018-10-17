@@ -12,4 +12,5 @@ public interface Props {
     boolean setPositionOnMap(int x, int y);
     Coordinate getPosition();
 
+    boolean isBuff();
 }
