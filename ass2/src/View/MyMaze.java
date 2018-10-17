@@ -27,7 +27,10 @@ public class MyMaze {
         grid = new int[gridDimensionX][gridDimensionY];
         init();
         generateMaze();
+        updateGrid();
     }
+
+
 
     private void init() {
         // create cells
@@ -183,6 +186,7 @@ public class MyMaze {
                 }
             }
         }
+        grid[1][1] = 14;
     }
 
     // simply prints the map
@@ -193,14 +197,20 @@ public class MyMaze {
     // forms a meaningful representation
     @Override
     public String toString() {
-        updateGrid();
+//        updateGrid();
         String output = "";
-        for (int y = 0; y < gridDimensionY; y++) {
-            for (int x = 0; x < gridDimensionX; x++) {
+        for (int x = 0; x < gridDimensionX; x++) {
+            for (int y = 0; y < gridDimensionY; y++) {
                 output += grid[x][y];
             }
             output += "\n";
         }
+//        for (int y = 0; y < gridDimensionY; y++) {
+//            for (int x = 0; x < gridDimensionX; x++) {
+//                output += grid[x][y];
+//            }
+//            output += "\n";
+//        }
         return output;
     }
 
@@ -210,8 +220,7 @@ public class MyMaze {
 
      // run it
     public static void main(String[] args) {
-        MyMaze maze = new MyMaze(10);
+        MyMaze maze = new MyMaze(9, 8);
         maze.draw();
-
     }
 }
