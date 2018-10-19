@@ -194,6 +194,10 @@ public class Player {
         this.map.setupMap(this.position);
     }
 
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
+
     public void setPreValue(int preValue) {
         this.preValue = preValue;
     }

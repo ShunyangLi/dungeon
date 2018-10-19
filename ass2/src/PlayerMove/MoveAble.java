@@ -23,7 +23,10 @@ public class MoveAble implements MoveState {
     public boolean state(int x, int y) {
         int objects = this.map.getValue(x,y);
         boolean state = true;
-        if (objects == Objects.wall || objects == Objects.boulder) {
+        if (objects == Objects.exit) {
+            this.player.setSuccess(true);
+            return false;
+        }else if (objects == Objects.wall || objects == Objects.boulder) {
             return false;
         } else if (new Objects().isProps(objects)) {
             if (this.bag.get(objects).pickUp()) {

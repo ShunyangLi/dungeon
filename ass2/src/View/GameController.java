@@ -2,19 +2,14 @@ package View;
 
 import Enemy.*;
 import ass2.*;
-
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-
 import props.*;
 
-import java.net.URL;
-import java.util.ResourceBundle;
+import javax.sound.midi.Track;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -86,41 +81,6 @@ public class GameController extends AbstractController {
         return grid;
     }
 
-    private ImageView imageCopy(ImageView srcImage) {
-        ImageView image = new ImageView(srcImage.getImage());
-        image.setFitWidth(42);
-        image.setFitHeight(42);
-        return image;
-    }
-
-    private StackPane stackCopy(ImageView image) {
-        StackPane stack = new StackPane();
-        stack.setMaxSize(42, 42);
-        stack.setMinSize(42, 42);
-        stack.getChildren().add(image);
-        makeDroppable(stack);
-        return stack;
-    }
-
-    private void makeDroppable(StackPane stack) {
-        stack.setOnDragOver(new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                if (event.getDragboard().hasImage()) {
-                    event.acceptTransferModes(TransferMode.ANY);
-                }
-                event.consume();
-            }
-        });
-        stack.setOnDragDropped(new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                Dragboard db = event.getDragboard();
-                if (db.hasImage()) {
-                    stack.getChildren().add(imageCopy(new ImageView(db.getImage())));
-                }
-                event.consume();
-            }
-        });
-    }
 
     @FXML
     public void handleKeyPressed(KeyEvent event) {
