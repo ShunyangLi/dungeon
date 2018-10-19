@@ -11,8 +11,8 @@ public class Main extends Application {
         // set the stage width to be 600
         primaryStage.setWidth(900);
 
-        HeroScene heroScene = new HeroScene(primaryStage);
-        heroScene.start();
+        StartScene startScene = new StartScene(primaryStage);
+        startScene.start();
     }
 
 
