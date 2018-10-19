@@ -12,7 +12,7 @@ public class Objects {
     public static final int key = 7;
     public static final int pit = 9;
     public static final int OpenDoor = 19;
-//    public static final int fire = 20;
+    public static final int fire = 20;
 
     // this is props player can pick up
     public static final int bomb = 8;    // 待定，bloom是否可以自带属

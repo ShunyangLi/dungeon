@@ -32,6 +32,7 @@ public class GameImage {
                 new ImageView(String.valueOf(getClass().getClassLoader().getResource("image/hound.png"))),
                 new ImageView(String.valueOf(getClass().getClassLoader().getResource("image/gnome.png"))),
                 new ImageView(String.valueOf(getClass().getClassLoader().getResource("image/open_door.png"))),
+                new ImageView(String.valueOf(getClass().getClassLoader().getResource("image/light.gif")))
         };
     }
 

@@ -20,6 +20,7 @@ public class Bomb implements Props {
     public boolean use() {
         if (this.getNum() > 0) {
             this.num--;
+            this.light = true;
             return true;
         }
         return false;

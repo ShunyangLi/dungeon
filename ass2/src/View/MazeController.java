@@ -5,6 +5,9 @@ import ShortestPath.Location;
 import ShortestPath.Path;
 import ass2.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
@@ -12,7 +15,7 @@ import javafx.scene.layout.StackPane;
 import props.Key;
 
 import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
+import java.util.Optional;
 
 public class MazeController extends AbstractController {
     private GameImage image;
@@ -56,6 +59,26 @@ public class MazeController extends AbstractController {
         return grid;
     }
 
+    public void dialog () {
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Winner");
+        alert.setContentText("You Win !!!!!!!!");
+
+        ButtonType buttonNew = new ButtonType("New Game");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonNew, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonNew){
+            alert.close();
+            MazeScene scene = new MazeScene(stage);
+            scene.start();
+        } else {
+            alert.close();
+        }
+    }
+
     @FXML
     public void MazeSolution(){
         Path path = new Path();
@@ -97,7 +120,7 @@ public class MazeController extends AbstractController {
             event.consume();
             initialize();
         } else {
-            System.out.println("Success");
+            dialog ();
         }
     }
 

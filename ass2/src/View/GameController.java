@@ -1,6 +1,7 @@
 package View;
 
 import Enemy.*;
+import ShortestPath.Location;
 import ass2.*;
 import javafx.fxml.FXML;
 import javafx.scene.input.*;
@@ -27,6 +28,7 @@ public class GameController extends AbstractController {
     private Hunter hunter;
     private Coward coward;
     private Hound hound;
+    private Strategist strategist;
     static Timer timer = new Timer();
     @FXML private Pane mazePane;
     @FXML private GridPane gridPane;
@@ -45,6 +47,7 @@ public class GameController extends AbstractController {
         this.hunter.setMove(new TrackPlayer(this.hunter));
         this.coward = new Coward(map.getPosition(Objects.coward),map,true);
         this.coward.setMove(new TrackPlayer(this.coward));
+        this.strategist = new Strategist(map.getPosition(Objects.strategist), map, true);
 
         this.hound = new Hound(map.getPosition(Objects.hound),map,true);
         this.hound.setMove(new TrackPlayer(this.hound));
@@ -60,11 +63,17 @@ public class GameController extends AbstractController {
 //        mazePane.getChildren().remove(gridPane);
     }
 
-    @FXML void handleBackButton () {
+    @FXML
+    public void handleBackButton () {
         StartScene startScene = new StartScene(stage);
         startScene.start();
     }
 
+    @FXML
+    public void handleRestartButton () {
+        HeroScene heroScene = new HeroScene(stage);
+        heroScene.start();
+    }
 
     private GridPane initGridPane() {
         GridPane grid = new GridPane();
@@ -83,39 +92,101 @@ public class GameController extends AbstractController {
     @FXML
     public void handleKeyPressed(KeyEvent event) {
         // System.out.println(event.getCharacter());
-        checkDie();
-        switch (event.getCode()) {
-            case UP:
-                player.moveUp();
-                break;
-            case DOWN:
-                player.moveDown();
-                break;
-            case LEFT:
-                player.moveLeft();
-                break;
-            case RIGHT:
-                player.moveRight();
-                break;
-            default:
-                break;
+        if (player.getAlive() && ! player.isSuccess()) {
+            checkDie();
+            switch (event.getCode()) {
+                case UP:
+                    player.moveUp();
+                    break;
+                case DOWN:
+                    player.moveDown();
+                    break;
+                case LEFT:
+                    player.moveLeft();
+                    break;
+                case RIGHT:
+                    player.moveRight();
+                    break;
+                case L:
+                    player.lightBomb();
+                default:
+                    break;
+            }
+            Bomb mapBomb = (Bomb) player.getBag().get(Objects.bomb);
+
+            if (mapBomb.isLight()) {
+                Coordinate b = map.getPosition(Objects.bomb);
+                if (b != null) {
+                    b.setValue(Objects.fire);
+                    this.map.setupMap(b);
+                    MyTimer(mapBomb);
+                }
+            }
+
+            event.consume();
+            this.hunter.autoMove();
+            this.coward.autoMove();
+            this.hound.autoMove();
+            initialize();
+            return;
         }
-        event.consume();
-        this.hunter.autoMove();
-        this.coward.autoMove();
-        this.hound.autoMove();
-        initialize();
+        timer.cancel();
     }
 
-    public void MyTimer(Hunter hunter) {
+    public void MyTimer(Bomb bomb) {
         TimerTask task;
         task = new TimerTask() {
             @Override
             public void run() {
-                hunter.autoMove();
+                Coordinate b =  map.getPosition(Objects.fire);
+
+                int left_x = b.getX();
+                int left_y = b.getY() - 1;
+
+                int right_x = b.getX();
+                int right_y = b.getY() + 1;
+
+                int up_x = b.getX() - 1;
+                int up_y = b.getY();
+
+                int down_x = b.getX() + 1;
+                int down_y = b.getY();
+
+                int Left = map.getValue(left_x, left_y);
+                int right = map.getValue(right_x, right_y);
+                int up = map.getValue(up_x, up_y);
+                int down = map.getValue(down_x, down_y);
+
+                removeBlock(map, Left, new Location(left_x, left_y), player, hunter, coward, hound, strategist);
+                removeBlock(map, right, new Location(right_x, right_y), player, hunter, coward, hound, strategist);
+                removeBlock(map, up, new Location(up_x, up_y), player, hunter, coward, hound, strategist);
+                removeBlock(map, down, new Location(down_x, down_y), player, hunter, coward, hound, strategist);
+
+                map.setupMap(new Coordinate(b.getX(), b.getY(), Objects.road));
+                bomb.setLight(false);
+
             }
         };
-        timer.schedule(task, 0);
+        timer.schedule(task, 1000);
+    }
+    public static void removeBlock(Map map, int val, Location location, Player player, Enemy hunter, Enemy coward, Enemy hound, Enemy strategist) {
+        if (val == Objects.player) {
+            player.setAlive(false);
+        } else if (val == Objects.hunter) {
+            hunter.setAlive(false);
+            map.setupMap(new Coordinate(location.getX(), location.getY(), Objects.road));
+        } else if (val == Objects.hound) {
+            hound.setAlive(false);
+            map.setupMap(new Coordinate(location.getX(), location.getY(), Objects.road));
+        } else if (val == Objects.coward) {
+            coward.setAlive(false);
+            map.setupMap(new Coordinate(location.getX(), location.getY(), Objects.road));
+        } else if (val == Objects.strategist) {
+            strategist.setAlive(false);
+            map.setupMap(new Coordinate(location.getX(), location.getY(), Objects.road));
+        }
+
+        return;
     }
 
     public void checkDie() {
