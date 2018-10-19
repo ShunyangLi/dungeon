@@ -1,6 +1,5 @@
 package props;
 import ass2.Coordinate;
-import ass2.Map;
 
 public interface Props {
 
@@ -12,8 +11,6 @@ public interface Props {
     boolean validateSet(Coordinate coordinate);
     boolean setPositionOnMap(int x, int y);
     Coordinate getPosition();
-
-    void setMap(Map map);
 
     boolean isBuff();
 }

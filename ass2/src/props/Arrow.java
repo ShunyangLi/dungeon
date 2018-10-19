@@ -69,11 +69,6 @@ public class Arrow implements Props{
     }
 
     @Override
-    public void setMap(Map map) {
-        this.map = map;
-    }
-
-    @Override
     public boolean isBuff() {
         return false;
     }

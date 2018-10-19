@@ -60,9 +60,4 @@ public class Treasure implements Props {
             return true;
         } else {return false;}
     }
-    @Override
-    public void setMap(Map map) {
-        this.map = map;
-    }
-
 }

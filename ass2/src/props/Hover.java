@@ -60,9 +60,4 @@ public class Hover implements Props {
     public Coordinate getPosition() {
         return null;
     }
-    @Override
-    public void setMap(Map map) {
-        this.map = map;
-    }
-
 }
