@@ -15,20 +15,20 @@ public class Invincibility implements Props {
 
     @Override
     public boolean use() {
-        if (buff) {
-            return false;
+        if (this.buff) {
+            return true;
         } else {
-            this.buff = true;
+            this.buff = false;
             return true;
         }
     }
 
     @Override
     public boolean pickUp() {
-        if (this.use()) {
-            return true;
+        if (this.buff) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     public void setBuff(boolean buff) {

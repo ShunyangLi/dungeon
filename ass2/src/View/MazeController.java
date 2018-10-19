@@ -35,10 +35,12 @@ public class MazeController extends AbstractController {
     @FXML
     public void initialize() {
         gridPane = initGridPane();
-//        gridPane.getChildren().add(image.getImages(map.getValue(0,0)));
         mazePane.getChildren().add(gridPane);
-        // mazePane.addEventHandler(keyEvent);
-//        mazePane.getChildren().remove(gridPane);
+    }
+
+    @FXML void handleBackButton () {
+        StartScene startScene = new StartScene(stage);
+        startScene.start();
     }
 
     private GridPane initGridPane() {
@@ -79,7 +81,6 @@ public class MazeController extends AbstractController {
 
     @FXML
     public void handleKeyPressed(KeyEvent event) {
-        // System.out.println(event.getCode());
         if (! player.isSuccess()){
             KeyCode code =  event.getCode();
             if (code == KeyCode.UP || code == KeyCode.W) {

@@ -13,11 +13,6 @@ import javax.sound.midi.Track;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- * 判断下一个格子的内容进行自我调用来pick up，因为props是interface，所以可以直接调用不同的pick up
- * 用hashmap来存储相对应的class， 然后直接调用class来，捡物品
- */
-
 public class GameController extends AbstractController {
 
     private GameImage image;
@@ -28,7 +23,6 @@ public class GameController extends AbstractController {
     private Arrow arrow;
     private Bomb bomb;
     private Key key;
-    private Bag bag;
     private Treasure treasure;
     private Hunter hunter;
     private Coward coward;
@@ -46,7 +40,6 @@ public class GameController extends AbstractController {
         this.bomb = new Bomb(map);
         this.arrow = new Arrow(map);
         this.treasure = new Treasure(map);
-        this.bag = new Bag(sword,arrow,bomb,treasure,key);
         this.player = new Player(map,map.getPosition(Objects.player));
         this.hunter = new Hunter(map.getPosition(Objects.hunter),map,true);
         this.hunter.setMove(new TrackPlayer(this.hunter));
@@ -65,6 +58,11 @@ public class GameController extends AbstractController {
         mazePane.getChildren().add(gridPane);
         // mazePane.addEventHandler(keyEvent);
 //        mazePane.getChildren().remove(gridPane);
+    }
+
+    @FXML void handleBackButton () {
+        StartScene startScene = new StartScene(stage);
+        startScene.start();
     }
 
 

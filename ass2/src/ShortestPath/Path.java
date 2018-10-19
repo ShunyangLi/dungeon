@@ -27,7 +27,7 @@ public class Path {
             // System.out.println("X: " + end.getX() + " Y: " + end.getY());
 
             while (! coordinateQueue.isEmpty() && !flag) {
-                // 把第一个值取出来
+                // get the first value
                 Location coordinate = coordinateQueue.poll();
 
                 for (Location c: coordinate.getAroundPosition()) {
