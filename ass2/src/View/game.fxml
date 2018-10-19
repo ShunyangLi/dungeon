@@ -12,3 +12,5 @@
       <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" mnemonicParsing="false"  onAction="#handleRestartButton" text="Restart" />
    </top>
 </BorderPane>
+
+1
