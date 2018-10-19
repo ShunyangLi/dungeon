@@ -219,8 +219,8 @@ public class MyMaze {
     }
 
      // run it
-    public static void main(String[] args) {
-        MyMaze maze = new MyMaze(9, 8);
-        maze.draw();
-    }
+//    public static void main(String[] args) {
+//        MyMaze maze = new MyMaze(9, 8);
+//        maze.draw();
+//    }
 }

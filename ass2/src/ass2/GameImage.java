@@ -6,6 +6,10 @@ public class GameImage {
 
     private ImageView[] imageViews;
 
+    /**
+     * @biref this part is according to the Objects number and store that image in the list
+     *  when show on the map, we just need to get value from that
+     */
     public GameImage() {
         imageViews = new ImageView[] {
                 new ImageView(String.valueOf(getClass().getClassLoader().getResource("image/tile.png"))),
@@ -28,9 +32,15 @@ public class GameImage {
                 new ImageView(String.valueOf(getClass().getClassLoader().getResource("image/hound.png"))),
                 new ImageView(String.valueOf(getClass().getClassLoader().getResource("image/gnome.png"))),
                 new ImageView(String.valueOf(getClass().getClassLoader().getResource("image/open_door.png"))),
+                new ImageView(String.valueOf(getClass().getClassLoader().getResource("image/light.gif")))
         };
     }
 
+    /**
+     *
+     * @param i the index of this list, and the i which come from the map Objects
+     * @return return the image to the controller
+     */
     public ImageView getImages(int i) {
         return imageViews[i];
     }

@@ -19,10 +19,11 @@ public class MoveAble implements MoveState {
         this.map = this.player.getMap();
         this.bag = this.player.getBag();
     }
+
     @Override
     public boolean state(int x, int y) {
         int objects = this.map.getValue(x,y);
-        boolean state = true;
+        // boolean state = true;
         if (objects == Objects.exit) {
             this.player.setSuccess(true);
             return false;
@@ -39,12 +40,12 @@ public class MoveAble implements MoveState {
             this.bag.get(Objects.key).use();
             this.player.setPreValue(Objects.OpenDoor);
             this.player.setPlayer(new Coordinate(x,y,Objects.road));
-            state = true;
+            return true;
         } else if (objects == Objects.door
                 && this.bag.get(Objects.key).getNum() <= 0 ){
             return false;
         }
         this.player.setPlayer(new Coordinate(x,y,Objects.road));
-        return state;
+        return true;
     }
 }

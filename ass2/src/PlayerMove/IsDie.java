@@ -14,17 +14,31 @@ public class IsDie implements MoveState {
     private Map map;
     private HashMap<Integer, Props> bag;
 
+    /**
+     *
+     * @param player the player in the map
+     * @brief just push the player into the class
+     */
     public IsDie (Player player) {
         this.player = player;
         this.map = this.player.getMap();
         this.bag = this.player.getBag();
     }
 
+    /**
+     *
+     * @param x the next x of the player move
+     * @param y the next y of the player move
+     * @return return the sate of moveable
+     * @brief if the next grid is enemy, then kill them, and clear the road
+     *          else if the player do not have weapon or invi, then set the player is die
+     */
     @Override
     public boolean state(int x, int y) {
         int objects = this.map.getValue(x,y);
         int[] priority = {Objects.invincibility,Objects.arrow,Objects.sword};
 
+        // to check whether is a enemy
         if (new Objects().isEnemy(objects)) {
             for (int i = 0; i < 3; i ++) {
                 if (this.bag.get(priority[i]).use()) {

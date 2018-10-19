@@ -45,11 +45,11 @@ public class Player {
 
     /**
      *
-     * @param x
-     * @param y
-     * @return
-     *
-     * gonna cancel this part
+     * @param x the next setup of x of the player move
+     * @param y the next setup of y of the player move
+     * @return  return the state (die or not die)
+     * @biref this function is gonna detect whether the player is die according to
+     *          the player whether bring weapon
      */
     public boolean isDie(int x, int y) {
         return new IsDie(this).state(x,y);
@@ -57,9 +57,11 @@ public class Player {
 
     /**
      *
-     * @param x
-     * @param y
-     * @return
+     * @param x the next setup of x of the player move
+     * @param y the next setup of y of the player move
+     * @return return the state (move or not move)
+     * @brief this function is gonaa detect whether can move, according to the Objects, if its wall, then not move
+     *          like that
      */
     public boolean isMoveable(int x, int y) {
         return new MoveAble(this).state(x,y);
@@ -67,9 +69,11 @@ public class Player {
 
     /**
      *
-     * @param x
-     * @param y
-     * @return
+     * @param x the next setup of x of the player move
+     * @param y the next setup of y of the player move
+     * @return return the state of whether is a exit
+     * @brief this function is gonna detect whether the Objects is exit, if this is a exit
+     *          then the player is win
      */
     public boolean isExit(int x, int y) {
         int value = this.map.getValue(x, y);
@@ -82,7 +86,7 @@ public class Player {
 
 
     /**
-     *
+     *  which is just make the image displayer after the player move away
      */
     public void setPre() {
         if (this.preValue != -1 && this.flag != -1) {
@@ -97,9 +101,8 @@ public class Player {
 
     /**
      *
-     * @param x
-     * @param y
-     * @return
+     * @return because if the Object is boulder, then player can push it to next grid
+     * @brief if the player can push the boulder, and the boulder can fill in pit
      */
     public boolean isBoulderMove(int x, int y) {
         if (this.map.getValue(x,y) == Objects.road) {
@@ -126,24 +129,17 @@ public class Player {
         new MoveDown(this).move();
     }
 
+    // move left
     public void moveLeft() {
         new MoveLeft(this).move();
     }
 
+    // move right
     public void moveRight() {
         new MoveRight(this).move();
     }
 
-//    public void showProps() {
-//        System.out.println("You have " + this.getBag().getSword().getNum() + " Sword!" + " and you can use " + this.bag.getSword().getUseable());
-//        System.out.println("You have " + this.getBag().getArrow().getNum() + " Arrow!");
-//        System.out.println("You have " + this.getBag().getBomb().getNum() + " Bomb!");
-//        System.out.println("You have " + this.getBag().getTreasure().getNum() + " Treasure!");
-//        System.out.println("You have " + this.getBag().getKey().getNum() + " Key");
-//        System.out.println("Hover " + this.getHover());
-//        System.out.println("Invincibilit " + this.getInvincibility());
-//    }
-
+    // just make the player light the bomb
     public void lightBomb() {
         if (this.bag.get(Objects.bomb).use()) {
             this.preValue = Objects.bomb;
@@ -151,6 +147,7 @@ public class Player {
         }
     }
 
+    // set a new position for the player
     public void setPlayer(Coordinate coordinate) {
         this.position.setValue(Objects.road);
         this.map.setupMap(this.position);
