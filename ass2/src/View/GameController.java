@@ -40,7 +40,7 @@ public class GameController extends AbstractController {
 
     public GameController() {
         this.image = new GameImage();
-        this.map = new Map(16,18);
+        this.map = new Map();
         this.sword = new Sword(map);
         this.key = new Key(map);
         this.bomb = new Bomb(map);
@@ -61,10 +61,7 @@ public class GameController extends AbstractController {
     @FXML
     public void initialize() {
         gridPane = initGridPane();
-//        gridPane.getChildren().add(image.getImages(map.getValue(0,0)));
         mazePane.getChildren().add(gridPane);
-        // mazePane.addEventHandler(keyEvent);
-//        mazePane.getChildren().remove(gridPane);
     }
 
     @FXML
