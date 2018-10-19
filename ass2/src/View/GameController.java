@@ -67,6 +67,11 @@ public class GameController extends AbstractController {
 //        mazePane.getChildren().remove(gridPane);
     }
 
+    @FXML void handleBackButton () {
+        StartScene startScene = new StartScene(stage);
+        startScene.start();
+    }
+
 
     private GridPane initGridPane() {
         GridPane grid = new GridPane();
