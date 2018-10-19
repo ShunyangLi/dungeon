@@ -1,55 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="5a91659e-42f3-445c-ae01-23b874df0e8c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/ass2/out/production/ass2/View/MazeScene.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ass2/out/production/ass2/View/StartController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ass2/out/production/ass2/View/StartScene.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ass2/out/production/ass2/View/start.fxml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/MapDatas$MapData.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/MapDatas.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ass2/out/production/ass2/image/light.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/ass2/src/image/light.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/Enemy/TrackPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/Enemy/TrackPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/PlayerMove/IsDie.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/PlayerMove/IsDie.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/PlayerMove/MoveAble.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/PlayerMove/MoveAble.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/View/GameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/View/GameController$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/View/GameController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/View/GameController$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/View/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/View/GameController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/View/HeroScene.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/View/HeroScene.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/View/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/View/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/View/MazeController.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/View/MazeController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/View/MyMaze.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/View/MyMaze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/View/maze.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/View/maze.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/Bag.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/Coordinate.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/Coordinate.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/GameEngine.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/GameImage.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/GameImage.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/GameSystem.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/Objects.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/Objects.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/ass2/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/props/Bomb.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/props/Bomb.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/out/production/ass2/props/Invincibility.class" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/out/production/ass2/props/Invincibility.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/Enemy/TrackPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/Enemy/TrackPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/PlayerMove/IsDie.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/PlayerMove/IsDie.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/PlayerMove/MoveAble.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/PlayerMove/MoveAble.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/ShortestPath/Path.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/ShortestPath/Path.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/View/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/View/GameController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/View/MazeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/View/MazeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/View/MyMaze.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/View/MyMaze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/ass2/Bag.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/ass2/Coordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/ass2/Coordinate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/ass2/GameEngine.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/ass2/GameImage.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/ass2/GameImage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/ass2/GameSystem.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/ass2/GameSystem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/ass2/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/ass2/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/ass2/Objects.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/ass2/Objects.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/ass2/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/ass2/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/props/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/props/Bomb.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2/src/props/Invincibility.java" beforeDir="false" afterPath="$PROJECT_DIR$/ass2/src/props/Invincibility.java" afterDir="false" />
-    </list>
+    <list default="true" id="5a91659e-42f3-445c-ae01-23b874df0e8c" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -60,13 +12,13 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="fxml" value="11" />
-          <entry key="java" value="904" />
+          <entry key="java" value="927" />
           <entry key="log" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="904" />
+          <entry key="JAVA" value="927" />
           <entry key="PLAIN_TEXT" value="1" />
           <entry key="XML" value="11" />
         </counts>
@@ -139,8 +91,20 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/ass2/src/ass2/Map.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="547">
-              <caret line="62" selection-start-line="62" selection-end-line="62" />
+            <state relative-caret-position="172">
+              <caret line="12" selection-start-line="12" selection-end-line="12" />
+              <folding>
+                <element signature="e#1084#1085#0" expanded="true" />
+                <element signature="e#1120#1121#0" expanded="true" />
+                <element signature="e#1159#1160#0" expanded="true" />
+                <element signature="e#1193#1194#0" expanded="true" />
+                <element signature="e#1223#1224#0" expanded="true" />
+                <element signature="e#1257#1258#0" expanded="true" />
+                <element signature="e#1286#1287#0" expanded="true" />
+                <element signature="e#1319#1320#0" expanded="true" />
+                <element signature="e#1364#1365#0" expanded="true" />
+                <element signature="e#1401#1402#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -211,8 +175,8 @@
         <option value="$PROJECT_DIR$/ass2/src/View/MazeController.java" />
         <option value="$PROJECT_DIR$/ass2/src/ass2/MapData.java" />
         <option value="$PROJECT_DIR$/ass2/src/ass2/MapDatas.java" />
-        <option value="$PROJECT_DIR$/ass2/src/ass2/Map.java" />
         <option value="$PROJECT_DIR$/ass2/src/View/GameController.java" />
+        <option value="$PROJECT_DIR$/ass2/src/ass2/Map.java" />
       </list>
     </option>
   </component>
@@ -281,7 +245,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539941299826" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539941348307" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -325,23 +289,22 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1539919866647</updated>
-      <workItem from="1539919870638" duration="12293000" />
+      <workItem from="1539919870638" duration="12629000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10310000" />
+    <option name="totallyTimeSpent" value="10646000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="43" y="23" width="1237" height="777" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Designer" order="0" />
       <window_info id="UI Designer" order="1" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Favorites" order="3" side_tool="true" />
       <window_info id="Image Layers" order="4" />
-      <window_info active="true" content_ui="combo" id="Project" order="5" visible="true" weight="0.19330543" />
+      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.19330543" />
       <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32876712" />
@@ -349,7 +312,7 @@
       <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="4" />
       <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" visible="true" weight="0.21605839" />
+      <window_info active="true" anchor="bottom" id="Run" order="6" visible="true" weight="0.21605839" />
       <window_info anchor="bottom" id="Debug" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Messages" order="8" weight="0.32876712" />
       <window_info anchor="bottom" id="Cvs" order="9" weight="0.25" />
@@ -537,8 +500,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ass2/src/ass2/Map.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="547">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
+        <state relative-caret-position="172">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#1084#1085#0" expanded="true" />
+            <element signature="e#1120#1121#0" expanded="true" />
+            <element signature="e#1159#1160#0" expanded="true" />
+            <element signature="e#1193#1194#0" expanded="true" />
+            <element signature="e#1223#1224#0" expanded="true" />
+            <element signature="e#1257#1258#0" expanded="true" />
+            <element signature="e#1286#1287#0" expanded="true" />
+            <element signature="e#1319#1320#0" expanded="true" />
+            <element signature="e#1364#1365#0" expanded="true" />
+            <element signature="e#1401#1402#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

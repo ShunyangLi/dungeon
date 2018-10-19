@@ -10,7 +10,7 @@ public class Map {
     private MapDatas mapDatas = new MapDatas();
     private int height;
     private int width;
-    
+
     /**
      * @brief just init the map, and get one map which can play
      */
