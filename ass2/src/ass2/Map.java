@@ -6,42 +6,28 @@ import java.awt.*;
 
 public class Map {
 
-    /**
-     * @brief just init the map, and get one map which can play
-     */
-    private int[][] map = {
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
-            {1,14,0,0,0,0,10,0,0,0,0,0,0,0,0,0,0,1},
-            {1,0,3,1,0,0,1,1,1,1,0,0,1,1,1,1,0,1},
-            {1,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,0,1},
-            {1,0,0,0,0,0,0,0,1,0,0,16,0,8,0,0,0,1},
-            {1,0,0,15,0,0,0,0,1,0,0,0,0,0,0,0,0,1},
-            {1,0,0,0,0,0,1,0,1,1,0,0,0,1,0,0,0,1},
-            {1,0,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,1},
-            {1,9,9,1,1,1,1,0,1,1,1,0,0,1,0,0,0,1},
-            {1,0,0,0,0,0,0,0,0,1,0,0,0,1,1,0,0,1},
-            {1,0,0,1,0,1,1,6,0,0,0,12,0,0,0,0,0,1},
-            {1,0,0,1,0,0,1,0,1,1,1,0,1,0,0,0,0,1},
-            {1,0,0,1,0,0,0,0,0,1,0,0,1,0,0,0,0,1},
-            {1,0,18,1,1,1,0,0,0,0,0,0,1,1,1,0,0,1},
-            {1,0,0,0,0,0,0,0,0,0,0,0,17,0,0,11,2,1},
-            {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1}
-    };
-
+    private int[][] map;
+    private MapDatas mapDatas = new MapDatas();
     private int height;
     private int width;
 
     /**
-     *
-     * @param height the height of the map
-     * @param width the width of the map
-     * @brief according to the controller, it can be any size of double array
-     *          this init is without new double array, and use the origin map value
+     * @brief just init the map, and get one map which can play
      */
-    public Map (int height, int width) {
-        this.height = height;
-        this.width = width;
-        // this.map = new int [width][height];
+    public Map () {
+        this.height = 16;
+        this.width = 18;
+        this.map = mapDatas.getMapByIndex(0);
+    }
+
+    /**
+     * @param index the index of the map data
+     * @brief just init the map, and get one map which can play
+     */
+    public Map (int index) {
+        this.height = 16;
+        this.width = 18;
+        this.map = mapDatas.getMapByIndex(index);
     }
 
     /**

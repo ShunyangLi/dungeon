@@ -11,6 +11,7 @@ import javafx.scene.layout.StackPane;
 import props.*;
 
 import javax.sound.midi.Track;
+import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -32,11 +33,11 @@ public class GameController extends AbstractController {
     static Timer timer = new Timer();
     @FXML private Pane mazePane;
     @FXML private GridPane gridPane;
-
+    private Random random = new Random();
 
     public GameController() {
         this.image = new GameImage();
-        this.map = new Map(16,18);
+        this.setGame(random.nextInt(4));
         this.sword = new Sword(map);
         this.key = new Key(map);
         this.bomb = new Bomb(map);
@@ -48,38 +49,57 @@ public class GameController extends AbstractController {
         this.coward = new Coward(map.getPosition(Objects.coward),map,true);
         this.coward.setMove(new TrackPlayer(this.coward));
         this.strategist = new Strategist(map.getPosition(Objects.strategist), map, true);
-
         this.hound = new Hound(map.getPosition(Objects.hound),map,true);
         this.hound.setMove(new TrackPlayer(this.hound));
-
     }
 
     @FXML
     public void initialize() {
+        gridPane = null;
         gridPane = initGridPane();
-//        gridPane.getChildren().add(image.getImages(map.getValue(0,0)));
         mazePane.getChildren().add(gridPane);
-        // mazePane.addEventHandler(keyEvent);
-//        mazePane.getChildren().remove(gridPane);
     }
 
-    @FXML
-    public void handleBackButton () {
-        StartScene startScene = new StartScene(stage);
-        startScene.start();
+
+    public void setGame (int index) {
+        this.map = new Map(index);
     }
 
+    public void updateObj() {
+        this.sword = new Sword(map);
+        this.key = new Key(map);
+        this.bomb = new Bomb(map);
+        this.bomb.validateSet(this.map.getPosition(Objects.bomb));
+        this.arrow = new Arrow(map);
+        this.treasure = new Treasure(map);
+        this.player = new Player(map,map.getPosition(Objects.player));
+        this.hunter = new Hunter(map.getPosition(Objects.hunter),map,true);
+        this.hunter.setMove(new TrackPlayer(this.hunter));
+        this.coward = new Coward(map.getPosition(Objects.coward),map,true);
+        this.coward.setMove(new TrackPlayer(this.coward));
+        this.strategist = new Strategist(map.getPosition(Objects.strategist), map, true);
+        this.hound = new Hound(map.getPosition(Objects.hound),map,true);
+        this.hound.setMove(new TrackPlayer(this.hound));
+    }
+
+
+//    @FXML
+//    public void handleBackButton () {
+//        stage.close();
+//    }
+//
     @FXML
     public void handleRestartButton () {
-        HeroScene heroScene = new HeroScene(stage);
-        heroScene.start();
+        mazePane.getChildren().remove(gridPane);
+        setGame(random.nextInt(5));
+        updateObj();
+        initialize();
     }
-
     private GridPane initGridPane() {
         GridPane grid = new GridPane();
         // grid.setGridLinesVisible(true);
-        for (int i = 0; i < map.getHeight(); i++) {
-            for (int j = 0; j < map.getWidth(); j++) {
+        for (int i = 0; i < this.map.getHeight(); i++) {
+            for (int j = 0; j < this.map.getWidth(); j++) {
                 StackPane stack = stackCopy(imageCopy(image.getImages(map.getValue(i, j))));
                 grid.add(stack,j ,i);
             }
@@ -91,7 +111,6 @@ public class GameController extends AbstractController {
 
     @FXML
     public void handleKeyPressed(KeyEvent event) {
-        // System.out.println(event.getCharacter());
         if (player.getAlive() && ! player.isSuccess()) {
             checkDie();
             switch (event.getCode()) {
@@ -130,6 +149,7 @@ public class GameController extends AbstractController {
             initialize();
             return;
         }
+
     }
 
     public void MyTimer(Bomb bomb) {

@@ -84,6 +84,9 @@ public class Player {
         return false;
     }
 
+    public void setMap(Map map) {
+        this.map = map;
+    }
 
     /**
      *  which is just make the image displayer after the player move away

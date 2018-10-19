@@ -7,7 +7,7 @@ public class StartController extends AbstractController {
     @FXML
     public void handleGameSceneButton () {
         HeroScene scene = new HeroScene(stage);
-        scene.start();
+        scene.start(2);
     }
 
     @FXML

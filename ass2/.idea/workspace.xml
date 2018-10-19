@@ -7,13 +7,23 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aaf835f0-466e-460d-9ae2-99dc74870832" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/ass2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ass2.iml" beforeDir="false" afterPath="$PROJECT_DIR$/ass2.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/View/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/HeroScene.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/HeroScene.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/StartController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/StartController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/game.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ass2/Coordinate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ass2/Coordinate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ass2/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ass2/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ass2/MapDatas.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ass2/MapDatas.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ass2/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ass2/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/props/Arrow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/props/Arrow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/props/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/props/Bomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/props/Hover.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/props/Hover.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/props/Invincibility.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/props/Invincibility.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/props/Key.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/props/Key.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/props/Props.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/props/Props.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/props/Sword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/props/Sword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/props/Treasure.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/props/Treasure.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -28,28 +38,32 @@
         <counts>
           <entry key="project.closed" value="2" />
           <entry key="project.open.time.1" value="1" />
-          <entry key="project.open.time.10" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.10" value="2" />
+          <entry key="project.opened" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="2" />
+          <entry key="fxml" value="1" />
+          <entry key="java" value="18" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="2" />
+          <entry key="JAVA" value="18" />
+          <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="7" />
+          <entry key="fxml" value="2" />
+          <entry key="java" value="809" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="7" />
+          <entry key="JAVA" value="809" />
+          <entry key="XML" value="2" />
         </counts>
       </usages-collector>
     </session>
@@ -59,8 +73,21 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/View/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+            <state>
+              <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/props/Treasure.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+              <folding>
+                <element signature="e#1272#1273#0" expanded="true" />
+                <element signature="e#1302#1303#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -68,13 +95,32 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/View/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="184" column="56" lean-forward="true" selection-start-line="184" selection-start-column="56" selection-end-line="184" selection-end-column="56" />
+            <state relative-caret-position="155">
+              <caret line="71" column="66" selection-start-line="71" selection-start-column="66" selection-end-line="71" selection-end-column="66" />
+              <folding>
+                <element signature="e#1975#1976#0" expanded="true" />
+                <element signature="e#2016#2017#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/props/Bomb.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="693">
+              <caret line="84" selection-start-line="84" selection-end-line="84" />
             </state>
           </provider>
         </entry>
       </file>
     </leaf>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>initialize</find>
+      <find>setGame</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -82,6 +128,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/src/ass2/MapDatas.java" />
+        <option value="$PROJECT_DIR$/src/View/HeroScene.java" />
+        <option value="$PROJECT_DIR$/src/View/game.fxml" />
+        <option value="$PROJECT_DIR$/src/ass2/Player.java" />
+        <option value="$PROJECT_DIR$/src/props/Props.java" />
+        <option value="$PROJECT_DIR$/src/props/Arrow.java" />
+        <option value="$PROJECT_DIR$/src/props/Bomb.java" />
+        <option value="$PROJECT_DIR$/src/props/Hover.java" />
+        <option value="$PROJECT_DIR$/src/props/Invincibility.java" />
+        <option value="$PROJECT_DIR$/src/props/Key.java" />
+        <option value="$PROJECT_DIR$/src/props/Sword.java" />
+        <option value="$PROJECT_DIR$/src/props/Treasure.java" />
         <option value="$PROJECT_DIR$/src/View/GameController.java" />
       </list>
     </option>
@@ -93,8 +151,9 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="y" value="23" />
     <option name="width" value="1440" />
-    <option name="height" value="900" />
+    <option name="height" value="876" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -102,6 +161,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -118,20 +179,36 @@
               <item name="ass2" type="b2602c69:ProjectViewProjectNode" />
               <item name="ass2" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="ass2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ass2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ass2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Enemy" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ass2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ass2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="props" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="ass2" type="b2602c69:ProjectViewProjectNode" />
+              <item name="ass2" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="View" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539949351930" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1539956415905" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="project.structure.last.edited" value="Artifacts" />
@@ -182,17 +259,18 @@
       <updated>1539948788929</updated>
       <workItem from="1539948790674" duration="538000" />
       <workItem from="1539949510466" duration="62000" />
+      <workItem from="1539953238851" duration="3043000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="600000" />
+    <option name="totallyTimeSpent" value="3643000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2446352" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24821173" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -201,16 +279,16 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32891566" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32891566" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Terminal" order="9" />
+      <window_info anchor="bottom" id="Terminal" order="9" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Messages" order="11" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.32891566" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -229,17 +307,164 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/ass2/MapDatas.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="472">
+          <caret line="126" column="7" lean-forward="true" selection-start-line="126" selection-start-column="7" selection-end-line="126" selection-end-column="7" />
+          <folding>
+            <element signature="e#5191#5192#0" expanded="true" />
+            <element signature="e#5238#5239#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/HeroScene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="31" column="25" lean-forward="true" selection-start-line="31" selection-start-column="25" selection-end-line="31" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/PlayerMove/MoveAble.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="355">
+          <caret line="45" column="25" lean-forward="true" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ass2/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="29" column="41" selection-start-line="29" selection-start-column="28" selection-end-line="29" selection-end-column="41" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/View/game.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ass2/Player.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="23" />
+          <folding>
+            <element signature="e#2041#2042#0" expanded="true" />
+            <element signature="e#2093#2094#0" expanded="true" />
+            <element signature="e#2665#2666#0" expanded="true" />
+            <element signature="e#2695#2696#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/props/Arrow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="373">
+          <caret line="70" column="4" selection-start-line="70" selection-start-column="4" selection-end-line="74" />
+          <folding>
+            <element signature="e#1393#1394#0" expanded="true" />
+            <element signature="e#1422#1423#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/props/Hover.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="66" selection-start-line="66" selection-end-line="66" />
+          <folding>
+            <element signature="e#1055#1056#0" expanded="true" />
+            <element signature="e#1085#1086#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/props/Sword.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="101" selection-start-line="101" selection-end-line="101" />
+          <folding>
+            <element signature="e#1938#1939#0" expanded="true" />
+            <element signature="e#1968#1969#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/props/Treasure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="66" lean-forward="true" selection-start-line="66" selection-end-line="66" />
+          <folding>
+            <element signature="e#1272#1273#0" expanded="true" />
+            <element signature="e#1302#1303#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/props/Props.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="15" column="25" lean-forward="true" selection-start-line="15" selection-start-column="25" selection-end-line="15" selection-end-column="25" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/props/Invincibility.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="71" selection-start-line="71" selection-end-line="71" />
+          <folding>
+            <element signature="e#1167#1168#0" expanded="true" />
+            <element signature="e#1197#1198#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/props/Key.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="477">
+          <caret line="88" selection-start-line="88" selection-end-line="88" />
+          <folding>
+            <element signature="e#1653#1654#0" expanded="true" />
+            <element signature="e#1683#1684#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/View/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+        <state>
+          <caret column="13" lean-forward="true" selection-start-column="13" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Enemy/Enemy.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-693">
+          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/props/Bomb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="693">
+          <caret line="84" selection-start-line="84" selection-end-line="84" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="184" column="56" lean-forward="true" selection-start-line="184" selection-start-column="56" selection-end-line="184" selection-end-column="56" />
+        <state relative-caret-position="155">
+          <caret line="71" column="66" selection-start-line="71" selection-start-column="66" selection-end-line="71" selection-end-column="66" />
+          <folding>
+            <element signature="e#1975#1976#0" expanded="true" />
+            <element signature="e#2016#2017#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

@@ -78,4 +78,10 @@ public class Bomb implements Props {
         } else {return false;}
     }
 
+    @Override
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
+
 }
