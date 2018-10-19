@@ -34,9 +34,33 @@ public class GameController extends AbstractController {
     @FXML private GridPane gridPane;
 
 
-    public GameController() {
+//    public GameController() {
+//        this.image = new GameImage();
+//        this.map = new Map();
+//        this.sword = new Sword(map);
+//        this.key = new Key(map);
+//        this.bomb = new Bomb(map);
+//        this.arrow = new Arrow(map);
+//        this.treasure = new Treasure(map);
+//        this.player = new Player(map,map.getPosition(Objects.player));
+//        this.hunter = new Hunter(map.getPosition(Objects.hunter),map,true);
+//        this.hunter.setMove(new TrackPlayer(this.hunter));
+//        this.coward = new Coward(map.getPosition(Objects.coward),map,true);
+//        this.coward.setMove(new TrackPlayer(this.coward));
+//        this.strategist = new Strategist(map.getPosition(Objects.strategist), map, true);
+//        this.hound = new Hound(map.getPosition(Objects.hound),map,true);
+//        this.hound.setMove(new TrackPlayer(this.hound));
+//    }
+
+    @FXML
+    public void initialize() {
+//        gridPane = initGridPane();
+//        mazePane.getChildren().add(gridPane);
+    }
+
+    public void setGame (int index) {
         this.image = new GameImage();
-        this.map = new Map();
+        this.map = new Map(index);
         this.sword = new Sword(map);
         this.key = new Key(map);
         this.bomb = new Bomb(map);
@@ -48,31 +72,26 @@ public class GameController extends AbstractController {
         this.coward = new Coward(map.getPosition(Objects.coward),map,true);
         this.coward.setMove(new TrackPlayer(this.coward));
         this.strategist = new Strategist(map.getPosition(Objects.strategist), map, true);
-
         this.hound = new Hound(map.getPosition(Objects.hound),map,true);
         this.hound.setMove(new TrackPlayer(this.hound));
-
-    }
-
-    @FXML
-    public void initialize() {
-        gridPane = initGridPane();
+//
+        gridPane = initGridPane(this.map);
         mazePane.getChildren().add(gridPane);
     }
 
+
     @FXML
     public void handleBackButton () {
-        StartScene startScene = new StartScene(stage);
-        startScene.start();
+        stage.close();
     }
 
     @FXML
     public void handleRestartButton () {
-        HeroScene heroScene = new HeroScene(stage);
-        heroScene.start();
+        this.map = new Map(1);
+        initGridPane(this.map);
     }
 
-    private GridPane initGridPane() {
+    private GridPane initGridPane(Map map) {
         GridPane grid = new GridPane();
         // grid.setGridLinesVisible(true);
         for (int i = 0; i < map.getHeight(); i++) {
@@ -88,7 +107,8 @@ public class GameController extends AbstractController {
 
     @FXML
     public void handleKeyPressed(KeyEvent event) {
-        // System.out.println(event.getCharacter());
+        System.out.println(event.getCode());
+        System.out.println(player.getPosition());
         if (player.getAlive() && ! player.isSuccess()) {
             checkDie();
             switch (event.getCode()) {
