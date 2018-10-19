@@ -1,14 +1,17 @@
 package View;
 
-import ass2.*;
 
-import javafx.event.EventHandler;
+import ShortestPath.Location;
+import ShortestPath.Path;
+import ass2.*;
 import javafx.fxml.FXML;
-import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import props.Key;
+
+import java.util.ArrayList;
 
 public class MazeController extends AbstractController {
     private GameImage image;
@@ -25,6 +28,7 @@ public class MazeController extends AbstractController {
         this.image = new GameImage();
         this.map = new Map(17, 17, this.maze.getGrid());
         this.player = new Player(map,map.getPosition(Objects.player));
+        this.position = this.map.getPosition(Objects.player);
     }
 
     @FXML
@@ -50,67 +54,64 @@ public class MazeController extends AbstractController {
         return grid;
     }
 
-    private ImageView imageCopy(ImageView srcImage) {
-        ImageView image = new ImageView(srcImage.getImage());
-        image.setFitWidth(42);
-        image.setFitHeight(42);
-        return image;
+    @FXML
+    public void MazeSolution() {
+        Path path = new Path();
+        ArrayList<Location> road = path.path(this.map, this.map.getPosition(Objects.player), this.map.getPosition(Objects.exit));
+        // because if the player is not move, then the enemy can kill the player, so need to add the player's position into the path
+
+        if (road == null || road.size() == 0) {
+            return;
+        }
+        // this is control to auto move
+
+        for (int i  = road.size() - 1; i >= 0; i -- ) {
+
+            System.out.println("The old position: " + this.position.getX() + " " + this.position.getY());
+            this.position.setValue(Objects.road);
+            this.map.setupMap(this.position);
+            int x = road.get(i).getX();
+            int y = road.get(i).getY();
+            this.map.setupMap(new Coordinate(x, y, Objects.player));
+            this.position.setX(x);
+            this.position.setY(y);
+            this.position.setValue(Objects.player);
+            System.out.println("The new position: " + this.position.getX() + " " + this.position.getY());
+            for (long j = 0; j < 40000;j ++) {
+                long sum = 0;
+                sum += j;
+                System.out.println("here");
+            }
+            initialize();
+            break;
+            // MazeSolution();
+        }
+        MazeSolution();
     }
 
-    private StackPane stackCopy(ImageView image) {
-        StackPane stack = new StackPane();
-        stack.setMaxSize(42, 42);
-        stack.setMinSize(42, 42);
-        stack.getChildren().add(image);
-        makeDroppable(stack);
-        return stack;
-    }
 
-    private void makeDroppable(StackPane stack) {
-        stack.setOnDragOver(new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                if (event.getDragboard().hasImage()) {
-                    event.acceptTransferModes(TransferMode.ANY);
-                }
-                event.consume();
-            }
-        });
-        stack.setOnDragDropped(new EventHandler<DragEvent>() {
-            public void handle(DragEvent event) {
-                Dragboard db = event.getDragboard();
-                if (db.hasImage()) {
-                    stack.getChildren().add(imageCopy(new ImageView(db.getImage())));
-                }
-                event.consume();
-            }
-        });
-    }
 
     @FXML
     public void handleKeyPressed(KeyEvent event) {
-        // System.out.println(event.getCharacter());
-        switch (event.getCode()) {
-            case UP:
+        // System.out.println(event.getCode());
+        if (! player.isSuccess()){
+            KeyCode code =  event.getCode();
+            if (code == KeyCode.UP || code == KeyCode.W) {
                 player.moveUp();
-                // initialize();
-                break;
-            case DOWN:
+            } else if (code == KeyCode.DOWN || code == KeyCode.S) {
                 player.moveDown();
-                // initialize();
-                break;
-            case LEFT:
+            } else if (code == KeyCode.LEFT || code == KeyCode.A) {
                 player.moveLeft();
-                // initialize();
-                break;
-            case RIGHT:
+            } else if (code == KeyCode.RIGHT || code == KeyCode.D) {
                 player.moveRight();
-                // initialize();
-                break;
-            default:
-                break;
+            } else {
+                return;
+            }
+            event.consume();
+            initialize();
+        } else {
+            System.out.println("Success");
         }
-        event.consume();
-        initialize();
     }
 
 }
