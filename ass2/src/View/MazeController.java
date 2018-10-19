@@ -12,6 +12,7 @@ import javafx.scene.layout.StackPane;
 import props.Key;
 
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class MazeController extends AbstractController {
     private GameImage image;
@@ -40,7 +41,6 @@ public class MazeController extends AbstractController {
 //        mazePane.getChildren().remove(gridPane);
     }
 
-
     private GridPane initGridPane() {
         GridPane grid = new GridPane();
         // grid.setGridLinesVisible(true);
@@ -55,7 +55,7 @@ public class MazeController extends AbstractController {
     }
 
     @FXML
-    public void MazeSolution() {
+    public void MazeSolution(){
         Path path = new Path();
         ArrayList<Location> road = path.path(this.map, this.map.getPosition(Objects.player), this.map.getPosition(Objects.exit));
         // because if the player is not move, then the enemy can kill the player, so need to add the player's position into the path
@@ -64,31 +64,17 @@ public class MazeController extends AbstractController {
             return;
         }
         // this is control to auto move
+        // Thread.sleep(3000);
 
         for (int i  = road.size() - 1; i >= 0; i -- ) {
-
-            System.out.println("The old position: " + this.position.getX() + " " + this.position.getY());
-            this.position.setValue(Objects.road);
-            this.map.setupMap(this.position);
             int x = road.get(i).getX();
             int y = road.get(i).getY();
             this.map.setupMap(new Coordinate(x, y, Objects.player));
             this.position.setX(x);
             this.position.setY(y);
-            this.position.setValue(Objects.player);
-            System.out.println("The new position: " + this.position.getX() + " " + this.position.getY());
-            for (long j = 0; j < 40000;j ++) {
-                long sum = 0;
-                sum += j;
-                System.out.println("here");
-            }
-            initialize();
-            break;
-            // MazeSolution();
         }
-        MazeSolution();
+        initialize();
     }
-
 
 
     @FXML

@@ -14,7 +14,7 @@
                   <Font name="Arial" size="24.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="100.0" prefWidth="200.0" text="Button">
+            <Button mnemonicParsing="false" onAction="#handleMazeSceneButton" prefHeight="100.0" prefWidth="200.0" text="MAZE">
                <font>
                   <Font size="24.0" />
                </font>
