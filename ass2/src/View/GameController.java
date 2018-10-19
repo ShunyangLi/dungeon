@@ -130,7 +130,6 @@ public class GameController extends AbstractController {
             initialize();
             return;
         }
-        timer.cancel();
     }
 
     public void MyTimer(Bomb bomb) {
@@ -164,7 +163,7 @@ public class GameController extends AbstractController {
 
                 map.setupMap(new Coordinate(b.getX(), b.getY(), Objects.road));
                 bomb.setLight(false);
-
+                timer.cancel();
             }
         };
         timer.schedule(task, 1000);
