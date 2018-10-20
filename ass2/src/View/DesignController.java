@@ -1,9 +1,9 @@
 package View;
 
-import ass2.GameImage;
-import ass2.Map;
-import ass2.MapDatas;
+import ass2.*;
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -13,9 +13,11 @@ public class DesignController extends AbstractController {
     @FXML private GridPane gridPane;
     private GameImage image;
     private Map map;
+    private Player player;
 
     public DesignController() {
         this.map = new Map(99);
+        this.player = new Player(map, map.getPosition(Objects.player));
     }
 
     @FXML
@@ -38,5 +40,30 @@ public class DesignController extends AbstractController {
         return grid;
     }
 
+    @FXML
+    public void handleBackButton () {
+        StartScene startScene = new StartScene(stage);
+        startScene.start();
+    }
+
+    @FXML
+    public void handleKeyPressed(KeyEvent event) {
+
+        KeyCode code =  event.getCode();
+
+        if (code == KeyCode.UP) {
+            player.moveUp();
+        } else if (code == KeyCode.DOWN) {
+            player.moveDown();
+        } else if (code == KeyCode.LEFT ) {
+            player.moveLeft();
+        } else if (code == KeyCode.RIGHT ) {
+            player.moveRight();
+        } else {
+            return;
+        }
+        event.consume();
+        initialize();
+    }
 
 }
