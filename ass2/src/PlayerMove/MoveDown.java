@@ -39,28 +39,22 @@ public class MoveDown implements Move {
         int x = this.position.getX() + 1;
         int y = this.position.getY();
 
-        if (inMap(x, y))
-        {
+        if (inMap(x, y)) {
             return;
         }
 
-        if (! this.player.isExit(x,y))
-        {
-            if (! this.player.isDie(x,y))
-            {
+        if (! this.player.isExit(x,y)) {
+            if (! this.player.isDie(x,y)) {
                 // 如果可以移动的话直接移动
-                if (this.player.isMoveable(x,y))
-                {
+                if (this.player.isMoveable(x,y)) {
                     if (this.player.getPreValue() != -1) {
                         this.player.setPre();
                     }
 
                     this.setPosition(x);
                 } else if (this.map.getValue(x,y) == Objects.boulder) {
-                    if(this.player.isBoulderMove(x + 1, y))
-                    {
-                        if (this.map.getValue(x + 1, y) == Objects.pit)
-                        {
+                    if(this.player.isBoulderMove(x + 1, y)) {
+                        if (this.map.getValue(x + 1, y) == Objects.pit) {
                             Coordinate coordinate = new Coordinate(x + 1, y, Objects.road);
                             this.map.setupMap(coordinate);
                             this.setPosition(x);

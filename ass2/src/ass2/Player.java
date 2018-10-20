@@ -77,10 +77,14 @@ public class Player {
      *          then the player is win
      */
     public boolean isExit(int x, int y) {
-        int value = this.map.getValue(x, y);
-        if (value == Objects.exit) {
-            this.success = true;
-            return true;
+        try {
+            int value = this.map.getValue(x, y);
+            if (value == Objects.exit) {
+                this.success = true;
+                return true;
+            }
+        }catch (Exception e) {
+            return false;
         }
         return false;
     }

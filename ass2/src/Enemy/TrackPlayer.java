@@ -31,11 +31,12 @@ public class TrackPlayer implements EnemyMove {
         Path path = new Path();
         ArrayList<Location> road = path.path(this.map, this.map.getPosition(object), this.map.getPosition(Objects.player));
         // because if the player is not move, then the enemy can kill the player, so need to add the player's position into the path
-
         if (road == null || road.size() == 0) {
             return;
         }
+
         road.add(0,new Location(this.map.getPosition(Objects.player).getX(),this.map.getPosition(Objects.player).getX()));
+
         // this is control to auto move
         for (int i  = road.size() - 1; i >= 0; i -- ) {
             // just set the position
