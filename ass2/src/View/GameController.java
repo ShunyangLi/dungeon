@@ -4,6 +4,9 @@ import Enemy.*;
 import ShortestPath.Location;
 import ass2.*;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
@@ -12,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import props.*;
 
 import javax.sound.midi.Track;
+import java.util.Optional;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -101,6 +105,7 @@ public class GameController extends AbstractController {
         updateObj();
         initialize();
     }
+
     private GridPane initGridPane() {
         GridPane grid = new GridPane();
         // grid.setGridLinesVisible(true);
@@ -113,7 +118,6 @@ public class GameController extends AbstractController {
         grid.autosize();
         return grid;
     }
-
 
     @FXML
     public void handleKeyPressed(KeyEvent event) {
@@ -155,8 +159,50 @@ public class GameController extends AbstractController {
             this.hound.autoMove();
             initialize();
             return;
+        } else if (!player.getAlive()) {
+            dieDialog ();
+        }else if (player.isSuccess()) {
+            winDialog ();
         }
 
+    }
+
+    public void winDialog () {
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Winner");
+        alert.setContentText("You Win !!!!!!!!");
+
+        ButtonType buttonNext = new ButtonType("Next Level");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonNext, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonNext){
+            alert.close();
+            handleNext();
+        } else {
+            alert.close();
+        }
+    }
+
+    public void dieDialog () {
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Failed");
+        alert.setContentText("You die !!!!!!!!");
+
+        ButtonType buttonNew = new ButtonType("Restart");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonNew, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonNew){
+            alert.close();
+            handleRestartButton ();
+        } else {
+            alert.close();
+        }
     }
 
     public void MyTimer(Bomb bomb) {
@@ -196,6 +242,7 @@ public class GameController extends AbstractController {
         };
         timer.schedule(task, 1000);
     }
+
     public static void removeBlock(Map map, int val, Location location, Player player, Enemy hunter, Enemy coward, Enemy hound, Enemy strategist) {
         if (val == Objects.player) {
             player.setAlive(false);
