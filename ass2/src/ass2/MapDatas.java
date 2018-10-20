@@ -97,7 +97,7 @@ public class MapDatas {
     };
 
     private int[][] map_99 = {
-            {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+            {14,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -138,7 +138,11 @@ public class MapDatas {
     }
 
     public int[][] getMapByIndex (int index) {
-        return this.mapDatas.get(index);
+        if (index > this.mapDatas.size() - 2) {
+            return this.mapDatas.get(index);
+        } else {
+            return null;
+        }
     }
 
     public int total() {

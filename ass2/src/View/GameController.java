@@ -59,6 +59,9 @@ public class GameController extends AbstractController {
 
     public void setGame (int index) {
         this.map = new Map(index);
+        if (this.map.getMap() == null) {
+            winDialog();
+        }
     }
 
     public void updateBag() {
@@ -169,6 +172,25 @@ public class GameController extends AbstractController {
             winDialog ();
         }
 
+    }
+
+    public void winAllDialog () {
+        Alert alert = new Alert(Alert.AlertType.NONE);
+        alert.setTitle("Winner");
+        alert.setContentText("You Passed All Level!!!!!!!!");
+
+        ButtonType buttonNext = new ButtonType("Next Level");
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+
+        alert.getButtonTypes().setAll(buttonNext, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == buttonNext){
+            alert.close();
+            handleNext();
+        } else {
+            alert.close();
+        }
     }
 
     public void winDialog () {

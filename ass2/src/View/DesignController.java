@@ -14,10 +14,13 @@ public class DesignController extends AbstractController {
     private GameImage image;
     private Map map;
     private Player player;
+    private Coordinate position;
 
     public DesignController() {
         this.map = new Map(99);
         this.player = new Player(map, map.getPosition(Objects.player));
+        this.image = new GameImage();
+        this.position = this.player.getPosition();
     }
 
     @FXML
@@ -51,19 +54,75 @@ public class DesignController extends AbstractController {
 
         KeyCode code =  event.getCode();
 
-        if (code == KeyCode.UP) {
-            player.moveUp();
-        } else if (code == KeyCode.DOWN) {
-            player.moveDown();
-        } else if (code == KeyCode.LEFT ) {
-            player.moveLeft();
-        } else if (code == KeyCode.RIGHT ) {
-            player.moveRight();
-        } else {
-            return;
+        switch (code) {
+            case UP:
+                SetObj(Objects.road);
+                DesignUp();
+                break;
+            case DOWN:
+                DesignDown();
+                break;
+            case LEFT:
+                DesignLeft();
+                break;
+            case RIGHT:
+                DesignRight();
+                break;
+            case DIGIT1:
+                SetObj(Objects.wall);
+            default:
+                    break;
         }
         event.consume();
         initialize();
+    }
+
+    public void SetObj(int obj) {
+        int x = this.position.getX();
+        int y = this.position.getY();
+
+        this.position.setValue(obj);
+        return;
+    }
+
+    public void DesignUp() {
+        int x = this.position.getX() - 1;
+        int y = this.position.getY();
+
+        this.position.setX(x);
+        this.position.setY(y);
+        this.position.setValue(Objects.player);
+        this.map.setupMap(this.position);
+
+    }
+
+    public void DesignDown() {
+        int x = this.position.getX() + 1;
+        int y = this.position.getY();
+        this.position.setValue(Objects.road);
+        this.map.setupMap(this.position);
+        this.position.setX(x);
+        this.position.setValue(Objects.player);
+        this.map.setupMap(this.position);
+    }
+    public void DesignLeft() {
+        int y = this.position.getY() - 1;
+
+        this.position.setValue(Objects.road);
+        this.map.setupMap(this.position);
+        this.position.setY(y);
+        this.position.setValue(Objects.player);
+        this.map.setupMap(this.position);
+    }
+
+    public void DesignRight() {
+        int y = this.position.getY() + 1;
+
+        this.position.setValue(Objects.road);
+        this.map.setupMap(this.position);
+        this.position.setY(y);
+        this.position.setValue(Objects.player);
+        this.map.setupMap(this.position);
     }
 
 }

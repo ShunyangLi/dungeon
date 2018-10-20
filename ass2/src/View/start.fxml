@@ -19,6 +19,11 @@
                   <Font size="24.0" />
                </font>
             </Button>
+            <Button mnemonicParsing="false" onAction="#handleDesignSceneButton" prefHeight="100.0" prefWidth="200.0" text="DESIGN">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
             <Button mnemonicParsing="false" onAction="#handleExitButton" prefHeight="100.0" prefWidth="200.0" text="EXIT">
                <font>
                   <Font name="Arial" size="24.0" />
