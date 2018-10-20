@@ -138,7 +138,11 @@ public class MapDatas {
     }
 
     public int[][] getMapByIndex (int index) {
-        return this.mapDatas.get(index);
+        if (index > this.mapDatas.size() - 2) {
+            return this.mapDatas.get(index);
+        } else {
+            return null;
+        }
     }
 
 //    public void addMap (int[][] data) {

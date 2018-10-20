@@ -63,8 +63,7 @@ public class Map {
         return this.map[x][y];
     }
 
-    public void setupMap(Coordinate coordinate)
-    {
+    public void setupMap(Coordinate coordinate) {
         this.map[coordinate.getX()][coordinate.getY()] = coordinate.getValue();
     }
 
@@ -73,21 +72,19 @@ public class Map {
      * @param val which is the Objects, and get the Objects position
      * @return  coordinate is the position and Onjects
      */
-    public Coordinate getPosition(int val)
-    {
-        for (int i  = 0; i < height; i ++)
-        {
-            for (int j = 0; j < width; j ++)
-            {
-                if (this.getValue(i,j) == val)
-                {
+    public Coordinate getPosition(int val) {
+        for (int i  = 0; i < height; i ++) {
+            for (int j = 0; j < width; j ++) {
+                if (this.getValue(i,j) == val) {
                     Coordinate coordinate = new Coordinate(i,j,val);
                     return coordinate;
                 }
             }
         }
-
         return null;
     }
 
+    public int[][] getMap() {
+        return map;
+    }
 }

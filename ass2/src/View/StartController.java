@@ -17,6 +17,10 @@ public class StartController extends AbstractController {
     }
 
     @FXML
+    public void handleDesignSceneButton () {
+    }
+
+    @FXML
     public void handleExitButton () {
         stage.close();
     }
