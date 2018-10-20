@@ -58,11 +58,21 @@ public class GameController extends AbstractController {
 
 
     public void setGame (int index) {
-        System.out.println(index);
+//        System.out.println(index);
         this.map = new Map(index);
         if (this.map.getMap() == null) {
             winAllDialog ();
         }
+    }
+
+    public void setGame (int[][] map) {
+//        System.out.println(index);
+        this.map = new Map(16, 18, map);
+        if (this.map.getMap() == null) {
+            winAllDialog ();
+        }
+        updateObj();
+        initialize();
     }
 
     public void updateBag() {

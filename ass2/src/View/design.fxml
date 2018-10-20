@@ -8,5 +8,6 @@
    <children>
       <Pane fx:id="mazePane" focusTraversable="true" prefHeight="393.0" prefWidth="509.0" />
       <Button layoutX="522.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="30.0" prefWidth="98.0" text="Back main" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="20.0" />
+      <Button layoutX="516.0" layoutY="310.0" mnemonicParsing="false" onAction="#handleStart" prefHeight="30.0" prefWidth="98.0" text="Start" AnchorPane.bottomAnchor="73.0" AnchorPane.rightAnchor="20.0" />
    </children>
 </AnchorPane>

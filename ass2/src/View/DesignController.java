@@ -51,9 +51,14 @@ public class DesignController extends AbstractController {
     }
 
     @FXML
+    public void handleStart() {
+        HeroScene game = new HeroScene(stage);
+        game.start(map.getMap());
+    }
+
+    @FXML
     public void handleKeyPressed(KeyEvent event) {
         KeyCode code =  event.getCode();
-        System.out.println(code);
         switch (code) {
             case UP:
                 DesignUp();
@@ -69,6 +74,33 @@ public class DesignController extends AbstractController {
                 break;
             case DIGIT1:
                 this.preValue = Objects.wall;
+                break;
+            case DIGIT2:
+                this.preValue = Objects.exit;
+                break;
+            case DIGIT3:
+                this.preValue = Objects.boulder;
+                break;
+            case DIGIT4:
+                this.preValue = Objects.door;
+                break;
+            case DIGIT5:
+                this.preValue = Objects.treasure;
+                break;
+            case DIGIT6:
+                this.preValue = Objects.key;
+                break;
+            case DIGIT7:
+                this.preValue = Objects.bomb;
+                break;
+            case DIGIT8:
+                this.preValue = Objects.pit;
+                break;
+            case DIGIT9:
+                this.preValue = Objects.hunter;
+                break;
+            case DIGIT0:
+                this.preValue = Objects.sword;
                 break;
             default:
                     break;
