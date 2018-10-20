@@ -82,4 +82,9 @@ public class Key implements Props {
     public boolean isBuff() {
         return false;
     }
+    @Override
+    public void setMap(Map map) {
+        this.map = map;
+    }
+
 }

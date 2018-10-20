@@ -39,6 +39,7 @@ public class Player {
         this.bag.put(Objects.sword, new Sword(map));
         this.bag.put(Objects.treasure, new Treasure(map));
         this.bag.put(Objects.hover, new Hover(map));
+        this.bag.put(Objects.key, new Key(map));
         this.bag.put(Objects.invincibility, new Invincibility(map));
         this.success = false;
     }
@@ -84,6 +85,9 @@ public class Player {
         return false;
     }
 
+    public void setMap(Map map) {
+        this.map = map;
+    }
 
     /**
      *  which is just make the image displayer after the player move away
