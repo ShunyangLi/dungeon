@@ -32,4 +32,18 @@ public class HeroScene {
             e.printStackTrace();
         }
     }
+
+    public void start(int[][] map) {
+        stage.setTitle(title);
+        try {
+            Parent root = fxmlLoader.load();
+            GameController controller = fxmlLoader.getController();
+            controller.setStage(stage);
+            controller.setGame(map);
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }

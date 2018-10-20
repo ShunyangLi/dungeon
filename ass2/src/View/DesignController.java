@@ -22,8 +22,6 @@ public class DesignController extends AbstractController {
         this.player = new Player(map, map.getPosition(Objects.player));
         this.image = new GameImage();
         this.position = this.player.getPosition();
-        System.out.println(map.getPosition(Objects.player));
-        System.out.println(map.getValue(0,0));
     }
 
     @FXML
@@ -53,10 +51,14 @@ public class DesignController extends AbstractController {
     }
 
     @FXML
-    public void handleKeyPressed(KeyEvent event) {
+    public void handleStart() {
+        HeroScene game = new HeroScene(stage);
+        game.start(map.getMap());
+    }
 
+    @FXML
+    public void handleKeyPressed(KeyEvent event) {
         KeyCode code =  event.getCode();
-        System.out.println(code);
         switch (code) {
             case UP:
                 DesignUp();
@@ -82,6 +84,24 @@ public class DesignController extends AbstractController {
             case DIGIT4:
                 this.preValue = Objects.door;
                 break;
+            case DIGIT5:
+                this.preValue = Objects.treasure;
+                break;
+            case DIGIT6:
+                this.preValue = Objects.key;
+                break;
+            case DIGIT7:
+                this.preValue = Objects.bomb;
+                break;
+            case DIGIT8:
+                this.preValue = Objects.pit;
+                break;
+            case DIGIT9:
+                this.preValue = Objects.hunter;
+                break;
+            case DIGIT0:
+                this.preValue = Objects.sword;
+                break;
             default:
                     break;
         }
@@ -91,68 +111,52 @@ public class DesignController extends AbstractController {
 
 
     public void DesignUp() {
-        int x = this.position.getX() - 1;
         int y = this.position.getY();
-        int obj = Objects.road;
-
-        if (this.preValue != -1) {
-            obj = this.preValue;
-            this.preValue = -1;
+        int x = this.position.getX();
+        if (this.position.getX() > 0) {
+            x -= 1;
         }
-        this.position.setValue(obj);
-        this.map.setupMap(this.position);
-        this.position.setX(x);
-        this.position.setY(y);
-        this.position.setValue(Objects.player);
-        this.map.setupMap(this.position);
-
+        setPosition (x, y);
     }
 
     public void DesignDown() {
-        int x = this.position.getX() + 1;
         int y = this.position.getY();
-        int obj = Objects.road;
+        int x = this.position.getX();
+        if (this.position.getX() < map.getHeight() - 1) {
+            x += 1;
+        }
+        setPosition (x, y);
+    }
 
+    public void DesignLeft() {
+        int y = this.position.getY();
+        int x = this.position.getX();
+        if (this.position.getY() > 0) {
+            y -= 1;
+        }
+        setPosition (x, y);
+    }
+
+    public void DesignRight() {
+        int y = this.position.getY();
+        int x = this.position.getX();
+        if (this.position.getY() < map.getWidth() - 1) {
+            y += 1;
+        }
+        setPosition (x, y);
+    }
+
+    public void setPosition (int x, int y) {
+        int obj = Objects.road;
         if (this.preValue != -1) {
             obj = this.preValue;
             this.preValue = -1;
         }
         this.position.setValue(obj);
-
         this.map.setupMap(this.position);
+        this.position.setY(y);
         this.position.setX(x);
         this.position.setValue(Objects.player);
         this.map.setupMap(this.position);
     }
-    public void DesignLeft() {
-        int y = this.position.getY() - 1;
-        int obj = Objects.road;
-
-        if (this.preValue != -1) {
-            obj = this.preValue;
-            this.preValue = -1;
-        }
-        this.position.setValue(obj);
-
-        this.map.setupMap(this.position);
-        this.position.setY(y);
-        this.position.setValue(Objects.player);
-        this.map.setupMap(this.position);
-    }
-
-    public void DesignRight() {
-        int y = this.position.getY() + 1;
-        int obj = Objects.road;
-
-        if (this.preValue != -1) {
-            obj = this.preValue;
-            this.preValue = -1;
-        }
-        this.position.setValue(obj);
-        this.map.setupMap(this.position);
-        this.position.setY(y);
-        this.position.setValue(Objects.player);
-        this.map.setupMap(this.position);
-    }
-
 }
