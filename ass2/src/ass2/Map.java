@@ -59,6 +59,10 @@ public class Map {
     }
 
     public int getValue(int x, int y) {
+
+        if (x == -1 || y == -1) {
+            return Objects.road;
+        }
         try {
             return this.map[x][y];
         } catch (NullPointerException e) {

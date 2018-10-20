@@ -21,7 +21,7 @@ public class Hunter extends Enemy {
     @Override
     public void autoMove() {
         if (this.isAlive()){
-            this.getMove().autoMove(Objects.hunter);
+            this.getMove().autoMove(Objects.hunter, 0);
         }
 
     }

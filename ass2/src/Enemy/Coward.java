@@ -20,7 +20,13 @@ public class Coward extends Enemy {
     @Override
     public void autoMove() {
         if (this.isAlive()) {
-            this.getMove().autoMove(Objects.coward);
+            this.getMove().autoMove(Objects.coward,0);
+        }
+    }
+
+    public void hide() {
+        if (this.isAlive()) {
+            this.getMove().autoMove(Objects.coward,2);
         }
     }
 }

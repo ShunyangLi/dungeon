@@ -94,6 +94,7 @@ public class GameController extends AbstractController {
             this.coward = new Coward(map.getPosition(Objects.coward),map,true);
             this.coward.setMove(new TrackPlayer(this.coward));
             this.strategist = new Strategist(map.getPosition(Objects.strategist), map, true);
+            this.strategist.setMove(new TrackPlayer(this.strategist));
             this.hound = new Hound(map.getPosition(Objects.hound),map,true);
             this.hound.setMove(new TrackPlayer(this.hound));
         } catch (Exception e) {
@@ -173,8 +174,17 @@ public class GameController extends AbstractController {
 
             event.consume();
             this.hunter.autoMove();
-            this.coward.autoMove();
             this.hound.autoMove();
+            this.strategist.autoMove();
+
+            if (coward.isAlive()) {
+                if (hide(player, coward)) {
+                    // System.out.println("Hiding !!");
+                    coward.hide();
+                } else {
+                    coward.autoMove();
+                }
+            }
             initialize();
             return;
         } else if (!player.getAlive()) {
@@ -249,15 +259,13 @@ public class GameController extends AbstractController {
 
                 int left_x = b.getX();
                 int left_y = b.getY() - 1;
-
                 int right_x = b.getX();
                 int right_y = b.getY() + 1;
-
                 int up_x = b.getX() - 1;
                 int up_y = b.getY();
-
                 int down_x = b.getX() + 1;
                 int down_y = b.getY();
+
 
                 int Left = map.getValue(left_x, left_y);
                 int right = map.getValue(right_x, right_y);
@@ -315,4 +323,19 @@ public class GameController extends AbstractController {
             hound.setAlive(false);
         }
     }
+
+    public static boolean hide(Player player, Enemy crowd) {
+        int p_x = player.getPosition().getX();
+        int p_y = player.getPosition().getY();
+
+        int h_x = crowd.getPosition().getX();
+        int h_y = crowd.getPosition().getY();
+
+        int val = Math.abs(p_x - h_x) + Math.abs(p_y - h_y);
+        if (val < 5) {
+            return true;
+        }
+        return false;
+    }
+
 }

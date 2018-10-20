@@ -44,7 +44,10 @@ public class MoveAble implements MoveState {
         } else if (objects == Objects.door
                 && this.bag.get(Objects.key).getNum() <= 0 ){
             return false;
+        } else if (objects == Objects.OpenDoor) {
+            this.player.setPreValue(Objects.OpenDoor);
         }
+
         this.player.setPlayer(new Coordinate(x,y,Objects.road));
         return true;
     }
