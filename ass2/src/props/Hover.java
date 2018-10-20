@@ -16,20 +16,16 @@ public class Hover implements Props {
 
     @Override
     public boolean use() {
-        if (buff) {
-            return false;
-        } else {
-            this.buff = true;
-            return true;
-        }
+        return false;
     }
 
     @Override
     public boolean pickUp() {
-        if (this.use()) {
-            return true;
+        if (this.buff) {
+            return false;
         }
-        return false;
+        this.buff = true;
+        return true;
     }
 
     @Override

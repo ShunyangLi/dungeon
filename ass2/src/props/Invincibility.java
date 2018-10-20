@@ -15,12 +15,7 @@ public class Invincibility implements Props {
 
     @Override
     public boolean use() {
-        if (this.buff) {
-            return true;
-        } else {
-            this.buff = false;
-            return true;
-        }
+        return false;
     }
 
     @Override
@@ -28,6 +23,7 @@ public class Invincibility implements Props {
         if (this.buff) {
             return false;
         }
+        this.buff = true;
         return true;
     }
 
@@ -70,4 +66,8 @@ public class Invincibility implements Props {
         this.map = map;
     }
 
+    @Override
+    public String toString() {
+        return "Invincibility";
+    }
 }

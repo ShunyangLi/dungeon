@@ -77,4 +77,9 @@ public class Arrow implements Props{
     public boolean isBuff() {
         return false;
     }
+
+    @Override
+    public String toString() {
+        return "Arrow";
+    }
 }

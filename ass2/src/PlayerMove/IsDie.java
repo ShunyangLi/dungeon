@@ -42,6 +42,7 @@ public class IsDie implements MoveState {
         if (new Objects().isEnemy(objects)) {
             for (int i = 0; i < 3; i ++) {
                 if (this.bag.get(priority[i]).use()) {
+                    System.out.println(i + " "+ this.bag.get(priority[i]));
                     this.player.setPlayer(new Coordinate(x,y,Objects.road));
                     return false;
                 }
