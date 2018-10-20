@@ -58,9 +58,10 @@ public class GameController extends AbstractController {
 
 
     public void setGame (int index) {
+        System.out.println(index);
         this.map = new Map(index);
         if (this.map.getMap() == null) {
-            winDialog();
+            winAllDialog ();
         }
     }
 
@@ -73,17 +74,16 @@ public class GameController extends AbstractController {
         keynum.setText("Num: " + this.player.getBag().get(Objects.key).getNum());
         b1.setText("Sate: " + this.player.getBag().get(Objects.invincibility).isBuff());
         g1.setText("Sate: " + this.player.getBag().get(Objects.hover).isBuff());
-
     }
 
     public void updateObj() {
-        this.player = new Player(map,map.getPosition(Objects.player));
-        this.hunter = new Hunter(map.getPosition(Objects.hunter),map,true);
+        this.player = new Player(map, map.getPosition(Objects.player));
+        this.hunter = new Hunter(map.getPosition(Objects.hunter), map, true);
         this.hunter.setMove(new TrackPlayer(this.hunter));
-        this.coward = new Coward(map.getPosition(Objects.coward),map,true);
+        this.coward = new Coward(map.getPosition(Objects.coward), map, true);
         this.coward.setMove(new TrackPlayer(this.coward));
         this.strategist = new Strategist(map.getPosition(Objects.strategist), map, true);
-        this.hound = new Hound(map.getPosition(Objects.hound),map,true);
+        this.hound = new Hound(map.getPosition(Objects.hound), map, true);
         this.hound.setMove(new TrackPlayer(this.hound));
     }
 
@@ -174,16 +174,14 @@ public class GameController extends AbstractController {
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Winner");
         alert.setContentText("You Passed All Level!!!!!!!!");
+        ButtonType buttonTypeBack = new ButtonType("Back To Main");
 
-        ButtonType buttonNext = new ButtonType("Next Level");
-        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        alert.getButtonTypes().setAll(buttonNext, buttonTypeCancel);
+        alert.getButtonTypes().setAll(buttonTypeBack);
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonNext){
+        if (result.get() == buttonTypeBack){
             alert.close();
-            handleNext();
+            handleBackButton ();
         } else {
             alert.close();
         }

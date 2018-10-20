@@ -138,29 +138,12 @@ public class MapDatas {
     }
 
     public int[][] getMapByIndex (int index) {
-        if (index > this.mapDatas.size() - 2) {
+        if (index <= this.mapDatas.size() - 2) {
             return this.mapDatas.get(index);
         } else {
             return null;
         }
     }
-
-//    public void addMap (int[][] data) {
-//        MapData map = new MapData(data);
-//        this.mapDatas.add(map);
-//    }
-
-//    class MapData {
-//        private int[][] data;
-//
-//        public MapData (int[][] data) {
-//            this.data = data;
-//        }
-//
-//        public int[][] getData() {
-//            return this.data;
-//        }
-//    }
 }
 
 

@@ -58,13 +58,20 @@ public class Map {
         return this.width;
     }
 
-    public int getValue(int x, int y)
-    {
-        return this.map[x][y];
+    public int getValue(int x, int y) {
+        try {
+            return this.map[x][y];
+        } catch (NullPointerException e) {
+            return 0;
+        }
     }
 
     public void setupMap(Coordinate coordinate) {
-        this.map[coordinate.getX()][coordinate.getY()] = coordinate.getValue();
+        try {
+            this.map[coordinate.getX()][coordinate.getY()] = coordinate.getValue();
+        } catch (NullPointerException e) {
+            return;
+        }
     }
 
     /**

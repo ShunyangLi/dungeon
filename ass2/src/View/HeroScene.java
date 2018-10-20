@@ -8,9 +8,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class HeroScene {
-//    public HeroScene(Stage stage) {
-//        super(stage, "Hero", "game.fxml");
-//    }
+
     protected Stage stage;
     private String title;
     private FXMLLoader fxmlLoader;
