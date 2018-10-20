@@ -7,14 +7,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="aaf835f0-466e-460d-9ae2-99dc74870832" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/ass2_jar/ass2.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/ass2_jar/ass2.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ass2/Enemy/TrackPlayer.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ass2/Enemy/TrackPlayer.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ass2/PlayerMove/MoveDown.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ass2/PlayerMove/MoveDown.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/ass2/ass2/Player.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/ass2/ass2/Player.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Enemy/TrackPlayer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Enemy/TrackPlayer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlayerMove/MoveDown.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlayerMove/MoveDown.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ass2/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ass2/Player.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/View/application.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/image/background.jpg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/design.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/design.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/game.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/game.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/maze.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/maze.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/View/start.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/View/start.fxml" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -87,7 +86,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/View/GameController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2066">
+            <state relative-caret-position="919">
               <caret line="202" column="5" selection-start-line="202" selection-start-column="5" selection-end-line="202" selection-end-column="5" />
             </state>
           </provider>
@@ -250,12 +249,12 @@
       <workItem from="1540002184554" duration="9869000" />
       <workItem from="1540019527021" duration="163000" />
       <workItem from="1540024810692" duration="23000" />
-      <workItem from="1540040866758" duration="168000" />
+      <workItem from="1540040866758" duration="436000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16603000" />
+    <option name="totallyTimeSpent" value="16871000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
@@ -642,7 +641,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/View/GameController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2066">
+        <state relative-caret-position="919">
           <caret line="202" column="5" selection-start-line="202" selection-start-column="5" selection-end-line="202" selection-end-column="5" />
         </state>
       </provider>

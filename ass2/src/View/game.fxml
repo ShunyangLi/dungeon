@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane onKeyPressed="#handleKeyPressed" prefHeight="508.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameController">
+<AnchorPane onKeyPressed="#handleKeyPressed" prefHeight="508.0" prefWidth="734.0" styleClass="anchor" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameController">
       <Pane fx:id="mazePane" focusTraversable="true" prefHeight="487.0" prefWidth="507.0" BorderPane.alignment="CENTER" />
       <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="578.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleRestartButton" prefHeight="36.0" prefWidth="140.0" text="Restart" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="30.0" />
    <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="577.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleNext" prefHeight="36.0" prefWidth="140.0" text="Next" AnchorPane.bottomAnchor="118.0" AnchorPane.rightAnchor="30.0" />
@@ -18,7 +18,7 @@
          <Image url="@../image/greatsword_1_new.png" />
       </image>
    </ImageView>
-   <Label fx:id="swordnum" layoutX="649.0" layoutY="56.0" prefHeight="36.0" prefWidth="81.0" AnchorPane.rightAnchor="4.0" />
+   <Label fx:id="swordnum" layoutX="649.0" layoutY="56.0" prefHeight="36.0" prefWidth="81.0" textFill="WHITE" AnchorPane.rightAnchor="4.0" />
    <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="585.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="106.0">
       <image>
          <Image url="@../image/arrow.png" />
@@ -39,10 +39,10 @@
          <Image url="@../image/key.png" />
       </image>
    </ImageView>
-   <Label fx:id="arrownum" layoutX="649.0" layoutY="108.0" prefHeight="34.0" prefWidth="81.0" AnchorPane.rightAnchor="4.0" />
-   <Label fx:id="bombnum" layoutX="649.0" layoutY="163.0" prefHeight="34.0" prefWidth="81.0" AnchorPane.rightAnchor="4.0" />
-   <Label fx:id="godnum" layoutX="649.0" layoutY="216.0" prefHeight="34.0" prefWidth="81.0" AnchorPane.rightAnchor="4.0" />
-   <Label fx:id="keynum" layoutX="649.0" layoutY="267.0" prefHeight="34.0" prefWidth="81.0" AnchorPane.rightAnchor="4.0" />
+   <Label fx:id="arrownum" layoutX="649.0" layoutY="108.0" prefHeight="34.0" prefWidth="81.0" textFill="WHITE" AnchorPane.rightAnchor="4.0" />
+   <Label fx:id="bombnum" layoutX="649.0" layoutY="163.0" prefHeight="34.0" prefWidth="81.0" textFill="WHITE" AnchorPane.rightAnchor="4.0" />
+   <Label fx:id="godnum" layoutX="649.0" layoutY="216.0" prefHeight="34.0" prefWidth="81.0" textFill="WHITE" AnchorPane.rightAnchor="4.0" />
+   <Label fx:id="keynum" layoutX="649.0" layoutY="267.0" prefHeight="34.0" prefWidth="81.0" textFill="WHITE" AnchorPane.rightAnchor="4.0" />
    <ImageView fitHeight="43.0" fitWidth="43.0" layoutX="585.0" layoutY="315.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="106.0">
       <image>
          <Image url="@../image/brilliant_blue_new.png" />
@@ -53,7 +53,7 @@
          <Image url="@../image/bubbly.png" />
       </image>
    </ImageView>
-   <Label fx:id="b1" layoutX="649.0" layoutY="315.0" prefHeight="34.0" prefWidth="81.0" AnchorPane.rightAnchor="4.0" />
-   <Label fx:id="g1" layoutX="649.0" layoutY="359.0" prefHeight="34.0" prefWidth="81.0" AnchorPane.rightAnchor="4.0" />
-   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="581.0" layoutY="14.0" prefHeight="27.0" prefWidth="106.0" text="Bag Area" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="14.0" />
+   <Label fx:id="b1" layoutX="649.0" layoutY="315.0" prefHeight="34.0" prefWidth="81.0" textFill="WHITE" AnchorPane.rightAnchor="4.0" />
+   <Label fx:id="g1" layoutX="649.0" layoutY="359.0" prefHeight="34.0" prefWidth="81.0" textFill="WHITE" AnchorPane.rightAnchor="4.0" />
+   <Label alignment="CENTER" contentDisplay="CENTER" layoutX="581.0" layoutY="14.0" prefHeight="27.0" prefWidth="106.0" text="Bag Area" textFill="WHITE" AnchorPane.rightAnchor="47.0" AnchorPane.topAnchor="14.0" />
 </AnchorPane>

@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane onKeyPressed="#handleKeyPressed" prefHeight="487.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MazeController">
+<AnchorPane onKeyPressed="#handleKeyPressed" prefHeight="487.0" prefWidth="634.0"  styleClass="anchor" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.MazeController">
     <Pane fx:id="mazePane" focusTraversable="true" prefHeight="479.0" prefWidth="517.0" BorderPane.alignment="CENTER" />
    <VBox layoutX="581.0" layoutY="5.0" spacing="20.0" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="25.0">
       <children>

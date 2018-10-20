@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane onKeyPressed="#handleKeyPressed" prefHeight="413.0" prefWidth="634.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DesignController">
+<AnchorPane onKeyPressed="#handleKeyPressed" prefHeight="413.0" prefWidth="634.0"  styleClass="anchor" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.DesignController">
    <children>
       <Pane fx:id="mazePane" focusTraversable="true" prefHeight="393.0" prefWidth="509.0" />
       <Button layoutX="522.0" layoutY="353.0" mnemonicParsing="false" onAction="#handleBackButton" prefHeight="30.0" prefWidth="98.0" text="Back main" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="20.0" />
