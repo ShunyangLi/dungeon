@@ -121,22 +121,9 @@ public class MapDatas {
         return this.mapDatas.get(index);
     }
 
-//    public void addMap (int[][] data) {
-//        MapData map = new MapData(data);
-//        this.mapDatas.add(map);
-//    }
-
-//    class MapData {
-//        private int[][] data;
-//
-//        public MapData (int[][] data) {
-//            this.data = data;
-//        }
-//
-//        public int[][] getData() {
-//            return this.data;
-//        }
-//    }
+    public int total() {
+        return this.mapDatas.size();
+    }
 }
 
 

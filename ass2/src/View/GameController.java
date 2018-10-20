@@ -74,14 +74,18 @@ public class GameController extends AbstractController {
     }
 
     public void updateObj() {
-        this.player = new Player(map,map.getPosition(Objects.player));
-        this.hunter = new Hunter(map.getPosition(Objects.hunter),map,true);
-        this.hunter.setMove(new TrackPlayer(this.hunter));
-        this.coward = new Coward(map.getPosition(Objects.coward),map,true);
-        this.coward.setMove(new TrackPlayer(this.coward));
-        this.strategist = new Strategist(map.getPosition(Objects.strategist), map, true);
-        this.hound = new Hound(map.getPosition(Objects.hound),map,true);
-        this.hound.setMove(new TrackPlayer(this.hound));
+        try {
+            this.player = new Player(map,map.getPosition(Objects.player));
+            this.hunter = new Hunter(map.getPosition(Objects.hunter),map,true);
+            this.hunter.setMove(new TrackPlayer(this.hunter));
+            this.coward = new Coward(map.getPosition(Objects.coward),map,true);
+            this.coward.setMove(new TrackPlayer(this.coward));
+            this.strategist = new Strategist(map.getPosition(Objects.strategist), map, true);
+            this.hound = new Hound(map.getPosition(Objects.hound),map,true);
+            this.hound.setMove(new TrackPlayer(this.hound));
+        } catch (Exception e) {
+            return;
+        }
     }
 
 
