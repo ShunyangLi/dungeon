@@ -123,22 +123,12 @@ public class MapDatas {
         this.mapDatas.put(3,map_3);
         this.mapDatas.put(4,map_4);
         this.mapDatas.put(99,map_99);
-
-//        this.mapDatas = new ArrayList<MapData>();
-//        mapData = new MapData(map_0);
-//        mapDatas.add(mapData);
-//        mapData = new MapData(map_1);
-//        mapDatas.add(mapData);
-//        mapData = new MapData(map_2);
-//        mapDatas.add(mapData);
-//        mapData = new MapData(map_3);
-//        mapDatas.add(mapData);
-//        mapData = new MapData(map_4);
-//        mapDatas.add(mapData);
     }
 
     public int[][] getMapByIndex (int index) {
-        if (index > this.mapDatas.size() - 2) {
+        if (index == 99) {
+            return this.mapDatas.get(index);
+        } else if (index <= this.mapDatas.size() - 2) {
             return this.mapDatas.get(index);
         } else {
             return null;
@@ -148,6 +138,7 @@ public class MapDatas {
     public int total() {
         return this.mapDatas.size();
     }
+
 }
 
 

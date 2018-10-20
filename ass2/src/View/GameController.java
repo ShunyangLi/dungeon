@@ -58,9 +58,10 @@ public class GameController extends AbstractController {
 
 
     public void setGame (int index) {
+        System.out.println(index);
         this.map = new Map(index);
         if (this.map.getMap() == null) {
-            winDialog();
+            winAllDialog ();
         }
     }
 
@@ -73,7 +74,6 @@ public class GameController extends AbstractController {
         keynum.setText("Num: " + this.player.getBag().get(Objects.key).getNum());
         b1.setText("Sate: " + this.player.getBag().get(Objects.invincibility).isBuff());
         g1.setText("Sate: " + this.player.getBag().get(Objects.hover).isBuff());
-
     }
 
     public void updateObj() {
@@ -89,6 +89,7 @@ public class GameController extends AbstractController {
         } catch (Exception e) {
             return;
         }
+
     }
 
 
@@ -178,16 +179,14 @@ public class GameController extends AbstractController {
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle("Winner");
         alert.setContentText("You Passed All Level!!!!!!!!");
+        ButtonType buttonTypeBack = new ButtonType("Back To Main");
 
-        ButtonType buttonNext = new ButtonType("Next Level");
-        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-
-        alert.getButtonTypes().setAll(buttonNext, buttonTypeCancel);
+        alert.getButtonTypes().setAll(buttonTypeBack);
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (result.get() == buttonNext){
+        if (result.get() == buttonTypeBack){
             alert.close();
-            handleNext();
+            handleBackButton ();
         } else {
             alert.close();
         }

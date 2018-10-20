@@ -15,12 +15,15 @@ public class DesignController extends AbstractController {
     private Map map;
     private Player player;
     private Coordinate position;
+    private int preValue = -1;
 
     public DesignController() {
         this.map = new Map(99);
         this.player = new Player(map, map.getPosition(Objects.player));
         this.image = new GameImage();
         this.position = this.player.getPosition();
+        System.out.println(map.getPosition(Objects.player));
+        System.out.println(map.getValue(0,0));
     }
 
     @FXML
@@ -53,10 +56,9 @@ public class DesignController extends AbstractController {
     public void handleKeyPressed(KeyEvent event) {
 
         KeyCode code =  event.getCode();
-
+        System.out.println(code);
         switch (code) {
             case UP:
-                SetObj(Objects.road);
                 DesignUp();
                 break;
             case DOWN:
@@ -69,7 +71,8 @@ public class DesignController extends AbstractController {
                 DesignRight();
                 break;
             case DIGIT1:
-                SetObj(Objects.wall);
+                this.preValue = Objects.wall;
+                break;
             default:
                     break;
         }
@@ -77,18 +80,18 @@ public class DesignController extends AbstractController {
         initialize();
     }
 
-    public void SetObj(int obj) {
-        int x = this.position.getX();
-        int y = this.position.getY();
-
-        this.position.setValue(obj);
-        return;
-    }
 
     public void DesignUp() {
         int x = this.position.getX() - 1;
         int y = this.position.getY();
+        int obj = Objects.road;
 
+        if (this.preValue != -1) {
+            obj = this.preValue;
+            this.preValue = -1;
+        }
+        this.position.setValue(obj);
+        this.map.setupMap(this.position);
         this.position.setX(x);
         this.position.setY(y);
         this.position.setValue(Objects.player);
@@ -99,7 +102,14 @@ public class DesignController extends AbstractController {
     public void DesignDown() {
         int x = this.position.getX() + 1;
         int y = this.position.getY();
-        this.position.setValue(Objects.road);
+        int obj = Objects.road;
+
+        if (this.preValue != -1) {
+            obj = this.preValue;
+            this.preValue = -1;
+        }
+        this.position.setValue(obj);
+
         this.map.setupMap(this.position);
         this.position.setX(x);
         this.position.setValue(Objects.player);
@@ -107,8 +117,14 @@ public class DesignController extends AbstractController {
     }
     public void DesignLeft() {
         int y = this.position.getY() - 1;
+        int obj = Objects.road;
 
-        this.position.setValue(Objects.road);
+        if (this.preValue != -1) {
+            obj = this.preValue;
+            this.preValue = -1;
+        }
+        this.position.setValue(obj);
+
         this.map.setupMap(this.position);
         this.position.setY(y);
         this.position.setValue(Objects.player);
@@ -117,8 +133,13 @@ public class DesignController extends AbstractController {
 
     public void DesignRight() {
         int y = this.position.getY() + 1;
+        int obj = Objects.road;
 
-        this.position.setValue(Objects.road);
+        if (this.preValue != -1) {
+            obj = this.preValue;
+            this.preValue = -1;
+        }
+        this.position.setValue(obj);
         this.map.setupMap(this.position);
         this.position.setY(y);
         this.position.setValue(Objects.player);
