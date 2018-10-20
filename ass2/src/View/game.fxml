@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane onKeyPressed="#handleKeyPressed" prefHeight="508.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameController">
+<AnchorPane onKeyPressed="#handleKeyPressed" prefHeight="508.0" prefWidth="734.0"  styleClass="anchor" stylesheets="@application.css" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="View.GameController">
       <Pane fx:id="mazePane" focusTraversable="true" prefHeight="487.0" prefWidth="507.0" BorderPane.alignment="CENTER" />
       <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="578.0" layoutY="403.0" mnemonicParsing="false" onAction="#handleRestartButton" prefHeight="36.0" prefWidth="140.0" text="Restart" AnchorPane.bottomAnchor="78.0" AnchorPane.rightAnchor="30.0" />
    <Button alignment="CENTER" contentDisplay="CENTER" focusTraversable="false" layoutX="577.0" layoutY="363.0" mnemonicParsing="false" onAction="#handleNext" prefHeight="36.0" prefWidth="140.0" text="Next" AnchorPane.bottomAnchor="118.0" AnchorPane.rightAnchor="30.0" />
