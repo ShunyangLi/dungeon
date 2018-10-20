@@ -73,6 +73,15 @@ public class DesignController extends AbstractController {
             case DIGIT1:
                 this.preValue = Objects.wall;
                 break;
+            case DIGIT2:
+                this.preValue = Objects.exit;
+                break;
+            case DIGIT3:
+                this.preValue = Objects.boulder;
+                break;
+            case DIGIT4:
+                this.preValue = Objects.door;
+                break;
             default:
                     break;
         }
