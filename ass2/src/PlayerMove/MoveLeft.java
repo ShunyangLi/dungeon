@@ -8,18 +8,15 @@ public class MoveLeft implements Move {
     private Map map;
     private Coordinate position;
 
-    public MoveLeft(Player player)
-    {
+    public MoveLeft(Player player) {
         this.player = player;
         this.map = this.player.getMap();
         this.position = this.player.getPosition();
     }
 
     @Override
-    public boolean inMap(int x, int y)
-    {
-        if (x > this.map.getHeight() || y > this.map.getWidth() || x < 0 || y < 0)
-        {
+    public boolean inMap(int x, int y) {
+        if (x > this.map.getHeight() || y > this.map.getWidth() || x < 0 || y < 0) {
             return true;
         }
 
@@ -38,32 +35,23 @@ public class MoveLeft implements Move {
         int x = this.position.getX();
         int y = this.position.getY() - 1;
 
-        if (inMap(x, y))
-        {
+        if (inMap(x, y)) {
             return;
         }
 
-        // TODO player move left
-        if (! this.player.isExit(x,y))
-        {
-            if (! this.player.isDie(x,y))
-            {
-                if (this.player.isMoveable(x,y))
-                {
-                    if (this.player.getPreValue() != -1)
-                    {
+        if (! this.player.isExit(x,y)) {
+            if (! this.player.isDie(x,y)) {
+                if (this.player.isMoveable(x,y)) {
+                    if (this.player.getPreValue() != -1) {
                         this.player.setPre();
                     }
 
                     this.setPosition(y);
                 } else if (this.map.getValue(x,y) == Objects.boulder) {
 
-                    if(this.player.isBoulderMove(x, y - 1))
-                    {
-
+                    if(this.player.isBoulderMove(x, y - 1)) {
                         // want to add thi
-                        if (map.getValue(x, y - 1) == Objects.pit)
-                        {
+                        if (map.getValue(x, y - 1) == Objects.pit) {
                             Coordinate coordinate = new Coordinate(x, y - 1, Objects.road);
                             this.map.setupMap(coordinate);
                             this.setPosition(y);

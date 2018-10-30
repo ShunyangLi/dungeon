@@ -6,8 +6,7 @@ public class Treasure implements Props {
     private int num;
     private Coordinate position;
     private Map map;
-    public Treasure(Map map)
-    {
+    public Treasure(Map map) {
         this.map = map;
         this.setNum(0);
     }

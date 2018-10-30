@@ -10,8 +10,7 @@ public class Arrow implements Props{
     private Coordinate position;
     private Map map;
 
-    public Arrow(Map map)
-    {
+    public Arrow(Map map) {
         this.map = map;
         this.setNum(0);
     }

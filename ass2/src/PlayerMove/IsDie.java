@@ -42,17 +42,20 @@ public class IsDie implements MoveState {
         if (new Objects().isEnemy(objects)) {
             for (int i = 0; i < 3; i ++) {
                 if (this.bag.get(priority[i]).use()) {
-                    System.out.println(i + " "+ this.bag.get(priority[i]));
+                    // this is priority to kill enemy
                     this.player.setPlayer(new Coordinate(x,y,Objects.road));
                     return false;
                 }
             }
+            // if do not have any weapon, then, the player will be killed
             this.player.setAlive(false);
             return true;
+            // if this is pit and get hover power, then the player can fly above the pit
         } else if (objects == Objects.pit && this.bag.get(Objects.hover).isBuff()) {
             this.player.setPlayer(new Coordinate(x,y,Objects.road));
             this.player.setPreValue(Objects.pit);
             return false;
+            // if not, then the player will die
         } else if (objects == Objects.pit && ! this.bag.get(Objects.hover).isBuff()) {
             this.player.setAlive(false);
             return true;

@@ -14,12 +14,16 @@ public class MoveAble implements MoveState {
     private Map map;
     private HashMap<Integer, Props> bag;
 
+    /**
+     * @param player which is Class player, because we need to detect whether the player can move around in the position
+     */
     public MoveAble (Player player) {
         this.player = player;
         this.map = this.player.getMap();
         this.bag = this.player.getBag();
     }
 
+    // this state means, whether the objects is throughable
     @Override
     public boolean state(int x, int y) {
         int objects = this.map.getValue(x,y);

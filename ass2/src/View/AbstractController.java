@@ -15,7 +15,7 @@ public class AbstractController {
         this.stage = stage;
     }
 
-    ImageView imageCopy(ImageView srcImage) {
+    ImageView formatImage(ImageView srcImage) {
         ImageView image = new ImageView(srcImage.getImage());
         image.setFitWidth(40);
         image.setFitHeight(40);
@@ -31,6 +31,7 @@ public class AbstractController {
         return stack;
     }
 
+    // TODO this part get from tutorial code
     private void makeDroppable(StackPane stack) {
         stack.setOnDragOver(new EventHandler<DragEvent>() {
             public void handle(DragEvent event) {
@@ -44,7 +45,7 @@ public class AbstractController {
             public void handle(DragEvent event) {
                 Dragboard db = event.getDragboard();
                 if (db.hasImage()) {
-                    stack.getChildren().add(imageCopy(new ImageView(db.getImage())));
+                    stack.getChildren().add(formatImage(new ImageView(db.getImage())));
                 }
                 event.consume();
             }

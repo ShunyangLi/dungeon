@@ -14,9 +14,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import props.*;
 
-import javax.sound.midi.Track;
 import java.util.Optional;
-import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -58,7 +56,6 @@ public class GameController extends AbstractController {
 
 
     public void setGame (int index) {
-//        System.out.println(index);
         this.map = new Map(index);
         if (this.map.getMap() == null) {
             winAllDialog ();
@@ -66,7 +63,6 @@ public class GameController extends AbstractController {
     }
 
     public void setGame (int[][] map) {
-//        System.out.println(index);
         this.map = new Map(16, 18, map);
         if (this.map.getMap() == null) {
             winAllDialog ();
@@ -87,19 +83,31 @@ public class GameController extends AbstractController {
     }
 
     public void updateObj() {
-        try {
-            this.player = new Player(map,map.getPosition(Objects.player));
+
+        if (map.getPosition(Objects.hunter) != null) {
             this.hunter = new Hunter(map.getPosition(Objects.hunter),map,true);
             this.hunter.setMove(new TrackPlayer(this.hunter));
+        }
+
+        if (map.getPosition(Objects.coward) != null) {
             this.coward = new Coward(map.getPosition(Objects.coward),map,true);
             this.coward.setMove(new TrackPlayer(this.coward));
+        }
+
+        if (map.getPosition(Objects.strategist) != null) {
             this.strategist = new Strategist(map.getPosition(Objects.strategist), map, true);
             this.strategist.setMove(new TrackPlayer(this.strategist));
+        }
+
+        if (map.getPosition(Objects.hound) != null) {
             this.hound = new Hound(map.getPosition(Objects.hound),map,true);
             this.hound.setMove(new TrackPlayer(this.hound));
-        } catch (Exception e) {
-            return;
         }
+
+        if (map.getPosition(Objects.player) != null) {
+            this.player = new Player(map,map.getPosition(Objects.player));
+        }
+
 
     }
 
@@ -130,7 +138,7 @@ public class GameController extends AbstractController {
         // grid.setGridLinesVisible(true);
         for (int i = 0; i < this.map.getHeight(); i++) {
             for (int j = 0; j < this.map.getWidth(); j++) {
-                StackPane stack = stackCopy(imageCopy(image.getImages(map.getValue(i, j))));
+                StackPane stack = stackCopy(formatImage(image.getImages(map.getValue(i, j))));
                 grid.add(stack,j ,i);
             }
         }
@@ -141,7 +149,6 @@ public class GameController extends AbstractController {
     @FXML
     public void handleKeyPressed(KeyEvent event) {
         if (player.getAlive() && ! player.isSuccess()) {
-            checkDie();
             switch (event.getCode()) {
                 case UP:
                     player.moveUp();
@@ -306,23 +313,23 @@ public class GameController extends AbstractController {
         return;
     }
 
-    public void checkDie() {
-        if (this.map.getPosition(Objects.hunter) == null) {
-            hunter.setAlive(false);
-        }
-
-        if (this.map.getPosition(Objects.coward) == null) {
-            coward.setAlive(false);
-        }
-
+//    public void checkDie() {
+//        if (this.map.getPosition(Objects.hunter) == null) {
+//            hunter.setAlive(false);
+//        }
+//
+//        if (this.map.getPosition(Objects.coward) == null) {
+//            coward.setAlive(false);
+//        }
+//
 //        if (this.map.getPosition(Objects.strategist) == null) {
 //            hunter.setAlive(false);
 //        }
-
-        if (this.map.getPosition(Objects.hound) == null) {
-            hound.setAlive(false);
-        }
-    }
+//
+//        if (this.map.getPosition(Objects.hound) == null) {
+//            hound.setAlive(false);
+//        }
+//    }
 
     public static boolean hide(Player player, Enemy crowd) {
         int p_x = player.getPosition().getX();

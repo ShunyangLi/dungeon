@@ -12,7 +12,6 @@ import javafx.scene.input.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import props.Key;
 
 import java.util.ArrayList;
 import java.util.Optional;
@@ -51,7 +50,7 @@ public class MazeController extends AbstractController {
         // grid.setGridLinesVisible(true);
         for (int i = 0; i < map.getHeight(); i++) {
             for (int j = 0; j < map.getWidth(); j++) {
-                StackPane stack = stackCopy(imageCopy(image.getImages(map.getValue(i, j))));
+                StackPane stack = stackCopy(formatImage(image.getImages(map.getValue(i, j))));
                 grid.add(stack,j ,i);
             }
         }

@@ -3,6 +3,10 @@ package ass2;
 import java.util.HashMap;
 
 public class MapDatas {
+    /**
+     * this is all different maps, it's double array
+     * and according to the index to get the map
+     */
     private HashMap<Integer, int[][]> mapDatas;
     // private MapData mapData;
     private int[][] map_0 = {
@@ -115,6 +119,10 @@ public class MapDatas {
             {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
     };
 
+    /**
+     * put all maps into the double array
+     * just for better to get the correct map
+     */
     public MapDatas () {
         this.mapDatas = new HashMap<Integer, int[][]>();
         this.mapDatas.put(0,map_0);
@@ -125,6 +133,12 @@ public class MapDatas {
         this.mapDatas.put(99,map_99);
     }
 
+    /**
+     *
+     * @param index the index of map
+     * @return return as a double array into system
+     * we use try expect to avoid some bugs
+     */
     public int[][] getMapByIndex (int index) {
         if (index == 99) {
             return this.mapDatas.get(index);
@@ -133,10 +147,6 @@ public class MapDatas {
         } else {
             return null;
         }
-    }
-
-    public int total() {
-        return this.mapDatas.size();
     }
 
 }

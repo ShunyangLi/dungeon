@@ -36,7 +36,7 @@ public class DesignController extends AbstractController {
         // grid.setGridLinesVisible(true);
         for (int i = 0; i < this.map.getHeight(); i++) {
             for (int j = 0; j < this.map.getWidth(); j++) {
-                StackPane stack = stackCopy(imageCopy(image.getImages(map.getValue(i, j))));
+                StackPane stack = stackCopy(formatImage(image.getImages(map.getValue(i, j))));
                 grid.add(stack,j ,i);
             }
         }

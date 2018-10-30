@@ -35,23 +35,30 @@ public class TrackPlayer implements EnemyMove {
         ArrayList<Location> road = path.path(this.map, this.map.getPosition(object), this.map.getPosition(Objects.player));
         // 1 means hide
        if (status == 2) {
-            road = null;
             try {
-                road = path.path(this.map, this.map.getPosition(object), new Coordinate(random.nextInt(10),random.nextInt(15),0));
+                int obj = random.nextInt(10);
+                if (obj != Objects.player) {
+                    road = path.path(this.map, this.map.getPosition(object), new Coordinate(obj,random.nextInt(15),0));
+                } else {
+                    autoMove(object, 2);
+                }
             }catch (Exception e) {
                 return;
             }
         }
+        // System.out.println(road.size());
         // because if the player is not move, then the enemy can kill the player, so need to add the player's position into the path
         if (road == null || road.size() == 0) {
             return;
         }
 
-        try {
-            road.add(0,new Location(this.map.getPosition(Objects.player).getX(),this.map.getPosition(Objects.player).getX()));
-        } catch (Exception e) {
+        road.add(0,new Location(this.map.getPosition(Objects.player).getX(),this.map.getPosition(Objects.player).getY()));
+//        try {
+//
+//        } catch (Exception e) {
+//
+//        }
 
-        }
 
         // this is control to auto move
         for (int i  = road.size() - 1; i >= 0; i -- ) {

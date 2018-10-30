@@ -5,7 +5,7 @@ import ass2.Objects;
 import java.util.*;
 
 public class MyMaze {
-    private int dimensionX, dimensionY; // dimension of maze
+    private int gridX, gridY; // dimension of maze
     private int gridDimensionX, gridDimensionY; // dimension of output grid
     private int[][] grid; // output grid
     private Cell[][] cells; // 2d array of Cells
@@ -19,8 +19,8 @@ public class MyMaze {
 
     // constructor
     public MyMaze(int xDimension, int yDimension) {
-        dimensionX = xDimension;
-        dimensionY = yDimension;
+        gridX = xDimension;
+        gridY = yDimension;
         gridDimensionX = xDimension * 2 + 1;
         gridDimensionY = yDimension * 2 + 1;
         grid = new int[gridDimensionX][gridDimensionY];
@@ -33,9 +33,9 @@ public class MyMaze {
 
     private void init() {
         // create cells
-        cells = new Cell[dimensionX][dimensionY];
-        for (int x = 0; x < dimensionX; x++) {
-            for (int y = 0; y < dimensionY; y++) {
+        cells = new Cell[gridX][gridY];
+        for (int x = 0; x < gridX; x++) {
+            for (int y = 0; y < gridY; y++) {
                 cells[x][y] = new Cell(x, y, false); // create cell (see Cell constructor)
             }
         }
@@ -172,8 +172,8 @@ public class MyMaze {
             }
         }
         // make meaningful representation
-        for (int x = 0; x < dimensionX; x++) {
-            for (int y = 0; y < dimensionY; y++) {
+        for (int x = 0; x < gridX; x++) {
+            for (int y = 0; y < gridY; y++) {
                 Cell current = getCell(x, y);
                 int gridX = x * 2 + 1, gridY = y * 2 + 1;
                 grid[gridX][gridY] = cellChar;
@@ -205,12 +205,6 @@ public class MyMaze {
             }
             output += "\n";
         }
-//        for (int y = 0; y < gridDimensionY; y++) {
-//            for (int x = 0; x < gridDimensionX; x++) {
-//                output += grid[x][y];
-//            }
-//            output += "\n";
-//        }
         return output;
     }
 
@@ -218,9 +212,4 @@ public class MyMaze {
         return grid;
     }
 
-     // run it
-//    public static void main(String[] args) {
-//        MyMaze maze = new MyMaze(9, 8);
-//        maze.draw();
-//    }
 }
