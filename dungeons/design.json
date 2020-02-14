@@ -1,0 +1,48 @@
+{
+  "entities": [
+    {
+      "x": 11,
+      "y": 3,
+      "type": "invincibility"
+    },
+    {
+      "x": 9,
+      "y": 1,
+      "type": "player"
+    },
+    {
+      "x": 14,
+      "y": 0,
+      "type": "exit"
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "type": "enemy"
+    },
+    {
+      "x": 14,
+      "y": 7,
+      "type": "enemy"
+    },
+    {
+      "x": 6,
+      "y": 14,
+      "type": "enemy"
+    },
+    {
+      "x": 11,
+      "y": 0,
+      "type": "player"
+    }
+  ],
+  "width": 15,
+  "goal-condition": {
+    "goal": "AND",
+    "subgoals": [
+      {"goal": "exit"},
+      {"goal": "exit"}
+    ]
+  },
+  "height": 15
+}
